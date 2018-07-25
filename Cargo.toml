@@ -1,0 +1,7 @@
+[package]
+name = "libnx-rs"
+version = "0.1.0"
+authors = ["ischeinkman <scheinkman.ilan@gmail.com>"]
+
+[build-dependencies]
+bindgen = "0.37.0"
