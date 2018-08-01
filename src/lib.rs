@@ -5,20 +5,37 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 
+pub mod lang_items {
+    pub enum c_void {}
+    pub type c_char = u8;
+    pub type c_int = i32;
+    pub type c_long = i64;
+    pub type c_longlong = i64;
+    pub type c_schar = i8;
+    pub type c_short = i16;
+    pub type c_uchar = u8;
+    pub type c_uint = u32;
+    pub type c_ulong = u64;
+    pub type c_ulonglong = u64;
+    pub type c_ushort = u16;
+    pub type size_t = u64;
+    pub type ssize_t = i64;
+    pub type c_float = f32;
+    pub type c_double = f64; 
+}
+
 pub mod libnx {
-    mod lang_items {
-        pub enum c_void {}
-        pub type c_char = i8;
-        pub type c_int = i32;
-        pub type c_long = i64;
-        pub type c_longlong = i64;
-        pub type c_schar = i8;
-        pub type c_short = i16;
-        pub type c_uchar = u8;
-        pub type c_uint = u32;
-        pub type c_ulong = u64;
-        pub type c_ulonglong = u64;
-        pub type c_ushort = u16;
-    }
+    pub use lang_items;
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+}
+
+pub mod libc {
+    pub use lang_items;
+    pub use lang_items::*;
+    pub use libnx::*;
+    include!(concat!(env!("OUT_DIR"), "/libc_bindings.rs"));
+
+    //Copied from ctru-rs since they are missing in libnx but are needed in libstd
+    pub const O_ACCMODE: c_int = 3;
+    pub const O_CLOEXEC: c_int = 0x80000;
 }

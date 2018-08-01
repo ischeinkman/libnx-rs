@@ -2,6 +2,10 @@
 name = "libnx-rs"
 version = "0.1.0"
 authors = ["ischeinkman <scheinkman.ilan@gmail.com>"]
+links = "nx"
+
+[lib]
+crate_type = ["rlib", "lib"]
 
 [build-dependencies]
-bindgen = "0.37.0"
+bindgen = "0.37.4"
