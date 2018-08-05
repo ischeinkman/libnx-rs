@@ -5,7 +5,7 @@ authors = ["ischeinkman <scheinkman.ilan@gmail.com>"]
 links = "nx"
 
 [lib]
-crate_type = ["rlib", "lib"]
+crate_type = ["rlib"]
 
 [build-dependencies]
 bindgen = "0.37.4"
