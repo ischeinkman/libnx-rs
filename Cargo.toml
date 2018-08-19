@@ -9,3 +9,6 @@ crate_type = ["rlib"]
 
 [build-dependencies]
 bindgen = "0.37.4"
+
+[features]
+sysroot = []
