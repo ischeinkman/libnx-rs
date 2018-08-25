@@ -8,14 +8,8 @@ use bindgen::callbacks::{ParseCallbacks, MacroParsingBehavior, IntKind, EnumVari
 pub fn main() {
 
     create_bindings("wrapper.h", "bindings.rs")
-        .and_then(|bnd| {
-            bnd.write_to_file(PathBuf::from("/workdir/libnx_bindings.rs")).map(|_| bnd)
-        } )
         .expect("Could not create libnx bindings!");
     create_bindings("libc_wrapper.h","libc_bindings.rs")
-        .and_then(|bnd| {
-            bnd.write_to_file(PathBuf::from("/workdir/libc_bindings.rs")).map(|_| bnd)
-        })
         .expect("Could not create libc bindings!");
     
 
