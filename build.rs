@@ -9,17 +9,6 @@ pub fn main() {
 
     create_bindings("wrapper.h", "bindings.rs")
         .expect("Could not create libnx bindings!");
-    create_bindings("libc_wrapper.h","libc_bindings.rs")
-        .expect("Could not create libc bindings!");
-    
-
-    /*println!("cargo:rustc-link-search=native=/opt/devkitpro/libnx/lib/");
-    println!("cargo:rustc-link-search=native=/opt/devkitpro/devkitA64/aarch64-none-elf/lib/");
-    println!("cargo:rustc-link-search=native=/opt/devkitpro/devkitA64/lib/gcc/aarch64-none-elf/8.2.0/");
-    println!("cargo:rustc-link-lib=static=c");
-    println!("cargo:rustc-link-lib=static=nx");
-    println!("cargo:rustc-link-lib=static=c");*/
-    //println!("cargo:rustc-flags=-L /opt/devkitpro/libnx/lib -L /opt/devkitpro/devkitA64/aarch64-none-elf/lib -L /opt/devkitpro/devkitA64/lib/gcc/aarch64-none-elf/8.2.0 -lc -lnx -lc");
 }
 
 fn create_bindings(infile : &str, outfile : &str) -> Result<bindgen::Bindings, std::io::Error> {
