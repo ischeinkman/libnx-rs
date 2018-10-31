@@ -71,3 +71,6 @@ pub mod usbcomms;
 
 #[cfg(not(feature="sysroot"))]
 pub mod console;
+
+#[cfg(not(feature="sysroot"))]
+pub mod hid;

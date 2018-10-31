@@ -1,8 +1,6 @@
 #![cfg(not(feature="sysroot"))]
 
-use super::LibnxError;
 use super::libnx::{
-    lang_items,
     consoleInit, 
     PrintConsole,
     consoleClear,
