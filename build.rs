@@ -5,7 +5,9 @@ pub fn main() {
 }
 
 #[cfg(feature = "make_bindings")]
-pub use dynamic::main;
+pub fn main() {
+    dynamic::main()
+}
 
 #[cfg(feature = "make_bindings")]
 mod dynamic {
@@ -17,7 +19,7 @@ mod dynamic {
     }
 
     extern crate bindgen;
-    use bindgen::callbacks::{
+    use dynamic::bindgen::callbacks::{
         EnumVariantCustomBehavior, EnumVariantValue, IntKind, MacroParsingBehavior, ParseCallbacks,
     };
     fn create_bindings(infile: &str, outfile: &str) -> Result<bindgen::Bindings, std::io::Error> {

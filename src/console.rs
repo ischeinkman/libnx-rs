@@ -1,29 +1,34 @@
+#![cfg(not(feature="sysroot"))]
+
 use super::LibnxError;
 use super::libnx::{
     lang_items,
     consoleInit, 
     PrintConsole,
     consoleClear,
+    consoleUpdate, 
+    consoleExit
 };
 
 use std::ptr;
+
 pub struct ConsoleHandle {
     inner : *mut PrintConsole
 }
 
 impl ConsoleHandle {
     pub fn init_default() -> ConsoleHandle {
-        let inner = unsafe {
-            consoleInit(ptr::null_mut())
-        };
+        unsafe {
+            consoleInit(ptr::null_mut());
+        }
         ConsoleHandle {
-            inner
+            inner : ptr::null_mut()
         }
     }
 
     pub fn update(&mut self) {
         unsafe {
-            //consoleUpdate(self.inner);
+            consoleUpdate(self.inner);
         }
     }
 
@@ -43,7 +48,7 @@ impl Default for ConsoleHandle {
 impl Drop for ConsoleHandle {
     fn drop(&mut self) {
         unsafe {
-            //consoleExit(self.inner);
+            consoleExit(self.inner);
         }
     }
 }

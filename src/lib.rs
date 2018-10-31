@@ -7,17 +7,33 @@
 #[cfg(not(feature="sysroot"))]
 extern crate core;
 
-pub struct LibnxError {
-    pub error_code : u32
-}
+#[cfg(not(feature="sysroot"))]
+mod error {
 
-impl LibnxError {
-    pub fn from_raw(error : u32) -> LibnxError {
-        LibnxError {
-            error_code : error
+    #[derive(Debug)]
+    pub struct LibnxError {
+        pub error_code : Option<u32>,
+        pub error_msg : Option<String>
+    }
+
+    impl LibnxError {
+        pub fn from_msg(msg : String) -> LibnxError {
+            LibnxError {
+                error_code : None, 
+                error_msg : Some(msg)
+            }
+        }
+        pub fn from_raw(error : u32) -> LibnxError {
+            LibnxError {
+                error_code : Some(error), 
+                error_msg : None
+            }
         }
     }
 }
+
+#[cfg(not(feature="sysroot"))]
+pub use error::LibnxError;
 
 
 pub mod libnx {
