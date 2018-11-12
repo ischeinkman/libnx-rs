@@ -74,3 +74,6 @@ pub mod console;
 
 #[cfg(not(feature="sysroot"))]
 pub mod hid;
+
+#[cfg(not(feature="sysroot"))]
+pub mod fs;

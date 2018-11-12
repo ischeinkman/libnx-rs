@@ -15,6 +15,10 @@ pub struct HidContext {
 }
 
 impl HidContext {
+    pub fn new() -> HidContext {
+        HidContext {}
+    }
+
     pub fn scan_input(&mut self) {
         unsafe {
             hidScanInput();
@@ -44,7 +48,7 @@ impl HidContext {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Hash)]
+#[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
 pub struct Controller {
     controller : HidControllerID
 }
