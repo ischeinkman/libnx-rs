@@ -260,6 +260,7 @@ pub const NROASSETHEADER_MAGIC: i32 = 1413829441;
 pub const NROASSETHEADER_VERSION: i32 = 0;
 pub const CUR_PROCESS_HANDLE: u32 = 4294934529;
 pub const CUR_THREAD_HANDLE: u32 = 4294934528;
+pub const MAX_WAIT_OBJECTS: i32 = 64;
 pub const __NEWLIB_H__: i32 = 1;
 pub const _WANT_IO_C99_FORMATS: i32 = 1;
 pub const _WANT_IO_LONG_LONG: i32 = 1;
@@ -273,9 +274,8 @@ pub const _HAVE_CC_INHIBIT_LOOP_TO_LIBCALL: i32 = 1;
 pub const _FVWRITE_IN_STREAMIO: i32 = 1;
 pub const _FSEEK_OPTIMIZATION: i32 = 1;
 pub const _UNBUF_STREAM_OPT: i32 = 1;
-pub const __OBSOLETE_MATH_DEFAULT: i32 = 0;
-pub const __OBSOLETE_MATH: i32 = 0;
-pub const MALLOC_ALIGNMENT: i32 = 16;
+pub const __OBSOLETE_MATH_DEFAULT: i32 = 1;
+pub const __OBSOLETE_MATH: i32 = 1;
 pub const __RAND_MAX: u32 = 2147483647;
 pub const SFCI_MAGIC: i32 = 1229145683;
 pub const SFCO_MAGIC: i32 = 1329808979;
@@ -297,15 +297,20 @@ pub const AUDREN_REVISION_1: i32 = 827737426;
 pub const AUDREN_REVISION_2: i32 = 844514642;
 pub const AUDREN_REVISION_3: i32 = 861291858;
 pub const AUDREN_REVISION_4: i32 = 878069074;
+pub const AUDREN_REVISION_5: i32 = 894846290;
+pub const AUDREN_REVISION_6: i32 = 911623506;
 pub const AUDREN_FINAL_MIX_ID: i32 = 0;
 pub const AUDREN_UNUSED_MIX_ID: u32 = 2147483647;
 pub const AUDREN_UNUSED_SPLITTER_ID: u32 = 4294967295;
 pub const AUDREN_DEFAULT_DEVICE_NAME: &'static [u8; 13usize] = b"MainAudioOut\0";
-pub const USBDS_DEFAULT_InterfaceNumber: i32 = 4;
 pub const USB_DT_INTERFACE_SIZE: i32 = 9;
 pub const USB_DT_ENDPOINT_SIZE: i32 = 7;
 pub const USB_DT_DEVICE_SIZE: i32 = 18;
 pub const USB_DT_SS_ENDPOINT_COMPANION_SIZE: i32 = 6;
+pub const USB_ENDPOINT_ADDRESS_MASK: i32 = 15;
+pub const USB_ENDPOINT_DIR_MASK: i32 = 128;
+pub const USB_TRANSFER_TYPE_MASK: i32 = 3;
+pub const USBDS_DEFAULT_InterfaceNumber: i32 = 4;
 pub const JOYSTICK_MAX: i32 = 32768;
 pub const JOYSTICK_MIN: i32 = -32768;
 pub const SET_MAX_NAME_SIZE: i32 = 72;
@@ -418,7 +423,7 @@ pub type int_fast32_t = lang_items::c_int;
 pub type uint_fast32_t = lang_items::c_uint;
 pub type int_fast64_t = lang_items::c_long;
 pub type uint_fast64_t = lang_items::c_ulong;
-pub type wchar_t = lang_items::c_uint;
+pub type wchar_t = lang_items::c_int;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct max_align_t {
@@ -487,7 +492,42 @@ pub const Module_LibnxNvidia: _bindgen_ty_1 = 348;
 pub const Module_LibnxBinder: _bindgen_ty_1 = 349;
 /// Module values
 pub type _bindgen_ty_1 = u32;
-pub const KernelError_Timeout: _bindgen_ty_2 = 117;
+pub const KernelError_OutOfSessions: _bindgen_ty_2 = 7;
+pub const KernelError_InvalidCapabilityDescriptor: _bindgen_ty_2 = 14;
+pub const KernelError_NotImplemented: _bindgen_ty_2 = 33;
+pub const KernelError_ThreadTerminating: _bindgen_ty_2 = 59;
+pub const KernelError_OutOfDebugEvents: _bindgen_ty_2 = 70;
+pub const KernelError_InvalidSize: _bindgen_ty_2 = 101;
+pub const KernelError_InvalidAddress: _bindgen_ty_2 = 102;
+pub const KernelError_ResourceExhausted: _bindgen_ty_2 = 103;
+pub const KernelError_OutOfMemory: _bindgen_ty_2 = 104;
+pub const KernelError_OutOfHandles: _bindgen_ty_2 = 105;
+pub const KernelError_InvalidMemoryState: _bindgen_ty_2 = 106;
+pub const KernelError_InvalidMemoryPermissions: _bindgen_ty_2 = 108;
+pub const KernelError_InvalidMemoryRange: _bindgen_ty_2 = 110;
+pub const KernelError_InvalidPriority: _bindgen_ty_2 = 112;
+pub const KernelError_InvalidCoreId: _bindgen_ty_2 = 113;
+pub const KernelError_InvalidHandle: _bindgen_ty_2 = 114;
+pub const KernelError_InvalidUserBuffer: _bindgen_ty_2 = 115;
+pub const KernelError_InvalidCombination: _bindgen_ty_2 = 116;
+pub const KernelError_TimedOut: _bindgen_ty_2 = 117;
+pub const KernelError_Cancelled: _bindgen_ty_2 = 118;
+pub const KernelError_OutOfRange: _bindgen_ty_2 = 119;
+pub const KernelError_InvalidEnumValue: _bindgen_ty_2 = 120;
+pub const KernelError_NotFound: _bindgen_ty_2 = 121;
+pub const KernelError_AlreadyExists: _bindgen_ty_2 = 122;
+pub const KernelError_ConnectionClosed: _bindgen_ty_2 = 123;
+pub const KernelError_UnhandledUserInterrupt: _bindgen_ty_2 = 124;
+pub const KernelError_InvalidState: _bindgen_ty_2 = 125;
+pub const KernelError_ReservedValue: _bindgen_ty_2 = 126;
+pub const KernelError_InvalidHwBreakpoint: _bindgen_ty_2 = 127;
+pub const KernelError_FatalUserException: _bindgen_ty_2 = 128;
+pub const KernelError_OwnedByAnotherProcess: _bindgen_ty_2 = 129;
+pub const KernelError_ConnectionRefused: _bindgen_ty_2 = 131;
+pub const KernelError_OutOfResource: _bindgen_ty_2 = 132;
+pub const KernelError_IpcMapFailed: _bindgen_ty_2 = 259;
+pub const KernelError_IpcCmdbufTooSmall: _bindgen_ty_2 = 260;
+pub const KernelError_NotDebugged: _bindgen_ty_2 = 520;
 /// Kernel error codes
 pub type _bindgen_ty_2 = u32;
 pub const LibnxError_BadReloc: _bindgen_ty_3 = 1;
@@ -1382,6 +1422,22 @@ pub const RegisterGroup_RegisterGroup_FpuAll: RegisterGroup = 12;
 pub const RegisterGroup_RegisterGroup_All: RegisterGroup = 15;
 /// Armv8 register group. @ref svcGetThreadContext3 uses @ref RegisterGroup_All.
 pub type RegisterGroup = u32;
+/// < Instruction abort
+pub const ThreadExceptionDesc_ThreadExceptionDesc_InstructionAbort: ThreadExceptionDesc = 256;
+/// < Misaligned PC
+pub const ThreadExceptionDesc_ThreadExceptionDesc_MisalignedPC: ThreadExceptionDesc = 258;
+/// < Misaligned SP
+pub const ThreadExceptionDesc_ThreadExceptionDesc_MisalignedSP: ThreadExceptionDesc = 259;
+/// < SError [not in 1.0.0?]
+pub const ThreadExceptionDesc_ThreadExceptionDesc_SError: ThreadExceptionDesc = 262;
+/// < Bad SVC
+pub const ThreadExceptionDesc_ThreadExceptionDesc_BadSVC: ThreadExceptionDesc = 769;
+/// < Uncategorized, CP15RTTrap, CP15RRTTrap, CP14RTTrap, CP14RRTTrap, IllegalState, SystemRegisterTrap
+pub const ThreadExceptionDesc_ThreadExceptionDesc_Trap: ThreadExceptionDesc = 260;
+/// < None of the above, EC <= 0x34 and not a breakpoint
+pub const ThreadExceptionDesc_ThreadExceptionDesc_Other: ThreadExceptionDesc = 257;
+/// This is for \ref ThreadExceptionDump error_desc.
+pub type ThreadExceptionDesc = u32;
 /// Thread context structure (register dump)
 #[repr(C)]
 #[repr(align(16))]
@@ -1518,6 +1574,445 @@ fn bindgen_test_layout_ThreadContext() {
             stringify!(ThreadContext),
             "::",
             stringify!(tpidr)
+        )
+    );
+}
+/// Thread exception dump structure.
+#[repr(C)]
+#[repr(align(16))]
+pub struct ThreadExceptionDump {
+    /// < See \ref ThreadExceptionDesc.
+    pub error_desc: u32,
+    pub pad: [u32; 3usize],
+    /// < GPRs 0..28. Note: also contains AArch32 registers.
+    pub cpu_gprs: [CpuRegister; 29usize],
+    /// < Frame pointer.
+    pub fp: CpuRegister,
+    /// < Link register.
+    pub lr: CpuRegister,
+    /// < Stack pointer.
+    pub sp: CpuRegister,
+    /// < Program counter (elr_el1).
+    pub pc: CpuRegister,
+    pub padding: u64,
+    /// < 32 general-purpose NEON registers.
+    pub fpu_gprs: [FpuRegister; 32usize],
+    /// < pstate & 0xFF0FFE20
+    pub pstate: u32,
+    pub afsr0: u32,
+    pub afsr1: u32,
+    pub esr: u32,
+    /// < Fault Address Register.
+    pub far: CpuRegister,
+    pub __bindgen_padding_0: u64,
+    pub __bindgen_align: [u8; 0usize],
+}
+#[test]
+fn bindgen_test_layout_ThreadExceptionDump() {
+    assert_eq!(
+        ::core::mem::size_of::<ThreadExceptionDump>(),
+        832usize,
+        concat!("Size of: ", stringify!(ThreadExceptionDump))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<ThreadExceptionDump>(),
+        16usize,
+        concat!("Alignment of ", stringify!(ThreadExceptionDump))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).error_desc as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(error_desc)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).pad as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(pad)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).cpu_gprs as *const _ as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(cpu_gprs)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).fp as *const _ as usize },
+        248usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(fp)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).lr as *const _ as usize },
+        256usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(lr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).sp as *const _ as usize },
+        264usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(sp)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).pc as *const _ as usize },
+        272usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(pc)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).padding as *const _ as usize },
+        280usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(padding)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).fpu_gprs as *const _ as usize },
+        288usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(fpu_gprs)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).pstate as *const _ as usize },
+        800usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(pstate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).afsr0 as *const _ as usize },
+        804usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(afsr0)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).afsr1 as *const _ as usize },
+        808usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(afsr1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).esr as *const _ as usize },
+        812usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(esr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionDump>())).far as *const _ as usize },
+        816usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionDump),
+            "::",
+            stringify!(far)
+        )
+    );
+}
+#[repr(C)]
+pub struct ThreadExceptionFrameA64 {
+    /// < GPRs 0..8.
+    pub cpu_gprs: [u64; 9usize],
+    pub lr: u64,
+    pub sp: u64,
+    pub elr_el1: u64,
+    /// < pstate & 0xFF0FFE20
+    pub pstate: u32,
+    pub afsr0: u32,
+    pub afsr1: u32,
+    pub esr: u32,
+    pub far: u64,
+}
+#[test]
+fn bindgen_test_layout_ThreadExceptionFrameA64() {
+    assert_eq!(
+        ::core::mem::size_of::<ThreadExceptionFrameA64>(),
+        120usize,
+        concat!("Size of: ", stringify!(ThreadExceptionFrameA64))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<ThreadExceptionFrameA64>(),
+        8usize,
+        concat!("Alignment of ", stringify!(ThreadExceptionFrameA64))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).cpu_gprs as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(cpu_gprs)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).lr as *const _ as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(lr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).sp as *const _ as usize },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(sp)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).elr_el1 as *const _ as usize
+        },
+        88usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(elr_el1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).pstate as *const _ as usize },
+        96usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(pstate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).afsr0 as *const _ as usize },
+        100usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(afsr0)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).afsr1 as *const _ as usize },
+        104usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(afsr1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).esr as *const _ as usize },
+        108usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(esr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA64>())).far as *const _ as usize },
+        112usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA64),
+            "::",
+            stringify!(far)
+        )
+    );
+}
+#[repr(C)]
+pub struct ThreadExceptionFrameA32 {
+    /// < GPRs 0..7.
+    pub cpu_gprs: [u32; 8usize],
+    pub sp: u32,
+    pub lr: u32,
+    pub elr_el1: u32,
+    /// < tpidr_el0 = 1
+    pub tpidr_el0: u32,
+    /// < cpsr & 0xFF0FFE20
+    pub cpsr: u32,
+    pub afsr0: u32,
+    pub afsr1: u32,
+    pub esr: u32,
+    pub far: u32,
+}
+#[test]
+fn bindgen_test_layout_ThreadExceptionFrameA32() {
+    assert_eq!(
+        ::core::mem::size_of::<ThreadExceptionFrameA32>(),
+        68usize,
+        concat!("Size of: ", stringify!(ThreadExceptionFrameA32))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<ThreadExceptionFrameA32>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ThreadExceptionFrameA32))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).cpu_gprs as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(cpu_gprs)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).sp as *const _ as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(sp)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).lr as *const _ as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(lr)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).elr_el1 as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(elr_el1)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).tpidr_el0 as *const _ as usize
+        },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(tpidr_el0)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).cpsr as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(cpsr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).afsr0 as *const _ as usize },
+        52usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(afsr0)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).afsr1 as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(afsr1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).esr as *const _ as usize },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(esr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<ThreadExceptionFrameA32>())).far as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ThreadExceptionFrameA32),
+            "::",
+            stringify!(far)
         )
     );
 }
@@ -2028,6 +2523,8 @@ extern "C" {
     /// @brief Waits on one or more synchronization objects, optionally with a timeout.
     /// @return Result code.
     /// @note Syscall number 0x18.
+    /// @note \p handleCount must not be greater than \ref MAX_WAIT_OBJECTS. This is a Horizon kernel limitation.
+    /// @note This is the raw syscall, which can be cancelled by \ref svcCancelSynchronization or other means. \ref waitHandles or \ref waitMultiHandle should normally be used instead.
     pub fn svcWaitSynchronization(
         index: *mut s32,
         handles: *const Handle,
@@ -2141,6 +2638,12 @@ extern "C" {
     pub fn svcOutputDebugString(str: *const lang_items::c_char, size: u64) -> Result;
 }
 extern "C" {
+    /// @brief Returns from an exception.
+    /// @param[in] res Result code.
+    /// @note Syscall number 0x28.
+    pub fn svcReturnFromException(res: Result);
+}
+extern "C" {
     /// @brief Retrieves information about the system, or a certain kernel object.
     /// @param[out] out Variable to which store the information.
     /// @param[in] id0 First ID of the property to retrieve.
@@ -2154,14 +2657,14 @@ extern "C" {
 extern "C" {
     /// @brief Maps new heap memory at the desired address. [3.0.0+]
     /// @return Result code.
-    /// @note Syscall number 0x2A.
+    /// @note Syscall number 0x2C.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcMapPhysicalMemory(address: *mut lang_items::c_void, size: u64) -> Result;
 }
 extern "C" {
     /// @brief Undoes the effects of \ref svcMapPhysicalMemory. [3.0.0+]
     /// @return Result code.
-    /// @note Syscall number 0x2B.
+    /// @note Syscall number 0x2D.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcUnmapPhysicalMemory(address: *mut lang_items::c_void, size: u64) -> Result;
 }
@@ -2444,6 +2947,13 @@ extern "C" {
     pub fn svcBreakDebugProcess(debug: Handle) -> Result;
 }
 extern "C" {
+    /// @brief Terminates the process of an active debugging session.
+    /// @return Result code.
+    /// @note Syscall number 0x62.
+    /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
+    pub fn svcTerminateDebugProcess(debug: Handle) -> Result;
+}
+extern "C" {
     /// @brief Gets an incoming debug event from a debugging session.
     /// @return Result code.
     /// @note Syscall number 0x63.
@@ -2555,7 +3065,7 @@ extern "C" {
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcWriteDebugProcessMemory(
         debug: Handle,
-        buffer: *mut lang_items::c_void,
+        buffer: *const lang_items::c_void,
         addr: u64,
         size: u64,
     ) -> Result;
@@ -2747,6 +3257,320 @@ extern "C" {
     /// @note Syscall number 0x7F.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcCallSecureMonitor(regs: *mut SecmonArgs) -> u64;
+}
+pub type _LOCK_T = i32;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct __lock_t {
+    pub lock: _LOCK_T,
+    pub thread_tag: u32,
+    pub counter: u32,
+}
+#[test]
+fn bindgen_test_layout___lock_t() {
+    assert_eq!(
+        ::core::mem::size_of::<__lock_t>(),
+        12usize,
+        concat!("Size of: ", stringify!(__lock_t))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<__lock_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(__lock_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<__lock_t>())).lock as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__lock_t),
+            "::",
+            stringify!(lock)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<__lock_t>())).thread_tag as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__lock_t),
+            "::",
+            stringify!(thread_tag)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<__lock_t>())).counter as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__lock_t),
+            "::",
+            stringify!(counter)
+        )
+    );
+}
+pub type _LOCK_RECURSIVE_T = __lock_t;
+extern "C" {
+    pub fn __libc_lock_init(lock: *mut _LOCK_T);
+}
+extern "C" {
+    pub fn __libc_lock_init_recursive(lock: *mut _LOCK_RECURSIVE_T);
+}
+extern "C" {
+    pub fn __libc_lock_close(lock: *mut _LOCK_T);
+}
+extern "C" {
+    pub fn __libc_lock_close_recursive(lock: *mut _LOCK_RECURSIVE_T);
+}
+extern "C" {
+    pub fn __libc_lock_acquire(lock: *mut _LOCK_T);
+}
+extern "C" {
+    pub fn __libc_lock_acquire_recursive(lock: *mut _LOCK_RECURSIVE_T);
+}
+extern "C" {
+    pub fn __libc_lock_release(lock: *mut _LOCK_T);
+}
+extern "C" {
+    pub fn __libc_lock_release_recursive(lock: *mut _LOCK_RECURSIVE_T);
+}
+extern "C" {
+    pub fn __libc_lock_try_acquire(lock: *mut _LOCK_T) -> lang_items::c_int;
+}
+extern "C" {
+    pub fn __libc_lock_try_acquire_recursive(lock: *mut _LOCK_RECURSIVE_T) -> lang_items::c_int;
+}
+/// Mutex datatype, defined in newlib.
+pub type Mutex = _LOCK_T;
+/// Recursive mutex datatype, defined in newlib.
+pub type RMutex = _LOCK_RECURSIVE_T;
+extern "C" {
+    /// @brief Locks a mutex.
+    /// @param m Mutex object.
+    pub fn mutexLock(m: *mut Mutex);
+}
+extern "C" {
+    /// @brief Attempts to lock a mutex without waiting.
+    /// @param m Mutex object.
+    /// @return 1 if the mutex has been acquired successfully, and 0 on contention.
+    pub fn mutexTryLock(m: *mut Mutex) -> bool;
+}
+extern "C" {
+    /// @brief Unlocks a mutex.
+    /// @param m Mutex object.
+    pub fn mutexUnlock(m: *mut Mutex);
+}
+extern "C" {
+    /// @brief Locks a recursive mutex.
+    /// @param m Recursive mutex object.
+    pub fn rmutexLock(m: *mut RMutex);
+}
+extern "C" {
+    /// @brief Attempts to lock a recursive mutex without waiting.
+    /// @param m Recursive mutex object.
+    /// @return 1 if the mutex has been acquired successfully, and 0 on contention.
+    pub fn rmutexTryLock(m: *mut RMutex) -> bool;
+}
+extern "C" {
+    /// @brief Unlocks a recursive mutex.
+    /// @param m Recursive mutex object.
+    pub fn rmutexUnlock(m: *mut RMutex);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct WaitableMethods {
+    _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct WaitableNode {
+    pub prev: *mut WaitableNode,
+    pub next: *mut WaitableNode,
+}
+#[test]
+fn bindgen_test_layout_WaitableNode() {
+    assert_eq!(
+        ::core::mem::size_of::<WaitableNode>(),
+        16usize,
+        concat!("Size of: ", stringify!(WaitableNode))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<WaitableNode>(),
+        8usize,
+        concat!("Alignment of ", stringify!(WaitableNode))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<WaitableNode>())).prev as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(WaitableNode),
+            "::",
+            stringify!(prev)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<WaitableNode>())).next as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(WaitableNode),
+            "::",
+            stringify!(next)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct Waitable {
+    pub vt: *const WaitableMethods,
+    pub list: WaitableNode,
+    pub mutex: Mutex,
+}
+#[test]
+fn bindgen_test_layout_Waitable() {
+    assert_eq!(
+        ::core::mem::size_of::<Waitable>(),
+        32usize,
+        concat!("Size of: ", stringify!(Waitable))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<Waitable>(),
+        8usize,
+        concat!("Alignment of ", stringify!(Waitable))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<Waitable>())).vt as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Waitable),
+            "::",
+            stringify!(vt)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<Waitable>())).list as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Waitable),
+            "::",
+            stringify!(list)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<Waitable>())).mutex as *const _ as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Waitable),
+            "::",
+            stringify!(mutex)
+        )
+    );
+}
+pub const WaiterType_WaiterType_Handle: WaiterType = 0;
+pub const WaiterType_WaiterType_HandleWithClear: WaiterType = 1;
+pub const WaiterType_WaiterType_Waitable: WaiterType = 2;
+pub type WaiterType = u32;
+/// Waiter structure, representing any generic waitable synchronization object; both kernel-mode and user-mode.
+#[repr(C)]
+pub struct Waiter {
+    pub type_: WaiterType,
+    pub __bindgen_anon_1: Waiter__bindgen_ty_1,
+}
+#[repr(C)]
+pub struct Waiter__bindgen_ty_1 {
+    pub handle: __BindgenUnionField<Handle>,
+    pub waitable: __BindgenUnionField<*mut Waitable>,
+    pub bindgen_union_field: u64,
+}
+#[test]
+fn bindgen_test_layout_Waiter__bindgen_ty_1() {
+    assert_eq!(
+        ::core::mem::size_of::<Waiter__bindgen_ty_1>(),
+        8usize,
+        concat!("Size of: ", stringify!(Waiter__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<Waiter__bindgen_ty_1>(),
+        8usize,
+        concat!("Alignment of ", stringify!(Waiter__bindgen_ty_1))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<Waiter__bindgen_ty_1>())).handle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Waiter__bindgen_ty_1),
+            "::",
+            stringify!(handle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<Waiter__bindgen_ty_1>())).waitable as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Waiter__bindgen_ty_1),
+            "::",
+            stringify!(waitable)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_Waiter() {
+    assert_eq!(
+        ::core::mem::size_of::<Waiter>(),
+        16usize,
+        concat!("Size of: ", stringify!(Waiter))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<Waiter>(),
+        8usize,
+        concat!("Alignment of ", stringify!(Waiter))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<Waiter>())).type_ as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Waiter),
+            "::",
+            stringify!(type_)
+        )
+    );
+}
+extern "C" {
+    /// @brief Waits for an arbitrary number of generic waitable synchronization objects, optionally with a timeout.
+    /// @param[out] idx_out Variable that will received the index of the signalled object.
+    /// @param[in] objects Array containing \ref Waiter structures.
+    /// @param[in] num_objects Number of objects in the array.
+    /// @param[in] timeout Timeout (in nanoseconds).
+    /// @return Result code.
+    /// @note The number of objects must not be greater than \ref MAX_WAIT_OBJECTS. This is a Horizon kernel limitation.
+    pub fn waitObjects(
+        idx_out: *mut s32,
+        objects: *const Waiter,
+        num_objects: s32,
+        timeout: u64,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Waits for an arbitrary number of kernel synchronization objects, optionally with a timeout. This function replaces \ref svcWaitSynchronization.
+    /// @param[out] idx_out Variable that will received the index of the signalled object.
+    /// @param[in] handles Array containing handles.
+    /// @param[in] num_handles Number of handles in the array.
+    /// @param[in] timeout Timeout (in nanoseconds).
+    /// @return Result code.
+    /// @note The number of objects must not be greater than \ref MAX_WAIT_OBJECTS. This is a Horizon kernel limitation.
+    pub fn waitHandles(
+        idx_out: *mut s32,
+        handles: *const Handle,
+        num_handles: s32,
+        timeout: u64,
+    ) -> Result;
 }
 /// Transfer memory information structure.
 #[repr(C)]
@@ -2968,125 +3792,8 @@ extern "C" {
     /// @return Result code.
     pub fn shmemClose(s: *mut SharedMemory) -> Result;
 }
-pub type _LOCK_T = i32;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct __lock_t {
-    pub lock: _LOCK_T,
-    pub thread_tag: u32,
-    pub counter: u32,
-}
-#[test]
-fn bindgen_test_layout___lock_t() {
-    assert_eq!(
-        ::core::mem::size_of::<__lock_t>(),
-        12usize,
-        concat!("Size of: ", stringify!(__lock_t))
-    );
-    assert_eq!(
-        ::core::mem::align_of::<__lock_t>(),
-        4usize,
-        concat!("Alignment of ", stringify!(__lock_t))
-    );
-    assert_eq!(
-        unsafe { &(*(::core::ptr::null::<__lock_t>())).lock as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__lock_t),
-            "::",
-            stringify!(lock)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::core::ptr::null::<__lock_t>())).thread_tag as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__lock_t),
-            "::",
-            stringify!(thread_tag)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::core::ptr::null::<__lock_t>())).counter as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__lock_t),
-            "::",
-            stringify!(counter)
-        )
-    );
-}
-pub type _LOCK_RECURSIVE_T = __lock_t;
-extern "C" {
-    pub fn __libc_lock_init(lock: *mut _LOCK_T);
-}
-extern "C" {
-    pub fn __libc_lock_init_recursive(lock: *mut _LOCK_RECURSIVE_T);
-}
-extern "C" {
-    pub fn __libc_lock_close(lock: *mut _LOCK_T);
-}
-extern "C" {
-    pub fn __libc_lock_close_recursive(lock: *mut _LOCK_RECURSIVE_T);
-}
-extern "C" {
-    pub fn __libc_lock_acquire(lock: *mut _LOCK_T);
-}
-extern "C" {
-    pub fn __libc_lock_acquire_recursive(lock: *mut _LOCK_RECURSIVE_T);
-}
-extern "C" {
-    pub fn __libc_lock_release(lock: *mut _LOCK_T);
-}
-extern "C" {
-    pub fn __libc_lock_release_recursive(lock: *mut _LOCK_RECURSIVE_T);
-}
-extern "C" {
-    pub fn __libc_lock_try_acquire(lock: *mut _LOCK_T) -> lang_items::c_int;
-}
-extern "C" {
-    pub fn __libc_lock_try_acquire_recursive(lock: *mut _LOCK_RECURSIVE_T) -> lang_items::c_int;
-}
-/// Mutex datatype, defined in newlib.
-pub type Mutex = _LOCK_T;
-/// Recursive mutex datatype, defined in newlib.
-pub type RMutex = _LOCK_RECURSIVE_T;
-extern "C" {
-    /// @brief Locks a mutex.
-    /// @param m Mutex object.
-    pub fn mutexLock(m: *mut Mutex);
-}
-extern "C" {
-    /// @brief Attempts to lock a mutex without waiting.
-    /// @param m Mutex object.
-    /// @return 1 if the mutex has been acquired successfully, and 0 on contention.
-    pub fn mutexTryLock(m: *mut Mutex) -> bool;
-}
-extern "C" {
-    /// @brief Unlocks a mutex.
-    /// @param m Mutex object.
-    pub fn mutexUnlock(m: *mut Mutex);
-}
-extern "C" {
-    /// @brief Locks a recursive mutex.
-    /// @param m Recursive mutex object.
-    pub fn rmutexLock(m: *mut RMutex);
-}
-extern "C" {
-    /// @brief Attempts to lock a recursive mutex without waiting.
-    /// @param m Recursive mutex object.
-    /// @return 1 if the mutex has been acquired successfully, and 0 on contention.
-    pub fn rmutexTryLock(m: *mut RMutex) -> bool;
-}
-extern "C" {
-    /// @brief Unlocks a recursive mutex.
-    /// @param m Recursive mutex object.
-    pub fn rmutexUnlock(m: *mut RMutex);
-}
-#[repr(C)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
 pub struct Event {
     pub revent: Handle,
     pub wevent: Handle,
@@ -3152,6 +3859,194 @@ extern "C" {
 }
 extern "C" {
     pub fn eventClear(t: *mut Event) -> Result;
+}
+/// User-mode event object.
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct UEvent {
+    pub waitable: Waitable,
+    pub signal: bool,
+    pub auto_clear: bool,
+}
+#[test]
+fn bindgen_test_layout_UEvent() {
+    assert_eq!(
+        ::core::mem::size_of::<UEvent>(),
+        40usize,
+        concat!("Size of: ", stringify!(UEvent))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<UEvent>(),
+        8usize,
+        concat!("Alignment of ", stringify!(UEvent))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UEvent>())).waitable as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UEvent),
+            "::",
+            stringify!(waitable)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UEvent>())).signal as *const _ as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UEvent),
+            "::",
+            stringify!(signal)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UEvent>())).auto_clear as *const _ as usize },
+        33usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UEvent),
+            "::",
+            stringify!(auto_clear)
+        )
+    );
+}
+extern "C" {
+    /// @brief Creates a user-mode event.
+    /// @param[out] e UEvent object.
+    /// @param[in] bool auto_clear Whether to automatically clear the event.
+    /// @note It is safe to wait on this event with several threads simultaneously.
+    /// @note If more than one thread is listening on it, at least one thread will get the signal. No other guarantees.
+    pub fn ueventCreate(e: *mut UEvent, auto_clear: bool);
+}
+extern "C" {
+    /// @brief Clears the event signal.
+    /// @param[in] e UEvent object.
+    pub fn ueventClear(e: *mut UEvent);
+}
+extern "C" {
+    /// @brief Signals the event.
+    /// @param[in] e UEvent object.
+    pub fn ueventSignal(e: *mut UEvent);
+}
+/// < Timers of this kind fire once and then stop automatically.
+pub const TimerType_TimerType_OneShot: TimerType = 0;
+/// < Timers of this kind fire periodically.
+pub const TimerType_TimerType_Repeating: TimerType = 1;
+/// Valid types for a user-mode timer.
+pub type TimerType = u32;
+/// User-mode timer object.
+#[repr(C)]
+pub struct UTimer {
+    pub waitable: Waitable,
+    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize], u8>,
+    pub next_tick: u64,
+    pub interval: u64,
+}
+#[test]
+fn bindgen_test_layout_UTimer() {
+    assert_eq!(
+        ::core::mem::size_of::<UTimer>(),
+        56usize,
+        concat!("Size of: ", stringify!(UTimer))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<UTimer>(),
+        8usize,
+        concat!("Alignment of ", stringify!(UTimer))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UTimer>())).waitable as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UTimer),
+            "::",
+            stringify!(waitable)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UTimer>())).next_tick as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UTimer),
+            "::",
+            stringify!(next_tick)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UTimer>())).interval as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UTimer),
+            "::",
+            stringify!(interval)
+        )
+    );
+}
+impl UTimer {
+    #[inline]
+    pub fn type_(&self) -> TimerType {
+        unsafe { ::core::mem::transmute(self._bitfield_1.get(0usize, 8u8) as u32) }
+    }
+    #[inline]
+    pub fn set_type(&mut self, val: TimerType) {
+        unsafe {
+            let val: u32 = ::core::mem::transmute(val);
+            self._bitfield_1.set(0usize, 8u8, val as u64)
+        }
+    }
+    #[inline]
+    pub fn started(&self) -> bool {
+        unsafe { ::core::mem::transmute(self._bitfield_1.get(8usize, 1u8) as u8) }
+    }
+    #[inline]
+    pub fn set_started(&mut self, val: bool) {
+        unsafe {
+            let val: u8 = ::core::mem::transmute(val);
+            self._bitfield_1.set(8usize, 1u8, val as u64)
+        }
+    }
+    #[inline]
+    pub fn new_bitfield_1(
+        type_: TimerType,
+        started: bool,
+    ) -> __BindgenBitfieldUnit<[u8; 2usize], u8> {
+        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 2usize], u8> =
+            Default::default();
+        __bindgen_bitfield_unit.set(0usize, 8u8, {
+            let type_: u32 = unsafe { ::core::mem::transmute(type_) };
+            type_ as u64
+        });
+        __bindgen_bitfield_unit.set(8usize, 1u8, {
+            let started: u8 = unsafe { ::core::mem::transmute(started) };
+            started as u64
+        });
+        __bindgen_bitfield_unit
+    }
+}
+extern "C" {
+    /// @brief Creates a user-mode timer.
+    /// @param[out] t UTimer object.
+    /// @param[in] interval Interval (in nanoseconds).
+    /// @param[in] type Type of timer to create (see \ref TimerType).
+    /// @note The timer is stopped when it is created. Use \ref utimerStart to start it.
+    /// @note It is safe to wait on this timer with several threads simultaneously.
+    /// @note If more than one thread is listening on it, at least one thread will get the signal. No other guarantees.
+    /// @note For a repeating timer: If the timer triggers twice before you wait on it, you will only get one signal.
+    pub fn utimerCreate(t: *mut UTimer, interval: u64, type_: TimerType);
+}
+extern "C" {
+    /// @brief Starts the timer.
+    /// @param[in] t UTimer object.
+    pub fn utimerStart(t: *mut UTimer);
+}
+extern "C" {
+    /// @brief Stops the timer.
+    /// @param[in] t UTimer object.
+    pub fn utimerStop(t: *mut UTimer);
 }
 /// Read/write lock structure.
 #[repr(C)]
@@ -4569,6 +5464,7 @@ pub const ServiceType_ServiceType_Override: ServiceType = 4;
 pub type ServiceType = u32;
 /// Service object structure.
 #[repr(C)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
 pub struct Service {
     pub handle: Handle,
     pub object_id: u32,
@@ -5164,6 +6060,81 @@ fn bindgen_test_layout_FsSaveDataInfo() {
         )
     );
 }
+#[repr(C, packed)]
+pub struct FsTimeStampRaw {
+    /// < POSIX timestamp.
+    pub created: u64,
+    /// < POSIX timestamp.
+    pub modified: u64,
+    /// < POSIX timestamp.
+    pub accessed: u64,
+    /// < 0x1 when the timestamps are set.
+    pub is_valid: u8,
+    pub padding: [u8; 7usize],
+}
+#[test]
+fn bindgen_test_layout_FsTimeStampRaw() {
+    assert_eq!(
+        ::core::mem::size_of::<FsTimeStampRaw>(),
+        32usize,
+        concat!("Size of: ", stringify!(FsTimeStampRaw))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FsTimeStampRaw>(),
+        1usize,
+        concat!("Alignment of ", stringify!(FsTimeStampRaw))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FsTimeStampRaw>())).created as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FsTimeStampRaw),
+            "::",
+            stringify!(created)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FsTimeStampRaw>())).modified as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FsTimeStampRaw),
+            "::",
+            stringify!(modified)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FsTimeStampRaw>())).accessed as *const _ as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FsTimeStampRaw),
+            "::",
+            stringify!(accessed)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FsTimeStampRaw>())).is_valid as *const _ as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FsTimeStampRaw),
+            "::",
+            stringify!(is_valid)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FsTimeStampRaw>())).padding as *const _ as usize },
+        25usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FsTimeStampRaw),
+            "::",
+            stringify!(padding)
+        )
+    );
+}
 pub const FsEntryType_ENTRYTYPE_DIR: FsEntryType = 0;
 pub const FsEntryType_ENTRYTYPE_FILE: FsEntryType = 1;
 pub type FsEntryType = u32;
@@ -5207,6 +6178,40 @@ pub const FsSaveDataType_FsSaveDataType_TemporaryStorage: FsSaveDataType = 4;
 /// < [3.0.0+]
 pub const FsSaveDataType_FsSaveDataType_CacheStorage: FsSaveDataType = 5;
 pub type FsSaveDataType = u32;
+/// < Causes the cartridge to automatically start on bootup
+pub const FsGameCardAttribute_FsGameCardAttribute_AutoBoot: FsGameCardAttribute = 1;
+/// < Causes NS to throw an error on attempt to load the cartridge
+pub const FsGameCardAttribute_FsGameCardAttribute_ForceError: FsGameCardAttribute = 2;
+/// < Indicates that this gamecard is a repair tool.
+pub const FsGameCardAttribute_FsGameCardAttribute_Repair: FsGameCardAttribute = 4;
+pub type FsGameCardAttribute = u32;
+#[repr(C)]
+pub struct FsGameCardHandle {
+    pub value: u32,
+}
+#[test]
+fn bindgen_test_layout_FsGameCardHandle() {
+    assert_eq!(
+        ::core::mem::size_of::<FsGameCardHandle>(),
+        4usize,
+        concat!("Size of: ", stringify!(FsGameCardHandle))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FsGameCardHandle>(),
+        4usize,
+        concat!("Alignment of ", stringify!(FsGameCardHandle))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FsGameCardHandle>())).value as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FsGameCardHandle),
+            "::",
+            stringify!(value)
+        )
+    );
+}
 extern "C" {
     pub fn fsInitialize() -> Result;
 }
@@ -5225,6 +6230,9 @@ extern "C" {
         PartitionId: u32,
         string: *const lang_items::c_char,
     ) -> Result;
+}
+extern "C" {
+    pub fn fsIsExFatSupported(out: *mut bool) -> Result;
 }
 extern "C" {
     /// Do not call this directly, see fs_dev.h.
@@ -5265,6 +6273,8 @@ pub const FsFileSystemType_FsFileSystemType_ContentMeta: FsFileSystemType = 5;
 pub const FsFileSystemType_FsFileSystemType_ContentData: FsFileSystemType = 6;
 pub const FsFileSystemType_FsFileSystemType_ApplicationPackage: FsFileSystemType = 7;
 pub type FsFileSystemType = u32;
+pub const FsFileSystemQueryType_FsFileSystemQueryType_SetArchiveBit: FsFileSystemQueryType = 0;
+pub type FsFileSystemQueryType = u32;
 extern "C" {
     /// Mount requested filesystem type from content file
     pub fn fsOpenFileSystem(
@@ -5361,13 +6371,39 @@ extern "C" {
     ) -> Result;
 }
 extern "C" {
+    pub fn fsFsGetFileTimeStampRaw(
+        fs: *mut FsFileSystem,
+        path: *const lang_items::c_char,
+        out: *mut FsTimeStampRaw,
+    ) -> Result;
+}
+extern "C" {
+    /// 3.0.0+
     pub fn fsFsCleanDirectoryRecursively(
         fs: *mut FsFileSystem,
         path: *const lang_items::c_char,
     ) -> Result;
 }
 extern "C" {
+    /// 3.0.0+
+    pub fn fsFsQueryEntry(
+        fs: *mut FsFileSystem,
+        out: *mut lang_items::c_void,
+        out_size: usize,
+        in_: *const lang_items::c_void,
+        in_size: usize,
+        path: *const lang_items::c_char,
+        query_type: FsFileSystemQueryType,
+    ) -> Result;
+}
+extern "C" {
+    /// 4.0.0+
     pub fn fsFsClose(fs: *mut FsFileSystem);
+}
+extern "C" {
+    /// Uses \ref fsFsQueryEntry to set the archive bit on the specified absolute directory path.
+    /// This will cause HOS to treat the directory as if it were a file containing the directory's concatenated contents.
+    pub fn fsFsSetArchiveBit(fs: *mut FsFileSystem, path: *const lang_items::c_char) -> Result;
 }
 extern "C" {
     pub fn fsFileRead(
@@ -5461,6 +6497,22 @@ extern "C" {
 }
 extern "C" {
     pub fn fsDeviceOperatorIsSdCardInserted(d: *mut FsDeviceOperator, out: *mut bool) -> Result;
+}
+extern "C" {
+    pub fn fsDeviceOperatorIsGameCardInserted(d: *mut FsDeviceOperator, out: *mut bool) -> Result;
+}
+extern "C" {
+    pub fn fsDeviceOperatorGetGameCardHandle(
+        d: *mut FsDeviceOperator,
+        out: *mut FsGameCardHandle,
+    ) -> Result;
+}
+extern "C" {
+    pub fn fsDeviceOperatorGetGameCardAttribute(
+        d: *mut FsDeviceOperator,
+        handle: *const FsGameCardHandle,
+        out: *mut u8,
+    ) -> Result;
 }
 extern "C" {
     pub fn fsDeviceOperatorClose(d: *mut FsDeviceOperator);
@@ -5757,6 +6809,10 @@ extern "C" {
     pub fn accountProfileClose(profile: *mut AccountProfile);
 }
 extern "C" {
+    /// Gets the userID which was selected by the profile-selector applet (if any), prior to launching the currently running Application title. This can only be used once under the current process, under an Application title.
+    pub fn accountGetPreselectedUser(userID: *mut u128) -> Result;
+}
+extern "C" {
     /// These are used internally by applet.
     pub fn apmInitialize() -> Result;
 }
@@ -5798,6 +6854,90 @@ pub const AppletHookType_AppletHookType_OnExitRequest: AppletHookType = 3;
 pub const AppletHookType_AppletHookType_Max: AppletHookType = 4;
 /// applet hook types.
 pub type AppletHookType = u32;
+/// < Applet is focused.
+pub const AppletFocusState_AppletFocusState_Focused: AppletFocusState = 1;
+/// < Out of focus - LibraryApplet open.
+pub const AppletFocusState_AppletFocusState_NotFocusedLibraryApplet: AppletFocusState = 2;
+/// < Out of focus - HOME menu open / console is sleeping.
+pub const AppletFocusState_AppletFocusState_NotFocusedHomeSleep: AppletFocusState = 3;
+pub type AppletFocusState = u32;
+/// < Suspend only when HOME menu is open / console is sleeping (default).
+pub const AppletFocusHandlingMode_AppletFocusHandlingMode_SuspendHomeSleep:
+    AppletFocusHandlingMode = 0;
+/// < Don't suspend when out of focus.
+pub const AppletFocusHandlingMode_AppletFocusHandlingMode_NoSuspend: AppletFocusHandlingMode = 1;
+/// < Suspend only when HOME menu is open / console is sleeping but still receive OnFocusState hook.
+pub const AppletFocusHandlingMode_AppletFocusHandlingMode_SuspendHomeSleepNotify:
+    AppletFocusHandlingMode = 2;
+/// < Always suspend when out of focus, regardless of the reason.
+pub const AppletFocusHandlingMode_AppletFocusHandlingMode_AlwaysSuspend: AppletFocusHandlingMode =
+    3;
+/// < Number of focus handling modes.
+pub const AppletFocusHandlingMode_AppletFocusHandlingMode_Max: AppletFocusHandlingMode = 4;
+pub type AppletFocusHandlingMode = u32;
+/// < Application-specific LaunchParameter
+pub const AppletLaunchParameterKind_AppletLaunchParameterKind_Application:
+    AppletLaunchParameterKind = 1;
+/// < account PreselectedUser
+pub const AppletLaunchParameterKind_AppletLaunchParameterKind_PreselectedUser:
+    AppletLaunchParameterKind = 2;
+/// < Unknown if used by anything?
+pub const AppletLaunchParameterKind_AppletLaunchParameterKind_Unknown: AppletLaunchParameterKind =
+    3;
+pub type AppletLaunchParameterKind = u32;
+/// < 010000000000100C "overlayDisp"
+pub const AppletId_AppletId_overlayDisp: AppletId = 2;
+/// < 0100000000001000 "qlaunch" (SystemAppletMenu)
+pub const AppletId_AppletId_qlaunch: AppletId = 3;
+/// < 0100000000001012 "starter"
+pub const AppletId_AppletId_starter: AppletId = 4;
+/// < 0100000000001001 "auth"
+pub const AppletId_AppletId_auth: AppletId = 10;
+/// < 0100000000001002 "cabinet"
+pub const AppletId_AppletId_cabinet: AppletId = 11;
+/// < 0100000000001003 "controller"
+pub const AppletId_AppletId_controller: AppletId = 12;
+/// < 0100000000001004 "dataErase"
+pub const AppletId_AppletId_dataErase: AppletId = 13;
+/// < 0100000000001005 "error"
+pub const AppletId_AppletId_error: AppletId = 14;
+/// < 0100000000001006 "netConnect"
+pub const AppletId_AppletId_netConnect: AppletId = 15;
+/// < 0100000000001007 "playerSelect"
+pub const AppletId_AppletId_playerSelect: AppletId = 16;
+/// < 0100000000001008 "swkbd"
+pub const AppletId_AppletId_swkbd: AppletId = 17;
+/// < 0100000000001009 "miiEdit"
+pub const AppletId_AppletId_miiEdit: AppletId = 18;
+/// < 010000000000100A "LibAppletWeb" WebApplet applet
+pub const AppletId_AppletId_web: AppletId = 19;
+/// < 010000000000100B "LibAppletShop" ShopN applet
+pub const AppletId_AppletId_shop: AppletId = 20;
+/// < 010000000000100D "photoViewer"
+pub const AppletId_AppletId_photoViewer: AppletId = 21;
+/// < 010000000000100E "set" (This title is currently not present on retail devices.)
+pub const AppletId_AppletId_set: AppletId = 22;
+/// < 010000000000100F "LibAppletOff" Offline web-applet
+pub const AppletId_AppletId_offlineWeb: AppletId = 23;
+/// < 0100000000001010 "LibAppletLns" Whitelisted web-applet
+pub const AppletId_AppletId_loginShare: AppletId = 24;
+/// < 0100000000001011 "LibAppletAuth" WifiWebAuth applet
+pub const AppletId_AppletId_wifiWebAuth: AppletId = 25;
+/// < 0100000000001013 "myPage"
+pub const AppletId_AppletId_myPage: AppletId = 26;
+pub type AppletId = u32;
+pub const LibAppletMode_LibAppletMode_AllForeground: LibAppletMode = 0;
+pub const LibAppletMode_LibAppletMode_Background: LibAppletMode = 1;
+pub const LibAppletMode_LibAppletMode_Unknown2: LibAppletMode = 2;
+pub const LibAppletMode_LibAppletMode_Unknown3: LibAppletMode = 3;
+/// LibraryAppletMode
+pub type LibAppletMode = u32;
+pub const LibAppletExitReason_LibAppletExitReason_Normal: LibAppletExitReason = 0;
+pub const LibAppletExitReason_LibAppletExitReason_Canceled: LibAppletExitReason = 1;
+pub const LibAppletExitReason_LibAppletExitReason_Abnormal: LibAppletExitReason = 2;
+pub const LibAppletExitReason_LibAppletExitReason_Unexpected: LibAppletExitReason = 10;
+/// LibraryAppletExitReason
+pub type LibAppletExitReason = u32;
 /// applet hook function.
 pub type AppletHookFn = ::core::option::Option<
     unsafe extern "C" fn(hook: AppletHookType, param: *mut lang_items::c_void),
@@ -5855,6 +6995,134 @@ fn bindgen_test_layout_AppletHookCookie() {
         )
     );
 }
+/// applet IStorage
+#[repr(C)]
+pub struct AppletStorage {
+    pub s: Service,
+    pub tmem: TransferMemory,
+}
+#[test]
+fn bindgen_test_layout_AppletStorage() {
+    assert_eq!(
+        ::core::mem::size_of::<AppletStorage>(),
+        56usize,
+        concat!("Size of: ", stringify!(AppletStorage))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<AppletStorage>(),
+        8usize,
+        concat!("Alignment of ", stringify!(AppletStorage))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AppletStorage>())).s as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AppletStorage),
+            "::",
+            stringify!(s)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AppletStorage>())).tmem as *const _ as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AppletStorage),
+            "::",
+            stringify!(tmem)
+        )
+    );
+}
+/// LibraryApplet state.
+#[repr(C)]
+pub struct AppletHolder {
+    /// < ILibraryAppletAccessor
+    pub s: Service,
+    /// < Output from GetAppletStateChangedEvent, autoclear=false.
+    pub StateChangedEvent: Event,
+    /// < See ref \ref LibAppletMode.
+    pub mode: LibAppletMode,
+    /// < Output from GetIndirectLayerConsumerHandle on 2.0.0+.
+    pub layer_handle: u64,
+    /// < When set, indicates that the LibraryApplet title is creating itself.
+    pub creating_self: bool,
+    /// < Set by \ref appletHolderJoin using the output from cmd GetResult, see \ref LibAppletExitReason.
+    pub exitreason: LibAppletExitReason,
+}
+#[test]
+fn bindgen_test_layout_AppletHolder() {
+    assert_eq!(
+        ::core::mem::size_of::<AppletHolder>(),
+        48usize,
+        concat!("Size of: ", stringify!(AppletHolder))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<AppletHolder>(),
+        8usize,
+        concat!("Alignment of ", stringify!(AppletHolder))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AppletHolder>())).s as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AppletHolder),
+            "::",
+            stringify!(s)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AppletHolder>())).StateChangedEvent as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AppletHolder),
+            "::",
+            stringify!(StateChangedEvent)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AppletHolder>())).mode as *const _ as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AppletHolder),
+            "::",
+            stringify!(mode)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AppletHolder>())).layer_handle as *const _ as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AppletHolder),
+            "::",
+            stringify!(layer_handle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AppletHolder>())).creating_self as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AppletHolder),
+            "::",
+            stringify!(creating_self)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AppletHolder>())).exitreason as *const _ as usize },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AppletHolder),
+            "::",
+            stringify!(exitreason)
+        )
+    );
+}
 extern "C" {
     pub fn appletInitialize() -> Result;
 }
@@ -5874,7 +7142,22 @@ extern "C" {
     pub fn appletCreateManagedDisplayLayer(out: *mut u64) -> Result;
 }
 extern "C" {
+    /// @brief Pops a LaunchParameter AppletStorage, the storage will be removed from sysmodule state during this.
+    /// @param s Output storage.
+    /// @param kind See \ref AppletLaunchParameterKind.
+    /// @note Can only be used in Applications.
+    /// @note See also acc.h \ref accountGetPreselectedUser (wrapper for appletPopLaunchParameter etc).
+    pub fn appletPopLaunchParameter(
+        s: *mut AppletStorage,
+        kind: AppletLaunchParameterKind,
+    ) -> Result;
+}
+extern "C" {
     pub fn appletGetDesiredLanguage(LanguageCode: *mut u64) -> Result;
+}
+extern "C" {
+    /// Only available with AppletType_*Application.
+    pub fn appletSetTerminateResult(res: Result) -> Result;
 }
 extern "C" {
     /// Gets whether video recording is supported.
@@ -5921,6 +7204,195 @@ extern "C" {
     pub fn appletSetScreenShotImageOrientation(val: s32) -> Result;
 }
 extern "C" {
+    /// @brief Pushes a storage to the general channel. Used for sending requests to qlaunch.
+    /// @note  This is not usable under an Application, however it is usable under a LibraryApplet.
+    /// @note  This uses \ref appletStorageClose automatically.
+    /// @param s Storage object.
+    pub fn appletPushToGeneralChannel(s: *mut AppletStorage) -> Result;
+}
+extern "C" {
+    /// @brief Creates a LibraryApplet.
+    /// @param h AppletHolder object.
+    /// @param id See \ref AppletId.
+    /// @param mode See \ref LibAppletMode.
+    pub fn appletCreateLibraryApplet(
+        h: *mut AppletHolder,
+        id: AppletId,
+        mode: LibAppletMode,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Creates a LibraryApplet. This is for when a LibraryApplet title creates itself.
+    /// @note  Identical to \ref appletCreateLibraryApplet except this sets the creating_self flag to true.
+    /// @param h AppletHolder object.
+    /// @param id See \ref AppletId.
+    /// @param mode See \ref LibAppletMode.
+    pub fn appletCreateLibraryAppletSelf(
+        h: *mut AppletHolder,
+        id: AppletId,
+        mode: LibAppletMode,
+    ) -> Result;
+}
+extern "C" {
+    /// Closes an AppletHolder object.
+    pub fn appletHolderClose(h: *mut AppletHolder);
+}
+extern "C" {
+    /// @brief Gets the IndirectLayerConsumerHandle loaded during \ref appletCreateLibraryApplet, on 2.0.0+.
+    /// @note  Only available when \ref LibAppletMode is \ref LibAppletMode_Unknown3.
+    /// @param h AppletHolder object.
+    /// @param out Output IndirectLayerConsumerHandle.
+    pub fn appletHolderGetIndirectLayerConsumerHandle(
+        h: *mut AppletHolder,
+        out: *mut u64,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Starts the LibraryApplet.
+    /// @param h AppletHolder object.
+    pub fn appletHolderStart(h: *mut AppletHolder) -> Result;
+}
+extern "C" {
+    /// @brief Waits for the LibraryApplet to exit.
+    /// @param h AppletHolder object.
+    pub fn appletHolderJoin(h: *mut AppletHolder);
+}
+extern "C" {
+    /// @brief Gets the \ref LibAppletExitReason set by \ref appletHolderJoin.
+    /// @param h AppletHolder object.
+    pub fn appletHolderGetExitReason(h: *mut AppletHolder) -> LibAppletExitReason;
+}
+extern "C" {
+    /// @brief Pushes a storage for LibraryApplet input.
+    /// @note  This uses \ref appletStorageClose automatically.
+    /// @param h AppletHolder object.
+    /// @param s Storage object.
+    pub fn appletHolderPushInData(h: *mut AppletHolder, s: *mut AppletStorage) -> Result;
+}
+extern "C" {
+    /// @brief Pops a storage from LibraryApplet output.
+    /// @param h AppletHolder object.
+    /// @param s Storage object.
+    pub fn appletHolderPopOutData(h: *mut AppletHolder, s: *mut AppletStorage) -> Result;
+}
+extern "C" {
+    /// @brief Pushes a storage for LibraryApplet Extra storage input.
+    /// @note  This uses \ref appletStorageClose automatically.
+    /// @param h AppletHolder object.
+    /// @param s Storage object.
+    pub fn appletHolderPushExtraStorage(h: *mut AppletHolder, s: *mut AppletStorage) -> Result;
+}
+extern "C" {
+    /// @brief Pushes a storage for LibraryApplet Interactive input.
+    /// @note  This uses \ref appletStorageClose automatically.
+    /// @param h AppletHolder object.
+    /// @param s Storage object.
+    pub fn appletHolderPushInteractiveInData(h: *mut AppletHolder, s: *mut AppletStorage)
+        -> Result;
+}
+extern "C" {
+    /// @brief Pops a storage from LibraryApplet Interactive output.
+    /// @param h AppletHolder object.
+    /// @param s Storage object.
+    pub fn appletHolderPopInteractiveOutData(h: *mut AppletHolder, s: *mut AppletStorage)
+        -> Result;
+}
+extern "C" {
+    /// @brief Creates a storage.
+    /// @param s Storage object.
+    /// @param size Size of storage.
+    pub fn appletCreateStorage(s: *mut AppletStorage, size: s64) -> Result;
+}
+extern "C" {
+    /// @brief Creates a TransferMemory storage.
+    /// @param s Storage object.
+    /// @param size Size of storage.
+    /// @param writable Controls whether writing to the storage is allowed with \ref appletStorageWrite.
+    pub fn appletCreateTransferMemoryStorage(
+        s: *mut AppletStorage,
+        size: s64,
+        writable: bool,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Creates a HandleStorage. Only available on 2.0.0+.
+    /// @param s Storage object.
+    /// @param inval Arbitrary input value.
+    /// @param handle Arbitrary input handle.
+    pub fn appletCreateHandleStorage(s: *mut AppletStorage, inval: s64, handle: Handle) -> Result;
+}
+extern "C" {
+    /// @brief Creates a HandleStorage using TransferMemory. Wrapper for \ref appletCreateHandleStorage.
+    /// @param s Storage object.
+    /// @param size Size of storage.
+    pub fn appletCreateHandleStorageTmem(s: *mut AppletStorage, size: s64) -> Result;
+}
+extern "C" {
+    /// Closes the storage object. TransferMemory closing is seperate, see \ref appletStorageCloseTmem.
+    /// Other applet functions which push an input storage will automatically call this.
+    pub fn appletStorageClose(s: *mut AppletStorage);
+}
+extern "C" {
+    /// Closes the TransferMemory in the storage object. For TransferMemory storage created by the current process, this must be called after the LibraryApplet finishes using it (if sent to one).
+    pub fn appletStorageCloseTmem(s: *mut AppletStorage);
+}
+extern "C" {
+    /// Gets the size of the storage. This is not usable with HandleStorage, use \ref appletStorageGetHandle or \ref appletStorageMap instead for that.
+    pub fn appletStorageGetSize(s: *mut AppletStorage, size: *mut s64) -> Result;
+}
+extern "C" {
+    /// @brief Writes to a storage. offset(+size) must be within the actual storage size.
+    /// @note  This is not usable with HandleStorage.
+    /// @param s Storage object.
+    /// @param offset Offset in storage.
+    /// @param buffer Input data.
+    /// @param size Data size.
+    pub fn appletStorageWrite(
+        s: *mut AppletStorage,
+        offset: s64,
+        buffer: *const lang_items::c_void,
+        size: usize,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Reads from a storage. offset(+size) must be within the actual storage size.
+    /// @note  This is not usable with HandleStorage.
+    /// @param s Storage object.
+    /// @param offset Offset in storage.
+    /// @param buffer Input data.
+    /// @param size Data size.
+    pub fn appletStorageRead(
+        s: *mut AppletStorage,
+        offset: s64,
+        buffer: *mut lang_items::c_void,
+        size: usize,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Gets data for a HandleStorage originally from \ref appletCreateHandleStorage input.
+    /// @note  Only available on 2.0.0+.
+    /// @param out Output value.
+    /// @param handle Output handle.
+    pub fn appletStorageGetHandle(
+        s: *mut AppletStorage,
+        out: *mut s64,
+        handle: *mut Handle,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Maps TransferMemory for a HandleStorage. Wrapper for \ref appletCreateHandleStorage.
+    /// @note  The TransferMemory can be unmapped with \ref appletStorageCloseTmem.
+    /// @note  Do not use this if the AppletStorage already contains initialized TransferMemory state.
+    /// @param s Storage object.
+    /// @param addr Output mapped address (optional).
+    /// @param size Output size (optional).
+    pub fn appletStorageMap(
+        s: *mut AppletStorage,
+        addr: *mut *mut lang_items::c_void,
+        size: *mut usize,
+    ) -> Result;
+}
+extern "C" {
     /// @brief Processes the current applet status. Generally used within a main loop.
     /// @return Whether the application should continue running.
     pub fn appletMainLoop() -> bool;
@@ -5949,7 +7421,10 @@ extern "C" {
     pub fn appletGetPerformanceMode() -> u32;
 }
 extern "C" {
-    pub fn appletGetFocusState() -> u8;
+    pub fn appletGetFocusState() -> AppletFocusState;
+}
+extern "C" {
+    pub fn appletSetFocusHandlingMode(mode: AppletFocusHandlingMode) -> Result;
 }
 pub const PcmFormat_PcmFormat_Invalid: PcmFormat = 0;
 pub const PcmFormat_PcmFormat_Int8: PcmFormat = 1;
@@ -5959,6 +7434,34 @@ pub const PcmFormat_PcmFormat_Int32: PcmFormat = 4;
 pub const PcmFormat_PcmFormat_Float: PcmFormat = 5;
 pub const PcmFormat_PcmFormat_Adpcm: PcmFormat = 6;
 pub type PcmFormat = u32;
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct AudioDeviceName {
+    pub name: [lang_items::c_char; 256usize],
+}
+#[test]
+fn bindgen_test_layout_AudioDeviceName() {
+    assert_eq!(
+        ::core::mem::size_of::<AudioDeviceName>(),
+        256usize,
+        concat!("Size of: ", stringify!(AudioDeviceName))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<AudioDeviceName>(),
+        1usize,
+        concat!("Alignment of ", stringify!(AudioDeviceName))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<AudioDeviceName>())).name as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AudioDeviceName),
+            "::",
+            stringify!(name)
+        )
+    );
+}
 pub const AudioInState_AudioInState_Started: AudioInState = 0;
 pub const AudioInState_AudioInState_Stopped: AudioInState = 1;
 pub type AudioInState = u32;
@@ -8335,6 +9838,239 @@ extern "C" {
     pub fn audrenSetAudioRendererRenderingTimeLimit(percent: lang_items::c_int) -> Result;
 }
 extern "C" {
+    pub fn auddevInitialize() -> Result;
+}
+extern "C" {
+    pub fn auddevExit();
+}
+extern "C" {
+    pub fn auddevListAudioDeviceName(
+        DeviceNames: *mut AudioDeviceName,
+        max_names: s32,
+        total_names: *mut s32,
+    ) -> Result;
+}
+extern "C" {
+    pub fn auddevSetAudioDeviceOutputVolume(
+        DeviceName: *const AudioDeviceName,
+        volume: f32,
+    ) -> Result;
+}
+extern "C" {
+    pub fn auddevGetAudioDeviceOutputVolume(
+        DeviceName: *const AudioDeviceName,
+        volume: *mut f32,
+    ) -> Result;
+}
+#[repr(C)]
+pub struct HwopusDecoder {
+    pub s: Service,
+    pub tmem: TransferMemory,
+    pub multistream: bool,
+}
+#[test]
+fn bindgen_test_layout_HwopusDecoder() {
+    assert_eq!(
+        ::core::mem::size_of::<HwopusDecoder>(),
+        64usize,
+        concat!("Size of: ", stringify!(HwopusDecoder))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<HwopusDecoder>(),
+        8usize,
+        concat!("Alignment of ", stringify!(HwopusDecoder))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<HwopusDecoder>())).s as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusDecoder),
+            "::",
+            stringify!(s)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<HwopusDecoder>())).tmem as *const _ as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusDecoder),
+            "::",
+            stringify!(tmem)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<HwopusDecoder>())).multistream as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusDecoder),
+            "::",
+            stringify!(multistream)
+        )
+    );
+}
+/// This structure is the start of opusin for \ref hwopusDecodeInterleaved, with the actual opus packet following this.
+/// These fields are big-endian.
+#[repr(C)]
+pub struct HwopusHeader {
+    /// < Size of the packet following this header.
+    pub size: u32,
+    /// < Unknown, can be left at zero.
+    pub unk: u32,
+}
+#[test]
+fn bindgen_test_layout_HwopusHeader() {
+    assert_eq!(
+        ::core::mem::size_of::<HwopusHeader>(),
+        8usize,
+        concat!("Size of: ", stringify!(HwopusHeader))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<HwopusHeader>(),
+        4usize,
+        concat!("Alignment of ", stringify!(HwopusHeader))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<HwopusHeader>())).size as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusHeader),
+            "::",
+            stringify!(size)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<HwopusHeader>())).unk as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusHeader),
+            "::",
+            stringify!(unk)
+        )
+    );
+}
+/// Used internally.
+#[repr(C)]
+pub struct HwopusMultistreamState {
+    pub SampleRate: s32,
+    pub ChannelCount: s32,
+    pub TotalStreamCount: s32,
+    pub StereoStreamCount: s32,
+    pub channel_mapping: [u8; 256usize],
+}
+#[test]
+fn bindgen_test_layout_HwopusMultistreamState() {
+    assert_eq!(
+        ::core::mem::size_of::<HwopusMultistreamState>(),
+        272usize,
+        concat!("Size of: ", stringify!(HwopusMultistreamState))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<HwopusMultistreamState>(),
+        4usize,
+        concat!("Alignment of ", stringify!(HwopusMultistreamState))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<HwopusMultistreamState>())).SampleRate as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusMultistreamState),
+            "::",
+            stringify!(SampleRate)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<HwopusMultistreamState>())).ChannelCount as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusMultistreamState),
+            "::",
+            stringify!(ChannelCount)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<HwopusMultistreamState>())).TotalStreamCount as *const _
+                as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusMultistreamState),
+            "::",
+            stringify!(TotalStreamCount)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<HwopusMultistreamState>())).StereoStreamCount as *const _
+                as usize
+        },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusMultistreamState),
+            "::",
+            stringify!(StereoStreamCount)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<HwopusMultistreamState>())).channel_mapping as *const _ as usize
+        },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HwopusMultistreamState),
+            "::",
+            stringify!(channel_mapping)
+        )
+    );
+}
+extern "C" {
+    pub fn hwopusDecoderInitialize(
+        decoder: *mut HwopusDecoder,
+        SampleRate: s32,
+        ChannelCount: s32,
+    ) -> Result;
+}
+extern "C" {
+    pub fn hwopusDecoderExit(decoder: *mut HwopusDecoder);
+}
+extern "C" {
+    /// Only available on 3.0.0+.
+    /// See libopus multistream docs.
+    pub fn hwopusDecoderMultistreamInitialize(
+        decoder: *mut HwopusDecoder,
+        SampleRate: s32,
+        ChannelCount: s32,
+        TotalStreamCount: s32,
+        StereoStreamCount: s32,
+        channel_mapping: *mut u8,
+    ) -> Result;
+}
+extern "C" {
+    pub fn hwopusDecodeInterleaved(
+        decoder: *mut HwopusDecoder,
+        DecodedDataSize: *mut s32,
+        DecodedSampleCount: *mut s32,
+        opusin: *const lang_items::c_void,
+        opusin_size: usize,
+        pcmbuf: *mut s16,
+        pcmbuf_size: usize,
+    ) -> Result;
+}
+extern "C" {
     pub fn csrngInitialize() -> Result;
 }
 extern "C" {
@@ -8343,6 +10079,135 @@ extern "C" {
 extern "C" {
     pub fn csrngGetRandomBytes(out: *mut lang_items::c_void, out_size: usize) -> Result;
 }
+extern "C" {
+    pub fn lblInitialize() -> Result;
+}
+extern "C" {
+    pub fn lblExit();
+}
+extern "C" {
+    pub fn lblSwitchBacklightOn(fade_time: u64) -> Result;
+}
+extern "C" {
+    pub fn lblSwitchBacklightOff(fade_time: u64) -> Result;
+}
+pub const I2cDevice_I2cDevice_AudioCodec: I2cDevice = 4;
+pub type I2cDevice = u32;
+#[repr(C)]
+pub struct I2cSession {
+    pub s: Service,
+}
+#[test]
+fn bindgen_test_layout_I2cSession() {
+    assert_eq!(
+        ::core::mem::size_of::<I2cSession>(),
+        12usize,
+        concat!("Size of: ", stringify!(I2cSession))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<I2cSession>(),
+        4usize,
+        concat!("Alignment of ", stringify!(I2cSession))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<I2cSession>())).s as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(I2cSession),
+            "::",
+            stringify!(s)
+        )
+    );
+}
+pub const I2cTransactionOption_I2cTransactionOption_Start: I2cTransactionOption = 1;
+pub const I2cTransactionOption_I2cTransactionOption_Stop: I2cTransactionOption = 2;
+pub const I2cTransactionOption_I2cTransactionOption_All: I2cTransactionOption = 3;
+pub type I2cTransactionOption = u32;
+extern "C" {
+    pub fn i2cInitialize() -> Result;
+}
+extern "C" {
+    pub fn i2cExit();
+}
+extern "C" {
+    pub fn i2cOpenSession(out: *mut I2cSession, dev: I2cDevice) -> Result;
+}
+extern "C" {
+    pub fn i2csessionSendAuto(
+        s: *mut I2cSession,
+        buf: *mut lang_items::c_void,
+        size: usize,
+        option: I2cTransactionOption,
+    ) -> Result;
+}
+extern "C" {
+    pub fn i2csessionClose(s: *mut I2cSession);
+}
+pub const GpioPadName_GpioPadName_AudioCodec: GpioPadName = 1;
+pub const GpioPadName_GpioPadName_ButtonVolUp: GpioPadName = 25;
+pub const GpioPadName_GpioPadName_ButtonVolDown: GpioPadName = 26;
+pub type GpioPadName = u32;
+#[repr(C)]
+pub struct GpioPadSession {
+    pub s: Service,
+}
+#[test]
+fn bindgen_test_layout_GpioPadSession() {
+    assert_eq!(
+        ::core::mem::size_of::<GpioPadSession>(),
+        12usize,
+        concat!("Size of: ", stringify!(GpioPadSession))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<GpioPadSession>(),
+        4usize,
+        concat!("Alignment of ", stringify!(GpioPadSession))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<GpioPadSession>())).s as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GpioPadSession),
+            "::",
+            stringify!(s)
+        )
+    );
+}
+pub const GpioDirection_GpioDirection_Input: GpioDirection = 0;
+pub const GpioDirection_GpioDirection_Output: GpioDirection = 1;
+pub type GpioDirection = u32;
+pub const GpioValue_GpioValue_Low: GpioValue = 0;
+pub const GpioValue_GpioValue_High: GpioValue = 1;
+pub type GpioValue = u32;
+extern "C" {
+    pub fn gpioInitialize() -> Result;
+}
+extern "C" {
+    pub fn gpioExit();
+}
+extern "C" {
+    pub fn gpioOpenSession(out: *mut GpioPadSession, name: GpioPadName) -> Result;
+}
+extern "C" {
+    pub fn gpioPadSetDirection(p: *mut GpioPadSession, dir: GpioDirection) -> Result;
+}
+extern "C" {
+    pub fn gpioPadGetDirection(p: *mut GpioPadSession, out: *mut GpioDirection) -> Result;
+}
+extern "C" {
+    pub fn gpioPadSetValue(p: *mut GpioPadSession, val: GpioValue) -> Result;
+}
+extern "C" {
+    pub fn gpioPadGetValue(p: *mut GpioPadSession, out: *mut GpioValue) -> Result;
+}
+extern "C" {
+    pub fn gpioPadClose(p: *mut GpioPadSession);
+}
+pub const BpcSleepButtonState_BpcSleepButtonState_Held: BpcSleepButtonState = 0;
+pub const BpcSleepButtonState_BpcSleepButtonState_Released: BpcSleepButtonState = 1;
+pub type BpcSleepButtonState = u32;
 extern "C" {
     pub fn bpcInitialize() -> Result;
 }
@@ -8355,6 +10220,31 @@ extern "C" {
 extern "C" {
     pub fn bpcRebootSystem() -> Result;
 }
+extern "C" {
+    pub fn bpcGetSleepButtonState(out: *mut BpcSleepButtonState) -> Result;
+}
+pub const PcvModule_PcvModule_Cpu: PcvModule = 0;
+pub const PcvModule_PcvModule_Gpu: PcvModule = 1;
+pub const PcvModule_PcvModule_Emc: PcvModule = 56;
+pub type PcvModule = u32;
+extern "C" {
+    pub fn pcvInitialize() -> Result;
+}
+extern "C" {
+    pub fn pcvExit();
+}
+extern "C" {
+    pub fn pcvGetClockRate(module: PcvModule, out_hz: *mut u32) -> Result;
+}
+extern "C" {
+    pub fn pcvSetClockRate(module: PcvModule, hz: u32) -> Result;
+}
+extern "C" {
+    pub fn pcvSetVoltageEnabled(state: bool, voltage: u32) -> Result;
+}
+extern "C" {
+    pub fn pcvGetVoltageEnabled(isEnabled: *mut bool, voltage: u32) -> Result;
+}
 /// < No charger
 pub const ChargerType_ChargerType_None: ChargerType = 0;
 /// < Official charger or dock
@@ -8362,6 +10252,16 @@ pub const ChargerType_ChargerType_Charger: ChargerType = 1;
 /// < Other USB-C chargers
 pub const ChargerType_ChargerType_Usb: ChargerType = 2;
 pub type ChargerType = u32;
+/// < Power state should transition to shutdown
+pub const PsmBatteryVoltageState_PsmBatteryVoltageState_NeedsShutdown: PsmBatteryVoltageState = 0;
+/// < Power state should transition to sleep
+pub const PsmBatteryVoltageState_PsmBatteryVoltageState_NeedsSleep: PsmBatteryVoltageState = 1;
+/// < Performance boost modes cannot be entered
+pub const PsmBatteryVoltageState_PsmBatteryVoltageState_NoPerformanceBoost: PsmBatteryVoltageState =
+    2;
+/// < Everything is normal
+pub const PsmBatteryVoltageState_PsmBatteryVoltageState_Normal: PsmBatteryVoltageState = 3;
+pub type PsmBatteryVoltageState = u32;
 extern "C" {
     pub fn psmInitialize() -> Result;
 }
@@ -8375,7 +10275,7 @@ extern "C" {
     pub fn psmGetChargerType(out: *mut ChargerType) -> Result;
 }
 extern "C" {
-    pub fn psmGetBatteryVoltageState(out: *mut u32) -> Result;
+    pub fn psmGetBatteryVoltageState(out: *mut PsmBatteryVoltageState) -> Result;
 }
 extern "C" {
     /// @brief Wrapper func which handles event setup.
@@ -8398,12 +10298,626 @@ extern "C" {
     /// Cleanup version of psmBindStateChangeEvent. Called automatically by \ref psmExit and \ref psmBindStateChangeEvent, if already initialized.
     pub fn psmUnbindStateChangeEvent() -> Result;
 }
+extern "C" {
+    pub fn spsmInitialize() -> Result;
+}
+extern "C" {
+    pub fn spsmExit();
+}
+extern "C" {
+    pub fn spsmShutdown(reboot: bool) -> Result;
+}
+extern "C" {
+    pub fn spsmPutErrorState() -> Result;
+}
 pub const FatalType_FatalType_ErrorReportAndErrorScreen: FatalType = 0;
 pub const FatalType_FatalType_ErrorReport: FatalType = 1;
 /// < Only available with 3.0.0+. If specified, FatalType_ErrorReportAndErrorScreen will be used instead on pre-3.0.0.
 pub const FatalType_FatalType_ErrorScreen: FatalType = 2;
 /// Type of thrown fatal error.
 pub type FatalType = u32;
+/// Struct for fatal Cpu context, 64-bit.
+#[repr(C)]
+pub struct FatalAarch64Context {
+    pub __bindgen_anon_1: FatalAarch64Context__bindgen_ty_1,
+    pub pstate: u64,
+    pub afsr0: u64,
+    pub afsr1: u64,
+    pub esr: u64,
+    pub far: u64,
+    pub stack_trace: [u64; 32usize],
+    /// < Address of first NSO loaded (generally, process entrypoint).
+    pub start_address: u64,
+    /// < Bitmask, bit i indicates GPR i has a value.
+    pub register_set_flags: u64,
+    pub stack_trace_size: u32,
+}
+#[repr(C)]
+pub struct FatalAarch64Context__bindgen_ty_1 {
+    pub x: __BindgenUnionField<[u64; 32usize]>,
+    pub __bindgen_anon_1: __BindgenUnionField<FatalAarch64Context__bindgen_ty_1__bindgen_ty_1>,
+    pub bindgen_union_field: [u64; 33usize],
+}
+#[repr(C)]
+pub struct FatalAarch64Context__bindgen_ty_1__bindgen_ty_1 {
+    pub _x: [u64; 29usize],
+    pub fp: u64,
+    pub lr: u64,
+    pub sp: u64,
+    pub pc: u64,
+}
+#[test]
+fn bindgen_test_layout_FatalAarch64Context__bindgen_ty_1__bindgen_ty_1() {
+    assert_eq!(
+        ::core::mem::size_of::<FatalAarch64Context__bindgen_ty_1__bindgen_ty_1>(),
+        264usize,
+        concat!(
+            "Size of: ",
+            stringify!(FatalAarch64Context__bindgen_ty_1__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FatalAarch64Context__bindgen_ty_1__bindgen_ty_1>(),
+        8usize,
+        concat!(
+            "Alignment of ",
+            stringify!(FatalAarch64Context__bindgen_ty_1__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context__bindgen_ty_1__bindgen_ty_1>()))._x
+                as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_x)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context__bindgen_ty_1__bindgen_ty_1>())).fp
+                as *const _ as usize
+        },
+        232usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(fp)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context__bindgen_ty_1__bindgen_ty_1>())).lr
+                as *const _ as usize
+        },
+        240usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(lr)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context__bindgen_ty_1__bindgen_ty_1>())).sp
+                as *const _ as usize
+        },
+        248usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(sp)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context__bindgen_ty_1__bindgen_ty_1>())).pc
+                as *const _ as usize
+        },
+        256usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(pc)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_FatalAarch64Context__bindgen_ty_1() {
+    assert_eq!(
+        ::core::mem::size_of::<FatalAarch64Context__bindgen_ty_1>(),
+        264usize,
+        concat!("Size of: ", stringify!(FatalAarch64Context__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FatalAarch64Context__bindgen_ty_1>(),
+        8usize,
+        concat!(
+            "Alignment of ",
+            stringify!(FatalAarch64Context__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context__bindgen_ty_1>())).x as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context__bindgen_ty_1),
+            "::",
+            stringify!(x)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_FatalAarch64Context() {
+    assert_eq!(
+        ::core::mem::size_of::<FatalAarch64Context>(),
+        584usize,
+        concat!("Size of: ", stringify!(FatalAarch64Context))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FatalAarch64Context>(),
+        8usize,
+        concat!("Alignment of ", stringify!(FatalAarch64Context))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch64Context>())).pstate as *const _ as usize },
+        264usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(pstate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch64Context>())).afsr0 as *const _ as usize },
+        272usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(afsr0)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch64Context>())).afsr1 as *const _ as usize },
+        280usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(afsr1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch64Context>())).esr as *const _ as usize },
+        288usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(esr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch64Context>())).far as *const _ as usize },
+        296usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(far)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context>())).stack_trace as *const _ as usize
+        },
+        304usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(stack_trace)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context>())).start_address as *const _ as usize
+        },
+        560usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(start_address)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context>())).register_set_flags as *const _ as usize
+        },
+        568usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(register_set_flags)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch64Context>())).stack_trace_size as *const _ as usize
+        },
+        576usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch64Context),
+            "::",
+            stringify!(stack_trace_size)
+        )
+    );
+}
+/// Struct for fatal Cpu context, 32-bit.
+#[repr(C)]
+pub struct FatalAarch32Context {
+    pub __bindgen_anon_1: FatalAarch32Context__bindgen_ty_1,
+    pub pstate: u32,
+    pub afsr0: u32,
+    pub afsr1: u32,
+    pub esr: u32,
+    pub far: u32,
+    pub stack_trace: [u32; 32usize],
+    pub stack_trace_size: u32,
+    /// < Address of first NSO loaded (generally, process entrypoint).
+    pub start_address: u32,
+    /// < Bitmask, bit i indicates GPR i has a value.
+    pub register_set_flags: u32,
+}
+#[repr(C)]
+pub struct FatalAarch32Context__bindgen_ty_1 {
+    pub r: __BindgenUnionField<[u32; 16usize]>,
+    pub __bindgen_anon_1: __BindgenUnionField<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>,
+    pub bindgen_union_field: [u32; 16usize],
+}
+#[repr(C)]
+pub struct FatalAarch32Context__bindgen_ty_1__bindgen_ty_1 {
+    pub _r: [u32; 11usize],
+    pub fp: u32,
+    pub ip: u32,
+    pub sp: u32,
+    pub lr: u32,
+    pub pc: u32,
+}
+#[test]
+fn bindgen_test_layout_FatalAarch32Context__bindgen_ty_1__bindgen_ty_1() {
+    assert_eq!(
+        ::core::mem::size_of::<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>(),
+        64usize,
+        concat!(
+            "Size of: ",
+            stringify!(FatalAarch32Context__bindgen_ty_1__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(FatalAarch32Context__bindgen_ty_1__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>()))._r
+                as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(_r)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>())).fp
+                as *const _ as usize
+        },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(fp)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>())).ip
+                as *const _ as usize
+        },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(ip)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>())).sp
+                as *const _ as usize
+        },
+        52usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(sp)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>())).lr
+                as *const _ as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(lr)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context__bindgen_ty_1__bindgen_ty_1>())).pc
+                as *const _ as usize
+        },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context__bindgen_ty_1__bindgen_ty_1),
+            "::",
+            stringify!(pc)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_FatalAarch32Context__bindgen_ty_1() {
+    assert_eq!(
+        ::core::mem::size_of::<FatalAarch32Context__bindgen_ty_1>(),
+        64usize,
+        concat!("Size of: ", stringify!(FatalAarch32Context__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FatalAarch32Context__bindgen_ty_1>(),
+        4usize,
+        concat!(
+            "Alignment of ",
+            stringify!(FatalAarch32Context__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context__bindgen_ty_1>())).r as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context__bindgen_ty_1),
+            "::",
+            stringify!(r)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_FatalAarch32Context() {
+    assert_eq!(
+        ::core::mem::size_of::<FatalAarch32Context>(),
+        224usize,
+        concat!("Size of: ", stringify!(FatalAarch32Context))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FatalAarch32Context>(),
+        4usize,
+        concat!("Alignment of ", stringify!(FatalAarch32Context))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch32Context>())).pstate as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(pstate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch32Context>())).afsr0 as *const _ as usize },
+        68usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(afsr0)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch32Context>())).afsr1 as *const _ as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(afsr1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch32Context>())).esr as *const _ as usize },
+        76usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(esr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalAarch32Context>())).far as *const _ as usize },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(far)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context>())).stack_trace as *const _ as usize
+        },
+        84usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(stack_trace)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context>())).stack_trace_size as *const _ as usize
+        },
+        212usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(stack_trace_size)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context>())).start_address as *const _ as usize
+        },
+        216usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(start_address)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalAarch32Context>())).register_set_flags as *const _ as usize
+        },
+        220usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalAarch32Context),
+            "::",
+            stringify!(register_set_flags)
+        )
+    );
+}
+#[repr(C)]
+pub struct FatalContext {
+    pub __bindgen_anon_1: FatalContext__bindgen_ty_1,
+    pub is_aarch32: bool,
+    pub type_: u32,
+}
+#[repr(C)]
+pub struct FatalContext__bindgen_ty_1 {
+    pub aarch64_ctx: __BindgenUnionField<FatalAarch64Context>,
+    pub aarch32_ctx: __BindgenUnionField<FatalAarch32Context>,
+    pub bindgen_union_field: [u64; 73usize],
+}
+#[test]
+fn bindgen_test_layout_FatalContext__bindgen_ty_1() {
+    assert_eq!(
+        ::core::mem::size_of::<FatalContext__bindgen_ty_1>(),
+        584usize,
+        concat!("Size of: ", stringify!(FatalContext__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FatalContext__bindgen_ty_1>(),
+        8usize,
+        concat!("Alignment of ", stringify!(FatalContext__bindgen_ty_1))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalContext__bindgen_ty_1>())).aarch64_ctx as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalContext__bindgen_ty_1),
+            "::",
+            stringify!(aarch64_ctx)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<FatalContext__bindgen_ty_1>())).aarch32_ctx as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalContext__bindgen_ty_1),
+            "::",
+            stringify!(aarch32_ctx)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_FatalContext() {
+    assert_eq!(
+        ::core::mem::size_of::<FatalContext>(),
+        592usize,
+        concat!("Size of: ", stringify!(FatalContext))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<FatalContext>(),
+        8usize,
+        concat!("Alignment of ", stringify!(FatalContext))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalContext>())).is_aarch32 as *const _ as usize },
+        584usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalContext),
+            "::",
+            stringify!(is_aarch32)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<FatalContext>())).type_ as *const _ as usize },
+        588usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FatalContext),
+            "::",
+            stringify!(type_)
+        )
+    );
+}
 extern "C" {
     /// @brief Triggers a system fatal error.
     /// @param err[in] Result code to throw.
@@ -8414,9 +10928,17 @@ extern "C" {
 extern "C" {
     /// @brief Triggers a system fatal error with a custom \ref FatalType.
     /// @param err[in] Result code to throw.
-    /// @param err[in] Type of fatal error to throw.
+    /// @param type[in] Type of fatal error to throw.
     /// @note This function may not return, depending on \ref FatalType.
     pub fn fatalWithType(err: Result, type_: FatalType);
+}
+extern "C" {
+    /// @brief Triggers a system fatal error with a custom \ref FatalType and \ref FatalContext.
+    /// @param err[in]  Result code to throw.
+    /// @param type[in] Type of fatal error to throw.
+    /// @param ctx[in]  Cpu context for fatal error to throw.
+    /// @note This function may not return, depending on \ref FatalType.
+    pub fn fatalWithContext(err: Result, type_: FatalType, ctx: *mut FatalContext);
 }
 pub const TimeType_TimeType_UserSystemClock: TimeType = 0;
 pub const TimeType_TimeType_NetworkSystemClock: TimeType = 1;
@@ -8629,8 +11151,8 @@ extern "C" {
     ) -> Result;
 }
 /// Imported from libusb, with some adjustments.
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 pub struct usb_endpoint_descriptor {
     pub bLength: u8,
     /// < Must match USB_DT_ENDPOINT.
@@ -8645,12 +11167,12 @@ pub struct usb_endpoint_descriptor {
 fn bindgen_test_layout_usb_endpoint_descriptor() {
     assert_eq!(
         ::core::mem::size_of::<usb_endpoint_descriptor>(),
-        8usize,
+        7usize,
         concat!("Size of: ", stringify!(usb_endpoint_descriptor))
     );
     assert_eq!(
         ::core::mem::align_of::<usb_endpoint_descriptor>(),
-        2usize,
+        1usize,
         concat!("Alignment of ", stringify!(usb_endpoint_descriptor))
     );
     assert_eq!(
@@ -8730,7 +11252,7 @@ fn bindgen_test_layout_usb_endpoint_descriptor() {
 }
 /// Imported from libusb, with some adjustments.
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 pub struct usb_interface_descriptor {
     pub bLength: u8,
     /// < Must match USB_DT_INTERFACE.
@@ -8875,7 +11397,7 @@ fn bindgen_test_layout_usb_interface_descriptor() {
 }
 /// Imported from libusb, with some adjustments.
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 pub struct usb_device_descriptor {
     pub bLength: u8,
     /// < Must match USB_DT_Device.
@@ -9068,8 +11590,127 @@ fn bindgen_test_layout_usb_device_descriptor() {
     );
 }
 /// Imported from libusb, with some adjustments.
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
+pub struct usb_config_descriptor {
+    pub bLength: u8,
+    pub bDescriptorType: u8,
+    pub wTotalLength: u16,
+    pub bNumInterfaces: u8,
+    pub bConfigurationValue: u8,
+    pub iConfiguration: u8,
+    pub bmAttributes: u8,
+    pub MaxPower: u8,
+}
+#[test]
+fn bindgen_test_layout_usb_config_descriptor() {
+    assert_eq!(
+        ::core::mem::size_of::<usb_config_descriptor>(),
+        9usize,
+        concat!("Size of: ", stringify!(usb_config_descriptor))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<usb_config_descriptor>(),
+        1usize,
+        concat!("Alignment of ", stringify!(usb_config_descriptor))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<usb_config_descriptor>())).bLength as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(usb_config_descriptor),
+            "::",
+            stringify!(bLength)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<usb_config_descriptor>())).bDescriptorType as *const _ as usize
+        },
+        1usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(usb_config_descriptor),
+            "::",
+            stringify!(bDescriptorType)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<usb_config_descriptor>())).wTotalLength as *const _ as usize
+        },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(usb_config_descriptor),
+            "::",
+            stringify!(wTotalLength)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<usb_config_descriptor>())).bNumInterfaces as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(usb_config_descriptor),
+            "::",
+            stringify!(bNumInterfaces)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<usb_config_descriptor>())).bConfigurationValue as *const _
+                as usize
+        },
+        5usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(usb_config_descriptor),
+            "::",
+            stringify!(bConfigurationValue)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<usb_config_descriptor>())).iConfiguration as *const _ as usize
+        },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(usb_config_descriptor),
+            "::",
+            stringify!(iConfiguration)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<usb_config_descriptor>())).bmAttributes as *const _ as usize
+        },
+        7usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(usb_config_descriptor),
+            "::",
+            stringify!(bmAttributes)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<usb_config_descriptor>())).MaxPower as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(usb_config_descriptor),
+            "::",
+            stringify!(MaxPower)
+        )
+    );
+}
+/// Imported from libusb, with some adjustments.
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 pub struct usb_ss_endpoint_companion_descriptor {
     pub bLength: u8,
     /// < Must match USB_DT_SS_ENDPOINT_COMPANION.
@@ -9164,7 +11805,6 @@ fn bindgen_test_layout_usb_ss_endpoint_companion_descriptor() {
 }
 /// Imported from libusb, with some adjustments.
 #[repr(C)]
-#[derive(Copy, Clone)]
 pub struct usb_string_descriptor {
     pub bLength: u8,
     /// < Must match USB_DT_STRING.
@@ -9216,6 +11856,94 @@ fn bindgen_test_layout_usb_string_descriptor() {
         )
     );
 }
+pub const usb_class_code_USB_CLASS_PER_INTERFACE: usb_class_code = 0;
+pub const usb_class_code_USB_CLASS_AUDIO: usb_class_code = 1;
+pub const usb_class_code_USB_CLASS_COMM: usb_class_code = 2;
+pub const usb_class_code_USB_CLASS_HID: usb_class_code = 3;
+pub const usb_class_code_USB_CLASS_PHYSICAL: usb_class_code = 5;
+pub const usb_class_code_USB_CLASS_PRINTER: usb_class_code = 7;
+pub const usb_class_code_USB_CLASS_PTP: usb_class_code = 6;
+pub const usb_class_code_USB_CLASS_IMAGE: usb_class_code = 6;
+pub const usb_class_code_USB_CLASS_MASS_STORAGE: usb_class_code = 8;
+pub const usb_class_code_USB_CLASS_HUB: usb_class_code = 9;
+pub const usb_class_code_USB_CLASS_DATA: usb_class_code = 10;
+pub const usb_class_code_USB_CLASS_SMART_CARD: usb_class_code = 11;
+pub const usb_class_code_USB_CLASS_CONTENT_SECURITY: usb_class_code = 13;
+pub const usb_class_code_USB_CLASS_VIDEO: usb_class_code = 14;
+pub const usb_class_code_USB_CLASS_PERSONAL_HEALTHCARE: usb_class_code = 15;
+pub const usb_class_code_USB_CLASS_DIAGNOSTIC_DEVICE: usb_class_code = 220;
+pub const usb_class_code_USB_CLASS_WIRELESS: usb_class_code = 224;
+pub const usb_class_code_USB_CLASS_APPLICATION: usb_class_code = 254;
+pub const usb_class_code_USB_CLASS_VENDOR_SPEC: usb_class_code = 255;
+/// Imported from libusb, with changed names.
+pub type usb_class_code = u32;
+pub const usb_descriptor_type_USB_DT_DEVICE: usb_descriptor_type = 1;
+pub const usb_descriptor_type_USB_DT_CONFIG: usb_descriptor_type = 2;
+pub const usb_descriptor_type_USB_DT_STRING: usb_descriptor_type = 3;
+pub const usb_descriptor_type_USB_DT_INTERFACE: usb_descriptor_type = 4;
+pub const usb_descriptor_type_USB_DT_ENDPOINT: usb_descriptor_type = 5;
+pub const usb_descriptor_type_USB_DT_BOS: usb_descriptor_type = 15;
+pub const usb_descriptor_type_USB_DT_DEVICE_CAPABILITY: usb_descriptor_type = 16;
+pub const usb_descriptor_type_USB_DT_HID: usb_descriptor_type = 33;
+pub const usb_descriptor_type_USB_DT_REPORT: usb_descriptor_type = 34;
+pub const usb_descriptor_type_USB_DT_PHYSICAL: usb_descriptor_type = 35;
+pub const usb_descriptor_type_USB_DT_HUB: usb_descriptor_type = 41;
+pub const usb_descriptor_type_USB_DT_SUPERSPEED_HUB: usb_descriptor_type = 42;
+pub const usb_descriptor_type_USB_DT_SS_ENDPOINT_COMPANION: usb_descriptor_type = 48;
+/// Imported from libusb, with changed names.
+pub type usb_descriptor_type = u32;
+pub const usb_endpoint_direction_USB_ENDPOINT_IN: usb_endpoint_direction = 128;
+pub const usb_endpoint_direction_USB_ENDPOINT_OUT: usb_endpoint_direction = 0;
+/// Imported from libusb, with changed names.
+pub type usb_endpoint_direction = u32;
+pub const usb_transfer_type_USB_TRANSFER_TYPE_CONTROL: usb_transfer_type = 0;
+pub const usb_transfer_type_USB_TRANSFER_TYPE_ISOCHRONOUS: usb_transfer_type = 1;
+pub const usb_transfer_type_USB_TRANSFER_TYPE_BULK: usb_transfer_type = 2;
+pub const usb_transfer_type_USB_TRANSFER_TYPE_INTERRUPT: usb_transfer_type = 3;
+pub const usb_transfer_type_USB_TRANSFER_TYPE_BULK_STREAM: usb_transfer_type = 4;
+/// Imported from libusb, with changed names.
+pub type usb_transfer_type = u32;
+/// Request status of the specific recipient
+pub const usb_standard_request_USB_REQUEST_GET_STATUS: usb_standard_request = 0;
+/// Clear or disable a specific feature
+pub const usb_standard_request_USB_REQUEST_CLEAR_FEATURE: usb_standard_request = 1;
+/// Set or enable a specific feature
+pub const usb_standard_request_USB_REQUEST_SET_FEATURE: usb_standard_request = 3;
+/// Set device address for all future accesses
+pub const usb_standard_request_USB_REQUEST_SET_ADDRESS: usb_standard_request = 5;
+/// Get the specified descriptor
+pub const usb_standard_request_USB_REQUEST_GET_DESCRIPTOR: usb_standard_request = 6;
+/// Used to update existing descriptors or add new descriptors
+pub const usb_standard_request_USB_REQUEST_SET_DESCRIPTOR: usb_standard_request = 7;
+/// Get the current device configuration value
+pub const usb_standard_request_USB_REQUEST_GET_CONFIGURATION: usb_standard_request = 8;
+/// Set device configuration
+pub const usb_standard_request_USB_REQUEST_SET_CONFIGURATION: usb_standard_request = 9;
+/// Return the selected alternate setting for the specified interface
+pub const usb_standard_request_USB_REQUEST_GET_INTERFACE: usb_standard_request = 10;
+/// Select an alternate interface for the specified interface
+pub const usb_standard_request_USB_REQUEST_SET_INTERFACE: usb_standard_request = 11;
+/// Set then report an endpoint's synchronization frame
+pub const usb_standard_request_USB_REQUEST_SYNCH_FRAME: usb_standard_request = 12;
+/// Sets both the U1 and U2 Exit Latency
+pub const usb_standard_request_USB_REQUEST_SET_SEL: usb_standard_request = 48;
+/// Delay from the time a host transmits a packet to the time it is
+/// received by the device.
+pub const usb_standard_request_USB_SET_ISOCH_DELAY: usb_standard_request = 49;
+/// Imported from libusb, with changed names.
+pub type usb_standard_request = u32;
+pub const usb_iso_sync_type_USB_ISO_SYNC_TYPE_NONE: usb_iso_sync_type = 0;
+pub const usb_iso_sync_type_USB_ISO_SYNC_TYPE_ASYNC: usb_iso_sync_type = 1;
+pub const usb_iso_sync_type_USB_ISO_SYNC_TYPE_ADAPTIVE: usb_iso_sync_type = 2;
+pub const usb_iso_sync_type_USB_ISO_SYNC_TYPE_SYNC: usb_iso_sync_type = 3;
+/// Imported from libusb, with changed names.
+pub type usb_iso_sync_type = u32;
+pub const usb_iso_usage_type_USB_ISO_USAGE_TYPE_DATA: usb_iso_usage_type = 0;
+pub const usb_iso_usage_type_USB_ISO_USAGE_TYPE_FEEDBACK: usb_iso_usage_type = 1;
+pub const usb_iso_usage_type_USB_ISO_USAGE_TYPE_IMPLICIT: usb_iso_usage_type = 2;
+/// Imported from libusb, with changed names.
+pub type usb_iso_usage_type = u32;
+/// Value for usb_interface_descriptor bInterfaceNumber for automatically allocating the actual bInterfaceNumber.
 #[repr(C)]
 pub struct UsbDsDeviceInfo {
     /// < VID
@@ -9545,64 +12273,6 @@ pub const UsbDeviceSpeed_UsbDeviceSpeed_High: UsbDeviceSpeed = 3;
 /// < USB 3.0 Super Speed
 pub const UsbDeviceSpeed_UsbDeviceSpeed_Super: UsbDeviceSpeed = 4;
 pub type UsbDeviceSpeed = u32;
-pub const usb_class_code_USB_CLASS_PER_INTERFACE: usb_class_code = 0;
-pub const usb_class_code_USB_CLASS_AUDIO: usb_class_code = 1;
-pub const usb_class_code_USB_CLASS_COMM: usb_class_code = 2;
-pub const usb_class_code_USB_CLASS_HID: usb_class_code = 3;
-pub const usb_class_code_USB_CLASS_PHYSICAL: usb_class_code = 5;
-pub const usb_class_code_USB_CLASS_PRINTER: usb_class_code = 7;
-pub const usb_class_code_USB_CLASS_PTP: usb_class_code = 6;
-pub const usb_class_code_USB_CLASS_IMAGE: usb_class_code = 6;
-pub const usb_class_code_USB_CLASS_MASS_STORAGE: usb_class_code = 8;
-pub const usb_class_code_USB_CLASS_HUB: usb_class_code = 9;
-pub const usb_class_code_USB_CLASS_DATA: usb_class_code = 10;
-pub const usb_class_code_USB_CLASS_SMART_CARD: usb_class_code = 11;
-pub const usb_class_code_USB_CLASS_CONTENT_SECURITY: usb_class_code = 13;
-pub const usb_class_code_USB_CLASS_VIDEO: usb_class_code = 14;
-pub const usb_class_code_USB_CLASS_PERSONAL_HEALTHCARE: usb_class_code = 15;
-pub const usb_class_code_USB_CLASS_DIAGNOSTIC_DEVICE: usb_class_code = 220;
-pub const usb_class_code_USB_CLASS_WIRELESS: usb_class_code = 224;
-pub const usb_class_code_USB_CLASS_APPLICATION: usb_class_code = 254;
-pub const usb_class_code_USB_CLASS_VENDOR_SPEC: usb_class_code = 255;
-/// Imported from libusb, with changed names.
-pub type usb_class_code = u32;
-pub const usb_descriptor_type_USB_DT_DEVICE: usb_descriptor_type = 1;
-pub const usb_descriptor_type_USB_DT_CONFIG: usb_descriptor_type = 2;
-pub const usb_descriptor_type_USB_DT_STRING: usb_descriptor_type = 3;
-pub const usb_descriptor_type_USB_DT_INTERFACE: usb_descriptor_type = 4;
-pub const usb_descriptor_type_USB_DT_ENDPOINT: usb_descriptor_type = 5;
-pub const usb_descriptor_type_USB_DT_BOS: usb_descriptor_type = 15;
-pub const usb_descriptor_type_USB_DT_DEVICE_CAPABILITY: usb_descriptor_type = 16;
-pub const usb_descriptor_type_USB_DT_HID: usb_descriptor_type = 33;
-pub const usb_descriptor_type_USB_DT_REPORT: usb_descriptor_type = 34;
-pub const usb_descriptor_type_USB_DT_PHYSICAL: usb_descriptor_type = 35;
-pub const usb_descriptor_type_USB_DT_HUB: usb_descriptor_type = 41;
-pub const usb_descriptor_type_USB_DT_SUPERSPEED_HUB: usb_descriptor_type = 42;
-pub const usb_descriptor_type_USB_DT_SS_ENDPOINT_COMPANION: usb_descriptor_type = 48;
-/// Imported from libusb, with changed names.
-pub type usb_descriptor_type = u32;
-pub const usb_endpoint_direction_USB_ENDPOINT_IN: usb_endpoint_direction = 128;
-pub const usb_endpoint_direction_USB_ENDPOINT_OUT: usb_endpoint_direction = 0;
-/// Imported from libusb, with changed names.
-pub type usb_endpoint_direction = u32;
-pub const usb_transfer_type_USB_TRANSFER_TYPE_CONTROL: usb_transfer_type = 0;
-pub const usb_transfer_type_USB_TRANSFER_TYPE_ISOCHRONOUS: usb_transfer_type = 1;
-pub const usb_transfer_type_USB_TRANSFER_TYPE_BULK: usb_transfer_type = 2;
-pub const usb_transfer_type_USB_TRANSFER_TYPE_INTERRUPT: usb_transfer_type = 3;
-pub const usb_transfer_type_USB_TRANSFER_TYPE_BULK_STREAM: usb_transfer_type = 4;
-/// Imported from libusb, with changed names.
-pub type usb_transfer_type = u32;
-pub const usb_iso_sync_type_USB_ISO_SYNC_TYPE_NONE: usb_iso_sync_type = 0;
-pub const usb_iso_sync_type_USB_ISO_SYNC_TYPE_ASYNC: usb_iso_sync_type = 1;
-pub const usb_iso_sync_type_USB_ISO_SYNC_TYPE_ADAPTIVE: usb_iso_sync_type = 2;
-pub const usb_iso_sync_type_USB_ISO_SYNC_TYPE_SYNC: usb_iso_sync_type = 3;
-/// Imported from libusb, with changed names.
-pub type usb_iso_sync_type = u32;
-pub const usb_iso_usage_type_USB_ISO_USAGE_TYPE_DATA: usb_iso_usage_type = 0;
-pub const usb_iso_usage_type_USB_ISO_USAGE_TYPE_FEEDBACK: usb_iso_usage_type = 1;
-pub const usb_iso_usage_type_USB_ISO_USAGE_TYPE_IMPLICIT: usb_iso_usage_type = 2;
-/// Imported from libusb, with changed names.
-pub type usb_iso_usage_type = u32;
 extern "C" {
     /// Opens a session with usb:ds.
     pub fn usbDsInitialize() -> Result;
@@ -9780,6 +12450,834 @@ extern "C" {
 }
 extern "C" {
     pub fn usbDsEndpoint_SetZlt(endpoint: *mut UsbDsEndpoint, zlt: bool) -> Result;
+}
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_idVendor: UsbHsInterfaceFilterFlags =
+    1;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_idProduct: UsbHsInterfaceFilterFlags =
+    2;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_bcdDevice_Min:
+    UsbHsInterfaceFilterFlags = 4;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_bcdDevice_Max:
+    UsbHsInterfaceFilterFlags = 8;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_bDeviceClass:
+    UsbHsInterfaceFilterFlags = 16;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_bDeviceSubClass:
+    UsbHsInterfaceFilterFlags = 32;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_bDeviceProtocol:
+    UsbHsInterfaceFilterFlags = 64;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_bInterfaceClass:
+    UsbHsInterfaceFilterFlags = 128;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_bInterfaceSubClass:
+    UsbHsInterfaceFilterFlags = 256;
+pub const UsbHsInterfaceFilterFlags_UsbHsInterfaceFilterFlags_bInterfaceProtocol:
+    UsbHsInterfaceFilterFlags = 512;
+pub type UsbHsInterfaceFilterFlags = u16;
+/// Interface filtering struct. When the associated flag bit is set, the associated descriptor field and struct field are compared, on mismatch the interface is filtered out.
+#[repr(C)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
+pub struct UsbHsInterfaceFilter {
+    /// < See \ref UsbHsInterfaceFilterFlags. Setting this to 0 is equivalent to disabling filtering.
+    pub Flags: u16,
+    pub idVendor: u16,
+    pub idProduct: u16,
+    /// < Descriptor value must be >= bcdDevice_Min.
+    pub bcdDevice_Min: u16,
+    /// < Descriptor value must be <= bcdDevice_Max.
+    pub bcdDevice_Max: u16,
+    pub bDeviceClass: u8,
+    pub bDeviceSubClass: u8,
+    pub bDeviceProtocol: u8,
+    pub bInterfaceClass: u8,
+    pub bInterfaceSubClass: u8,
+    pub bInterfaceProtocol: u8,
+}
+#[test]
+fn bindgen_test_layout_UsbHsInterfaceFilter() {
+    assert_eq!(
+        ::core::mem::size_of::<UsbHsInterfaceFilter>(),
+        16usize,
+        concat!("Size of: ", stringify!(UsbHsInterfaceFilter))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<UsbHsInterfaceFilter>(),
+        2usize,
+        concat!("Alignment of ", stringify!(UsbHsInterfaceFilter))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).Flags as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(Flags)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).idVendor as *const _ as usize },
+        2usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(idVendor)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).idProduct as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(idProduct)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).bcdDevice_Min as *const _ as usize
+        },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(bcdDevice_Min)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).bcdDevice_Max as *const _ as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(bcdDevice_Max)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).bDeviceClass as *const _ as usize
+        },
+        10usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(bDeviceClass)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).bDeviceSubClass as *const _ as usize
+        },
+        11usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(bDeviceSubClass)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).bDeviceProtocol as *const _ as usize
+        },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(bDeviceProtocol)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).bInterfaceClass as *const _ as usize
+        },
+        13usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(bInterfaceClass)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).bInterfaceSubClass as *const _
+                as usize
+        },
+        14usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(bInterfaceSubClass)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceFilter>())).bInterfaceProtocol as *const _
+                as usize
+        },
+        15usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceFilter),
+            "::",
+            stringify!(bInterfaceProtocol)
+        )
+    );
+}
+/// Descriptors which are not available are set to all-zero.
+#[repr(C, packed)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
+pub struct UsbHsInterfaceInfo {
+    pub ID: s32,
+    pub deviceID_2: u32,
+    pub unk_x8: u32,
+    pub interface_desc: usb_interface_descriptor,
+    pub pad_x15: [u8; 7usize],
+    pub output_endpoint_descs: [usb_endpoint_descriptor; 15usize],
+    pub pad_x85: [u8; 7usize],
+    pub input_endpoint_descs: [usb_endpoint_descriptor; 15usize],
+    pub pad_xf5: [u8; 6usize],
+    /// < ?
+    pub output_ss_endpoint_companion_descs: [usb_ss_endpoint_companion_descriptor; 15usize],
+    pub pad_x155: [u8; 6usize],
+    /// < ?
+    pub input_ss_endpoint_companion_descs: [usb_ss_endpoint_companion_descriptor; 15usize],
+    pub pad_x1b5: [u8; 3usize],
+}
+#[test]
+fn bindgen_test_layout_UsbHsInterfaceInfo() {
+    assert_eq!(
+        ::core::mem::size_of::<UsbHsInterfaceInfo>(),
+        440usize,
+        concat!("Size of: ", stringify!(UsbHsInterfaceInfo))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<UsbHsInterfaceInfo>(),
+        1usize,
+        concat!("Alignment of ", stringify!(UsbHsInterfaceInfo))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).ID as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(ID)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).deviceID_2 as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(deviceID_2)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).unk_x8 as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(unk_x8)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).interface_desc as *const _ as usize
+        },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(interface_desc)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).pad_x15 as *const _ as usize },
+        21usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(pad_x15)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).output_endpoint_descs as *const _
+                as usize
+        },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(output_endpoint_descs)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).pad_x85 as *const _ as usize },
+        133usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(pad_x85)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).input_endpoint_descs as *const _
+                as usize
+        },
+        140usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(input_endpoint_descs)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).pad_xf5 as *const _ as usize },
+        245usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(pad_xf5)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).output_ss_endpoint_companion_descs
+                as *const _ as usize
+        },
+        251usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(output_ss_endpoint_companion_descs)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).pad_x155 as *const _ as usize },
+        341usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(pad_x155)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).input_ss_endpoint_companion_descs
+                as *const _ as usize
+        },
+        347usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(input_ss_endpoint_companion_descs)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterfaceInfo>())).pad_x1b5 as *const _ as usize },
+        437usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterfaceInfo),
+            "::",
+            stringify!(pad_x1b5)
+        )
+    );
+}
+/// Interface struct. Note that devices have a seperate \ref UsbHsInterface for each interface.
+#[repr(C, packed)]
+#[derive(Copy, Clone)]
+pub struct UsbHsInterface {
+    pub inf: UsbHsInterfaceInfo,
+    pub pathstr: [lang_items::c_char; 64usize],
+    pub busID: u32,
+    pub deviceID: u32,
+    pub device_desc: usb_device_descriptor,
+    pub config_desc: usb_config_descriptor,
+    pub pad_x21b: [u8; 5usize],
+    /// < Unknown u64 timestamp for when the device was inserted?
+    pub timestamp: u64,
+}
+#[test]
+fn bindgen_test_layout_UsbHsInterface() {
+    assert_eq!(
+        ::core::mem::size_of::<UsbHsInterface>(),
+        552usize,
+        concat!("Size of: ", stringify!(UsbHsInterface))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<UsbHsInterface>(),
+        1usize,
+        concat!("Alignment of ", stringify!(UsbHsInterface))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterface>())).inf as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterface),
+            "::",
+            stringify!(inf)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterface>())).pathstr as *const _ as usize },
+        440usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterface),
+            "::",
+            stringify!(pathstr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterface>())).busID as *const _ as usize },
+        504usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterface),
+            "::",
+            stringify!(busID)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterface>())).deviceID as *const _ as usize },
+        508usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterface),
+            "::",
+            stringify!(deviceID)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterface>())).device_desc as *const _ as usize },
+        512usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterface),
+            "::",
+            stringify!(device_desc)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterface>())).config_desc as *const _ as usize },
+        530usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterface),
+            "::",
+            stringify!(config_desc)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterface>())).pad_x21b as *const _ as usize },
+        539usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterface),
+            "::",
+            stringify!(pad_x21b)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsInterface>())).timestamp as *const _ as usize },
+        544usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsInterface),
+            "::",
+            stringify!(timestamp)
+        )
+    );
+}
+#[repr(C)]
+pub struct UsbHsXferReport {
+    pub xferId: u32,
+    pub res: Result,
+    pub requestedSize: u32,
+    pub transferredSize: u32,
+    pub unk_x10: u64,
+}
+#[test]
+fn bindgen_test_layout_UsbHsXferReport() {
+    assert_eq!(
+        ::core::mem::size_of::<UsbHsXferReport>(),
+        24usize,
+        concat!("Size of: ", stringify!(UsbHsXferReport))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<UsbHsXferReport>(),
+        8usize,
+        concat!("Alignment of ", stringify!(UsbHsXferReport))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsXferReport>())).xferId as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsXferReport),
+            "::",
+            stringify!(xferId)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsXferReport>())).res as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsXferReport),
+            "::",
+            stringify!(res)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsXferReport>())).requestedSize as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsXferReport),
+            "::",
+            stringify!(requestedSize)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsXferReport>())).transferredSize as *const _ as usize
+        },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsXferReport),
+            "::",
+            stringify!(transferredSize)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsXferReport>())).unk_x10 as *const _ as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsXferReport),
+            "::",
+            stringify!(unk_x10)
+        )
+    );
+}
+/// The interface service object. These Events have autoclear=false.
+#[repr(C)]
+pub struct UsbHsClientIfSession {
+    pub s: Service,
+    /// < Unknown.
+    pub event0: Event,
+    /// < [2.0.0+] Signaled when CtrlXferAsync finishes.
+    pub eventCtrlXfer: Event,
+    pub ID: s32,
+    /// < Initialized with the input interface from \ref usbHsAcquireUsbIf, then the first 0x1B8-bytes are overwritten with the cmd output (data before pathstr).
+    pub inf: UsbHsInterface,
+}
+#[test]
+fn bindgen_test_layout_UsbHsClientIfSession() {
+    assert_eq!(
+        ::core::mem::size_of::<UsbHsClientIfSession>(),
+        592usize,
+        concat!("Size of: ", stringify!(UsbHsClientIfSession))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<UsbHsClientIfSession>(),
+        4usize,
+        concat!("Alignment of ", stringify!(UsbHsClientIfSession))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsClientIfSession>())).s as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsClientIfSession),
+            "::",
+            stringify!(s)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsClientIfSession>())).event0 as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsClientIfSession),
+            "::",
+            stringify!(event0)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<UsbHsClientIfSession>())).eventCtrlXfer as *const _ as usize
+        },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsClientIfSession),
+            "::",
+            stringify!(eventCtrlXfer)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsClientIfSession>())).ID as *const _ as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsClientIfSession),
+            "::",
+            stringify!(ID)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsClientIfSession>())).inf as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsClientIfSession),
+            "::",
+            stringify!(inf)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
+pub struct UsbHsClientEpSession {
+    pub s: Service,
+    /// < [2.0.0+] Signaled when PostBufferAsync finishes.
+    pub eventXfer: Event,
+    pub desc: usb_endpoint_descriptor,
+}
+#[test]
+fn bindgen_test_layout_UsbHsClientEpSession() {
+    assert_eq!(
+        ::core::mem::size_of::<UsbHsClientEpSession>(),
+        32usize,
+        concat!("Size of: ", stringify!(UsbHsClientEpSession))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<UsbHsClientEpSession>(),
+        4usize,
+        concat!("Alignment of ", stringify!(UsbHsClientEpSession))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsClientEpSession>())).s as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsClientEpSession),
+            "::",
+            stringify!(s)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsClientEpSession>())).eventXfer as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsClientEpSession),
+            "::",
+            stringify!(eventXfer)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<UsbHsClientEpSession>())).desc as *const _ as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(UsbHsClientEpSession),
+            "::",
+            stringify!(desc)
+        )
+    );
+}
+extern "C" {
+    /// Initialize/exit usb:hs.
+    pub fn usbHsInitialize() -> Result;
+}
+extern "C" {
+    pub fn usbHsExit();
+}
+extern "C" {
+    /// Returns the Event loaded during init with autoclear=false.
+    /// Signaled when a device was removed.
+    /// When signaled, the user should use \ref usbHsQueryAcquiredInterfaces and cleanup state for all interfaces which are not listed in the output interfaces (none of the IDs match \ref usbHsIfGetID output).
+    pub fn usbHsGetInterfaceStateChangeEvent() -> *mut Event;
+}
+extern "C" {
+    /// @brief Returns an array of all \ref UsbHsInterface. Internally this loads the same interfaces as \ref usbHsQueryAvailableInterfaces, followed by \ref usbHsQueryAcquiredInterfaces. However, ID in \ref UsbHsInterface is set to -1, hence the output from this should not be used with \ref usbHsAcquireUsbIf.
+    /// @param[in] filter \ref UsbHsInterfaceFilter.
+    /// @param[out] interfaces Array of output interfaces.
+    /// @param[in] interfaces_maxsize Max byte-size of the interfaces buffer.
+    /// @param[out] total_entries Total number of output interfaces.
+    pub fn usbHsQueryAllInterfaces(
+        filter: *const UsbHsInterfaceFilter,
+        interfaces: *mut UsbHsInterface,
+        interfaces_maxsize: usize,
+        total_entries: *mut s32,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Returns an array of \ref UsbHsInterface which are available.
+    /// @param[in] filter \ref UsbHsInterfaceFilter.
+    /// @param[out] interfaces Array of output interfaces.
+    /// @param[in] interfaces_maxsize Max byte-size of the interfaces buffer.
+    /// @param[out] total_entries Total number of output interfaces.
+    pub fn usbHsQueryAvailableInterfaces(
+        filter: *const UsbHsInterfaceFilter,
+        interfaces: *mut UsbHsInterface,
+        interfaces_maxsize: usize,
+        total_entries: *mut s32,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Returns an array of \ref UsbHsInterface which were previously acquired.
+    /// @param[out] interfaces Array of output interfaces.
+    /// @param[in] interfaces_maxsize Max byte-size of the interfaces buffer.
+    /// @param[out] total_entries Total number of output interfaces.
+    pub fn usbHsQueryAcquiredInterfaces(
+        interfaces: *mut UsbHsInterface,
+        interfaces_maxsize: usize,
+        total_entries: *mut s32,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Creates an event which is signaled when an interface is available which passes the filtering checks.
+    /// @param[out] event Event object.
+    /// @param[in] autoclear Event autoclear.
+    /// @param[in] index Event index, must be 0..2.
+    /// @param[in] filter \ref UsbHsInterfaceFilter.
+    pub fn usbHsCreateInterfaceAvailableEvent(
+        event: *mut Event,
+        autoclear: bool,
+        index: u8,
+        filter: *const UsbHsInterfaceFilter,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Destroys an event setup by \ref usbHsCreateInterfaceAvailableEvent. This *must* be used at some point during cleanup.
+    /// @param[in] event Event object to close.
+    /// @param[in] index Event index, must be 0..2.
+    pub fn usbHsDestroyInterfaceAvailableEvent(event: *mut Event, index: u8) -> Result;
+}
+extern "C" {
+    /// @brief Acquires/opens the specified interface. This returns an error if the interface was already acquired by another process.
+    /// @param[in] s The service object.
+    /// @param[in] interface Interface to use.
+    pub fn usbHsAcquireUsbIf(
+        s: *mut UsbHsClientIfSession,
+        interface: *mut UsbHsInterface,
+    ) -> Result;
+}
+extern "C" {
+    /// Closes the specified interface session.
+    pub fn usbHsIfClose(s: *mut UsbHsClientIfSession);
+}
+extern "C" {
+    /// @brief Selects an interface.
+    /// @param[in] s The service object.
+    /// @param[out] inf The output interface info. If NULL, the output is stored within s instead.
+    /// @param[in] id ID
+    pub fn usbHsIfSetInterface(
+        s: *mut UsbHsClientIfSession,
+        inf: *mut UsbHsInterfaceInfo,
+        id: u8,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Gets an interface.
+    /// @param[in] s The service object.
+    /// @param[out] inf The output interface info. If NULL, the output is stored within s instead.
+    pub fn usbHsIfGetInterface(
+        s: *mut UsbHsClientIfSession,
+        inf: *mut UsbHsInterfaceInfo,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Gets an alternate interface.
+    /// @param[in] s The service object.
+    /// @param[out] inf The output interface info. If NULL, the output is stored within s instead.
+    /// @param[in] id ID
+    pub fn usbHsIfGetAlternateInterface(
+        s: *mut UsbHsClientIfSession,
+        inf: *mut UsbHsInterfaceInfo,
+        id: u8,
+    ) -> Result;
+}
+extern "C" {
+    /// On 1.0.0 this is stubbed, just returns 0 with out=0.
+    pub fn usbHsIfGetCurrentFrame(s: *mut UsbHsClientIfSession, out: *mut u32) -> Result;
+}
+extern "C" {
+    /// Uses a control transfer, this will block until the transfer finishes. The buffer address and size should be aligned to 0x1000-bytes, where wLength is the original size.
+    pub fn usbHsIfCtrlXfer(
+        s: *mut UsbHsClientIfSession,
+        bmRequestType: u8,
+        bRequest: u8,
+        wValue: u16,
+        wIndex: u16,
+        wLength: u16,
+        buffer: *mut lang_items::c_void,
+        transferredSize: *mut u32,
+    ) -> Result;
+}
+extern "C" {
+    /// @brief Opens an endpoint. maxUrbCount*maxXferSize must be non-zero.
+    /// @param[in] s The interface object.
+    /// @param[out] ep The endpoint object.
+    /// @param[in] maxUrbCount maxUrbCount, must be <0x11.
+    /// @param[in] maxXferSize Max transfer size for a packet. This can be desc->wMaxPacketSize. Must be <=0xFF0000.
+    /// @param[in] desc Endpoint descriptor.
+    pub fn usbHsIfOpenUsbEp(
+        s: *mut UsbHsClientIfSession,
+        ep: *mut UsbHsClientEpSession,
+        maxUrbCount: u16,
+        maxXferSize: u32,
+        desc: *mut usb_endpoint_descriptor,
+    ) -> Result;
+}
+extern "C" {
+    /// Resets the device: has the same affect as unplugging the device and plugging it back in.
+    pub fn usbHsIfResetDevice(s: *mut UsbHsClientIfSession) -> Result;
+}
+extern "C" {
+    /// Closes the specified endpoint session.
+    pub fn usbHsEpClose(s: *mut UsbHsClientEpSession);
+}
+extern "C" {
+    /// Uses a data transfer with the specified endpoint, this will block until the transfer finishes. The buffer address and size should be aligned to 0x1000-bytes, where the input size is the original size.
+    pub fn usbHsEpPostBuffer(
+        s: *mut UsbHsClientEpSession,
+        buffer: *mut lang_items::c_void,
+        size: u32,
+        transferredSize: *mut u32,
+    ) -> Result;
 }
 extern "C" {
     pub fn __assert(
@@ -10115,12 +13613,19 @@ pub struct HidControllerType(pub u32);
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum HidControllerLayoutType {
+    /// < Pro Controller or Hid gamepad.
     LAYOUT_PROCONTROLLER = 0,
+    /// < Two Joy-Con docked to rails.
     LAYOUT_HANDHELD = 1,
+    /// < Single Joy-Con or pair of Joy-Con, only available in dual-mode with no orientation adjustment.
     LAYOUT_SINGLE = 2,
+    /// < Only single-mode raw left Joy-Con state, no orientation adjustment.
     LAYOUT_LEFT = 3,
+    /// < Only single-mode raw right Joy-Con state, no orientation adjustment.
     LAYOUT_RIGHT = 4,
+    /// < Same as next, but sticks have 8-direction values only.
     LAYOUT_DEFAULT_DIGITAL = 5,
+    /// < Safe default. Single-mode and \ref HidJoyHoldType_Horizontal: Joy-Con have buttons/sticks rotated for orientation, where physical Z(L/R) are unavailable and S(L/R) are mapped to L/R (with physical L/R unavailable).
     LAYOUT_DEFAULT = 6,
 }
 impl HidControllerColorDescription {
@@ -10252,15 +13757,23 @@ impl HidControllerKeys {
     pub const KEY_RSTICK_DOWN: HidControllerKeys = HidControllerKeys(8388608);
 }
 impl HidControllerKeys {
-    /// < SL
-    pub const KEY_SL: HidControllerKeys = HidControllerKeys(16777216);
+    /// < SL on Left Joy-Con
+    pub const KEY_SL_LEFT: HidControllerKeys = HidControllerKeys(16777216);
 }
 impl HidControllerKeys {
-    /// < SR
-    pub const KEY_SR: HidControllerKeys = HidControllerKeys(33554432);
+    /// < SR on Left Joy-Con
+    pub const KEY_SR_LEFT: HidControllerKeys = HidControllerKeys(33554432);
 }
 impl HidControllerKeys {
-    pub const KEY_TOUCH: HidControllerKeys = HidControllerKeys(67108864);
+    /// < SL on Right Joy-Con
+    pub const KEY_SL_RIGHT: HidControllerKeys = HidControllerKeys(67108864);
+}
+impl HidControllerKeys {
+    /// < SR on Right Joy-Con
+    pub const KEY_SR_RIGHT: HidControllerKeys = HidControllerKeys(134217728);
+}
+impl HidControllerKeys {
+    pub const KEY_TOUCH: HidControllerKeys = HidControllerKeys(268435456);
 }
 impl HidControllerKeys {
     pub const KEY_JOYCON_RIGHT: HidControllerKeys = HidControllerKeys(1);
@@ -10289,6 +13802,14 @@ impl HidControllerKeys {
 impl HidControllerKeys {
     /// < D-Pad Right or Sticks Right
     pub const KEY_RIGHT: HidControllerKeys = HidControllerKeys(4472832);
+}
+impl HidControllerKeys {
+    /// < SL on Left or Right Joy-Con
+    pub const KEY_SL: HidControllerKeys = HidControllerKeys(83886080);
+}
+impl HidControllerKeys {
+    /// < SR on Left or Right Joy-Con
+    pub const KEY_SR: HidControllerKeys = HidControllerKeys(167772160);
 }
 impl ::core::ops::BitOr<HidControllerKeys> for HidControllerKeys {
     type Output = Self;
@@ -10379,6 +13900,11 @@ pub enum HidControllerID {
     /// < Not an actual HID-sysmodule ID. Only for hidKeys*()/hidJoystickRead()/hidSixAxisSensorValuesRead()/hidGetControllerType()/hidGetControllerColors()/hidIsControllerConnected(). Automatically uses CONTROLLER_PLAYER_1 when connected, otherwise uses CONTROLLER_HANDHELD.
     CONTROLLER_P1_AUTO = 10,
 }
+/// < Default / Joy-Con held vertically.
+pub const HidJoyHoldType_HidJoyHoldType_Default: HidJoyHoldType = 0;
+/// < Joy-Con held horizontally with HID state orientation adjustment, see \ref HidControllerLayoutType.
+pub const HidJoyHoldType_HidJoyHoldType_Horizontal: HidJoyHoldType = 1;
+pub type HidJoyHoldType = u32;
 #[repr(C)]
 pub struct touchPosition {
     pub px: u32,
@@ -12573,7 +16099,18 @@ extern "C" {
     pub fn hidSetSupportedNpadStyleSet(type_: HidControllerType) -> Result;
 }
 extern "C" {
-    pub fn hidSetNpadJoyHoldType(type_: u64) -> Result;
+    /// Gets an event with the specified autoclear for the input controller.
+    /// The user *must* close the event when finished with it / before the app exits.
+    /// This is signaled when the \ref hidGetControllerType output is updated for the controller.
+    pub fn hidAcquireNpadStyleSetUpdateEventHandle(
+        id: HidControllerID,
+        event: *mut Event,
+        autoclear: bool,
+    ) -> Result;
+}
+extern "C" {
+    /// Sets the hold-type, see \ref HidJoyHoldType.
+    pub fn hidSetNpadJoyHoldType(type_: HidJoyHoldType) -> Result;
 }
 extern "C" {
     /// Use this if you want to use a single joy-con as a dedicated CONTROLLER_PLAYER_*.
@@ -12590,6 +16127,8 @@ extern "C" {
 }
 extern "C" {
     /// Merge two single joy-cons into a dual-mode controller. Use this after \ref hidSetNpadJoyAssignmentModeDual, when \ref hidSetNpadJoyAssignmentModeSingleByDefault was previously used (this includes using this manually at application exit).
+    /// To be successful, id0/id1 must correspond to controller types TYPE_JOYCON_LEFT/TYPE_JOYCON_RIGHT, or TYPE_JOYCON_RIGHT/TYPE_JOYCON_LEFT.
+    /// If successful, the id of the resulting dual controller is set to id0.
     pub fn hidMergeSingleJoyAsDualJoy(id0: HidControllerID, id1: HidControllerID) -> Result;
 }
 extern "C" {
@@ -13708,6 +17247,123 @@ fn bindgen_test_layout_NsApplicationRecord() {
         )
     );
 }
+#[repr(C)]
+pub struct NsLaunchProperties {
+    pub titleID: u64,
+    pub version: u32,
+    pub storageID: u8,
+    pub index: u8,
+    pub is_application: u8,
+}
+#[test]
+fn bindgen_test_layout_NsLaunchProperties() {
+    assert_eq!(
+        ::core::mem::size_of::<NsLaunchProperties>(),
+        16usize,
+        concat!("Size of: ", stringify!(NsLaunchProperties))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<NsLaunchProperties>(),
+        8usize,
+        concat!("Alignment of ", stringify!(NsLaunchProperties))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<NsLaunchProperties>())).titleID as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NsLaunchProperties),
+            "::",
+            stringify!(titleID)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<NsLaunchProperties>())).version as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NsLaunchProperties),
+            "::",
+            stringify!(version)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<NsLaunchProperties>())).storageID as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NsLaunchProperties),
+            "::",
+            stringify!(storageID)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<NsLaunchProperties>())).index as *const _ as usize },
+        13usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NsLaunchProperties),
+            "::",
+            stringify!(index)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<NsLaunchProperties>())).is_application as *const _ as usize
+        },
+        14usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NsLaunchProperties),
+            "::",
+            stringify!(is_application)
+        )
+    );
+}
+pub const NsShellEvent_NsShellEvent_None: NsShellEvent = 0;
+pub const NsShellEvent_NsShellEvent_Exit: NsShellEvent = 1;
+pub const NsShellEvent_NsShellEvent_Start: NsShellEvent = 2;
+pub const NsShellEvent_NsShellEvent_Crash: NsShellEvent = 3;
+pub const NsShellEvent_NsShellEvent_Debug: NsShellEvent = 4;
+pub type NsShellEvent = u32;
+#[repr(C)]
+pub struct NsShellEventInfo {
+    pub event: NsShellEvent,
+    pub process_id: u64,
+}
+#[test]
+fn bindgen_test_layout_NsShellEventInfo() {
+    assert_eq!(
+        ::core::mem::size_of::<NsShellEventInfo>(),
+        16usize,
+        concat!("Size of: ", stringify!(NsShellEventInfo))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<NsShellEventInfo>(),
+        8usize,
+        concat!("Alignment of ", stringify!(NsShellEventInfo))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<NsShellEventInfo>())).event as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NsShellEventInfo),
+            "::",
+            stringify!(event)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<NsShellEventInfo>())).process_id as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NsShellEventInfo),
+            "::",
+            stringify!(process_id)
+        )
+    );
+}
 extern "C" {
     pub fn nsInitialize() -> Result;
 }
@@ -13771,10 +17427,54 @@ extern "C" {
     pub fn nsdevExit();
 }
 extern "C" {
+    pub fn nsdevLaunchProgram(
+        out_pid: *mut u64,
+        properties: *const NsLaunchProperties,
+        flags: u32,
+    ) -> Result;
+}
+extern "C" {
     pub fn nsdevTerminateProcess(pid: u64) -> Result;
 }
 extern "C" {
     pub fn nsdevTerminateProgram(tid: u64) -> Result;
+}
+extern "C" {
+    pub fn nsdevGetShellEvent(out: *mut Event) -> Result;
+}
+extern "C" {
+    pub fn nsdevGetShellEventInfo(out: *mut NsShellEventInfo) -> Result;
+}
+extern "C" {
+    pub fn nsdevTerminateApplication() -> Result;
+}
+extern "C" {
+    pub fn nsdevPrepareLaunchProgramFromHost(
+        out: *mut NsLaunchProperties,
+        path: *const lang_items::c_char,
+        path_len: usize,
+    ) -> Result;
+}
+extern "C" {
+    pub fn nsdevLaunchApplication(out_pid: *mut u64, app_title_id: u64, flags: u32) -> Result;
+}
+extern "C" {
+    pub fn nsdevLaunchApplicationWithStorageId(
+        out_pid: *mut u64,
+        app_title_id: u64,
+        flags: u32,
+        app_storage_id: u8,
+        patch_storage_id: u8,
+    ) -> Result;
+}
+extern "C" {
+    pub fn nsdevIsSystemMemoryResourceLimitBoosted(out: *mut bool) -> Result;
+}
+extern "C" {
+    pub fn nsdevGetRunningApplicationProcessId(out_pid: *mut u64) -> Result;
+}
+extern "C" {
+    pub fn nsdevSetCurrentApplicationRightsEnvironmentCanBeActive(can_be_active: bool) -> Result;
 }
 #[repr(C)]
 pub struct LoaderProgramInfo {
@@ -13920,49 +17620,49 @@ fn bindgen_test_layout_LoaderProgramInfo() {
     );
 }
 #[repr(C)]
-pub struct LoaderNsoInfo {
+pub struct LoaderModuleInfo {
     pub base_address: u64,
     pub size: u64,
     pub build_id: [u8; 32usize],
 }
 #[test]
-fn bindgen_test_layout_LoaderNsoInfo() {
+fn bindgen_test_layout_LoaderModuleInfo() {
     assert_eq!(
-        ::core::mem::size_of::<LoaderNsoInfo>(),
+        ::core::mem::size_of::<LoaderModuleInfo>(),
         48usize,
-        concat!("Size of: ", stringify!(LoaderNsoInfo))
+        concat!("Size of: ", stringify!(LoaderModuleInfo))
     );
     assert_eq!(
-        ::core::mem::align_of::<LoaderNsoInfo>(),
+        ::core::mem::align_of::<LoaderModuleInfo>(),
         8usize,
-        concat!("Alignment of ", stringify!(LoaderNsoInfo))
+        concat!("Alignment of ", stringify!(LoaderModuleInfo))
     );
     assert_eq!(
-        unsafe { &(*(::core::ptr::null::<LoaderNsoInfo>())).base_address as *const _ as usize },
+        unsafe { &(*(::core::ptr::null::<LoaderModuleInfo>())).base_address as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(LoaderNsoInfo),
+            stringify!(LoaderModuleInfo),
             "::",
             stringify!(base_address)
         )
     );
     assert_eq!(
-        unsafe { &(*(::core::ptr::null::<LoaderNsoInfo>())).size as *const _ as usize },
+        unsafe { &(*(::core::ptr::null::<LoaderModuleInfo>())).size as *const _ as usize },
         8usize,
         concat!(
             "Offset of field: ",
-            stringify!(LoaderNsoInfo),
+            stringify!(LoaderModuleInfo),
             "::",
             stringify!(size)
         )
     );
     assert_eq!(
-        unsafe { &(*(::core::ptr::null::<LoaderNsoInfo>())).build_id as *const _ as usize },
+        unsafe { &(*(::core::ptr::null::<LoaderModuleInfo>())).build_id as *const _ as usize },
         16usize,
         concat!(
             "Offset of field: ",
-            stringify!(LoaderNsoInfo),
+            stringify!(LoaderModuleInfo),
             "::",
             stringify!(build_id)
         )
@@ -14007,9 +17707,9 @@ extern "C" {
     pub fn ldrDmntClearLaunchQueue() -> Result;
 }
 extern "C" {
-    pub fn ldrDmntGetNsoInfos(
+    pub fn ldrDmntGetModuleInfos(
         pid: u64,
-        out_nso_infos: *mut LoaderNsoInfo,
+        out_module_infos: *mut LoaderModuleInfo,
         out_size: usize,
         num_out: *mut u32,
     ) -> Result;
@@ -14040,6 +17740,103 @@ extern "C" {
     pub fn ldrPmUnregisterTitle(launch_index: u64) -> Result;
 }
 extern "C" {
+    pub fn ldrRoInitialize() -> Result;
+}
+extern "C" {
+    pub fn ldrRoExit();
+}
+extern "C" {
+    pub fn roDmntInitialize() -> Result;
+}
+extern "C" {
+    pub fn roDmntExit();
+}
+extern "C" {
+    pub fn ldrRoLoadNro(
+        out_address: *mut u64,
+        nro_address: u64,
+        nro_size: u64,
+        bss_address: u64,
+        bss_size: u64,
+    ) -> Result;
+}
+extern "C" {
+    pub fn ldrRoUnloadNro(nro_address: u64) -> Result;
+}
+extern "C" {
+    pub fn ldrRoLoadNrr(nrr_address: u64, nrr_size: u64) -> Result;
+}
+extern "C" {
+    pub fn ldrRoUnloadNrr(nrr_address: u64) -> Result;
+}
+extern "C" {
+    pub fn roDmntGetModuleInfos(
+        pid: u64,
+        out_module_infos: *mut LoaderModuleInfo,
+        out_size: usize,
+        num_out: *mut u32,
+    ) -> Result;
+}
+pub const PmLaunchFlag_PmLaunchFlag_None: PmLaunchFlag = 0;
+pub const PmLaunchFlag_PmLaunchFlag_SignalOnExit: PmLaunchFlag = 1;
+pub const PmLaunchFlag_PmLaunchFlag_SignalOnStart: PmLaunchFlag = 2;
+pub const PmLaunchFlag_PmLaunchFlag_SignalOnCrash: PmLaunchFlag = 4;
+pub const PmLaunchFlag_PmLaunchFlag_SignalOnDebug: PmLaunchFlag = 8;
+pub const PmLaunchFlag_PmLaunchFlag_StartSuspended: PmLaunchFlag = 16;
+pub const PmLaunchFlag_PmLaunchFlag_DisableAslr: PmLaunchFlag = 32;
+pub const PmLaunchFlag_PmLaunchFlagOld_SignalOnExit: PmLaunchFlag = 1;
+pub const PmLaunchFlag_PmLaunchFlagOld_StartSuspended: PmLaunchFlag = 2;
+pub const PmLaunchFlag_PmLaunchFlagOld_SignalOnCrash: PmLaunchFlag = 4;
+pub const PmLaunchFlag_PmLaunchFlagOld_DisableAslr: PmLaunchFlag = 8;
+pub const PmLaunchFlag_PmLaunchFlagOld_SignalOnDebug: PmLaunchFlag = 16;
+pub const PmLaunchFlag_PmLaunchFlagOld_SignalOnStart: PmLaunchFlag = 32;
+pub type PmLaunchFlag = u32;
+pub const PmProcessEvent_PmProcessEvent_None: PmProcessEvent = 0;
+pub const PmProcessEvent_PmProcessEvent_Exit: PmProcessEvent = 1;
+pub const PmProcessEvent_PmProcessEvent_Start: PmProcessEvent = 2;
+pub const PmProcessEvent_PmProcessEvent_Crash: PmProcessEvent = 3;
+pub const PmProcessEvent_PmProcessEvent_DebugStart: PmProcessEvent = 4;
+pub const PmProcessEvent_PmProcessEvent_DebugBreak: PmProcessEvent = 5;
+pub type PmProcessEvent = u32;
+#[repr(C)]
+pub struct PmProcessEventInfo {
+    pub event: PmProcessEvent,
+    pub process_id: u64,
+}
+#[test]
+fn bindgen_test_layout_PmProcessEventInfo() {
+    assert_eq!(
+        ::core::mem::size_of::<PmProcessEventInfo>(),
+        16usize,
+        concat!("Size of: ", stringify!(PmProcessEventInfo))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<PmProcessEventInfo>(),
+        8usize,
+        concat!("Alignment of ", stringify!(PmProcessEventInfo))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<PmProcessEventInfo>())).event as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PmProcessEventInfo),
+            "::",
+            stringify!(event)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<PmProcessEventInfo>())).process_id as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PmProcessEventInfo),
+            "::",
+            stringify!(process_id)
+        )
+    );
+}
+extern "C" {
     pub fn pmdmntInitialize() -> Result;
 }
 extern "C" {
@@ -14058,6 +17855,13 @@ extern "C" {
     pub fn pmshellExit();
 }
 extern "C" {
+    pub fn pmdmntGetDebugProcesses(
+        out_count: *mut u32,
+        out_pids: *mut u64,
+        max_pids: usize,
+    ) -> Result;
+}
+extern "C" {
     pub fn pmdmntStartProcess(pid: u64) -> Result;
 }
 extern "C" {
@@ -14073,6 +17877,9 @@ extern "C" {
     pub fn pmdmntEnableDebugForApplication(handle_out: *mut Handle) -> Result;
 }
 extern "C" {
+    pub fn pmdmntDisableDebug() -> Result;
+}
+extern "C" {
     pub fn pminfoGetTitleId(title_id_out: *mut u64, pid: u64) -> Result;
 }
 extern "C" {
@@ -14084,10 +17891,31 @@ extern "C" {
     ) -> Result;
 }
 extern "C" {
+    pub fn pmshellTerminateProcessByProcessId(processID: u64) -> Result;
+}
+extern "C" {
     pub fn pmshellTerminateProcessByTitleId(titleID: u64) -> Result;
 }
 extern "C" {
+    pub fn pmshellGetProcessEvent(out: *mut Event) -> Result;
+}
+extern "C" {
+    pub fn pmshellGetProcessEventInfo(out: *mut PmProcessEventInfo) -> Result;
+}
+extern "C" {
+    pub fn pmshellFinalizeDeadProcess(pid: u64) -> Result;
+}
+extern "C" {
+    pub fn pmshellClearProcessExceptionOccurred(pid: u64) -> Result;
+}
+extern "C" {
+    pub fn pmshellNotifyBootFinished() -> Result;
+}
+extern "C" {
     pub fn pmshellGetApplicationPid(pid_out: *mut u64) -> Result;
+}
+extern "C" {
+    pub fn pmshellBoostSystemMemoryResourceLimit(boost_size: u64) -> Result;
 }
 pub const ColorSetId_ColorSetId_Light: ColorSetId = 0;
 pub const ColorSetId_ColorSetId_Dark: ColorSetId = 1;
@@ -14152,6 +17980,7 @@ pub const SetSysFlag_SetSysFlag_BluetoothAfhEnable: SetSysFlag = 111;
 pub const SetSysFlag_SetSysFlag_BluetoothBoostEnable: SetSysFlag = 113;
 pub const SetSysFlag_SetSysFlag_InRepairProcessEnable: SetSysFlag = 115;
 pub const SetSysFlag_SetSysFlag_HeadphoneVolumeUpdate: SetSysFlag = 117;
+pub const SetSysFlag_SetSysFlag_RequiresRunRepairTimeReviser: SetSysFlag = 141;
 /// Command IDs for setsysGetFlag/setsysSetFlag.
 pub type SetSysFlag = u32;
 /// Structure returned by \ref setsysGetFirmwareVersion
@@ -14409,6 +18238,17 @@ extern "C" {
     /// @brief Gets the system firmware version.
     /// @param out Firmware version to populate.
     pub fn setsysGetFirmwareVersion(out: *mut SetSysFirmwareVersion) -> Result;
+}
+extern "C" {
+    /// @brief Gets an event that settings will signal on flag change.
+    /// @param out Event to bind. Output event will have autoclear=false.
+    pub fn setsysBindFatalDirtyFlagEvent(out: *mut Event) -> Result;
+}
+extern "C" {
+    /// @brief Gets the settings flags that have changed.
+    /// @param flags_0 Pointer to populate with first 64 flags.
+    /// @param flags_0 Pointer to populate with second 64 flags.
+    pub fn setsysGetFatalDirtyFlags(flags_0: *mut u64, flags_1: *mut u64) -> Result;
 }
 #[repr(C)]
 pub struct LrLocationResolver {
@@ -15357,6 +19197,96 @@ extern "C" {
 }
 extern "C" {
     pub fn ncmContentMetaDatabaseCommit(db: *mut NcmContentMetaDatabase) -> Result;
+}
+/// < Everything is awake.
+pub const PscPmState_PscPmState_Awake: PscPmState = 0;
+/// < Preparing to transition to awake.
+pub const PscPmState_PscPmState_ReadyAwaken: PscPmState = 1;
+/// < Preparing to transition to sleep.
+pub const PscPmState_PscPmState_ReadySleep: PscPmState = 2;
+/// < Critical services are ready to sleep.
+pub const PscPmState_PscPmState_ReadySleepCritical: PscPmState = 3;
+/// < Critical services are ready to wake up.
+pub const PscPmState_PscPmState_ReadyAwakenCritical: PscPmState = 4;
+/// < Preparing to transition to shutdown.
+pub const PscPmState_PscPmState_ReadyShutdown: PscPmState = 5;
+pub type PscPmState = u32;
+#[repr(C)]
+pub struct PscPmModule {
+    pub event: Event,
+    pub srv: Service,
+    pub module_id: u16,
+}
+#[test]
+fn bindgen_test_layout_PscPmModule() {
+    assert_eq!(
+        ::core::mem::size_of::<PscPmModule>(),
+        28usize,
+        concat!("Size of: ", stringify!(PscPmModule))
+    );
+    assert_eq!(
+        ::core::mem::align_of::<PscPmModule>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PscPmModule))
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<PscPmModule>())).event as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PscPmModule),
+            "::",
+            stringify!(event)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<PscPmModule>())).srv as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PscPmModule),
+            "::",
+            stringify!(srv)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::core::ptr::null::<PscPmModule>())).module_id as *const _ as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PscPmModule),
+            "::",
+            stringify!(module_id)
+        )
+    );
+}
+extern "C" {
+    pub fn pscInitialize() -> Result;
+}
+extern "C" {
+    pub fn pscExit();
+}
+extern "C" {
+    pub fn pscGetPmModule(
+        out: *mut PscPmModule,
+        module_id: u16,
+        dependencies: *const u16,
+        dependency_count: usize,
+        autoclear: bool,
+    ) -> Result;
+}
+extern "C" {
+    pub fn pscPmModuleGetRequest(
+        module: *mut PscPmModule,
+        out_state: *mut PscPmState,
+        out_flags: *mut u32,
+    ) -> Result;
+}
+extern "C" {
+    pub fn pscPmModuleAcknowledge(module: *mut PscPmModule, state: PscPmState) -> Result;
+}
+extern "C" {
+    pub fn pscPmModuleFinalize(module: *mut PscPmModule) -> Result;
 }
 pub type iova_t = u64;
 pub const NvLayout_NvLayout_Pitch: NvLayout = 1;
@@ -19320,7 +23250,7 @@ pub type __key_t = lang_items::c_long;
 pub type _fpos_t = lang_items::c_long;
 pub type __size_t = lang_items::c_ulong;
 pub type __ssize_t = _ssize_t;
-pub type wint_t = lang_items::c_int;
+pub type wint_t = lang_items::c_uint;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct _mbstate_t {
@@ -19413,6 +23343,7 @@ pub type __socklen_t = __uint32_t;
 pub type __nlink_t = lang_items::c_ushort;
 pub type __suseconds_t = lang_items::c_long;
 pub type __useconds_t = lang_items::c_ulong;
+pub type __va_list = __builtin_va_list;
 pub type __sigset_t = lang_items::c_ulong;
 pub type suseconds_t = __suseconds_t;
 pub type time_t = lang_items::c_long;
@@ -20688,6 +24619,10 @@ extern "C" {
     pub fn fsdevGetDefaultFileSystem() -> *mut FsFileSystem;
 }
 extern "C" {
+    /// This calls fsFsSetArchiveBit on the filesystem specified by the input absolute path.
+    pub fn fsdevSetArchiveBit(path: *const lang_items::c_char) -> Result;
+}
+extern "C" {
     /// Unmounts all devices and cleans up any resources used by the FS driver.
     pub fn fsdevUnmountAll() -> Result;
 }
@@ -21129,76 +25064,67 @@ extern "C" {
 }
 pub type __uint128_t = [u64; 2];
 pub type __int128_t = [u64; 2];
-pub type __builtin_va_list = __va_list;
+pub type __builtin_va_list = [__va_list_tag; 1usize];
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
-pub struct __va_list {
-    pub __stack: *mut lang_items::c_void,
-    pub __gr_top: *mut lang_items::c_void,
-    pub __vr_top: *mut lang_items::c_void,
-    pub __gr_offs: lang_items::c_int,
-    pub __vr_offs: lang_items::c_int,
+pub struct __va_list_tag {
+    pub gp_offset: lang_items::c_uint,
+    pub fp_offset: lang_items::c_uint,
+    pub overflow_arg_area: *mut lang_items::c_void,
+    pub reg_save_area: *mut lang_items::c_void,
 }
 #[test]
-fn bindgen_test_layout___va_list() {
+fn bindgen_test_layout___va_list_tag() {
     assert_eq!(
-        ::core::mem::size_of::<__va_list>(),
-        32usize,
-        concat!("Size of: ", stringify!(__va_list))
+        ::core::mem::size_of::<__va_list_tag>(),
+        24usize,
+        concat!("Size of: ", stringify!(__va_list_tag))
     );
     assert_eq!(
-        ::core::mem::align_of::<__va_list>(),
+        ::core::mem::align_of::<__va_list_tag>(),
         8usize,
-        concat!("Alignment of ", stringify!(__va_list))
+        concat!("Alignment of ", stringify!(__va_list_tag))
     );
     assert_eq!(
-        unsafe { &(*(::core::ptr::null::<__va_list>())).__stack as *const _ as usize },
+        unsafe { &(*(::core::ptr::null::<__va_list_tag>())).gp_offset as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(__va_list),
+            stringify!(__va_list_tag),
             "::",
-            stringify!(__stack)
+            stringify!(gp_offset)
         )
     );
     assert_eq!(
-        unsafe { &(*(::core::ptr::null::<__va_list>())).__gr_top as *const _ as usize },
+        unsafe { &(*(::core::ptr::null::<__va_list_tag>())).fp_offset as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__va_list_tag),
+            "::",
+            stringify!(fp_offset)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<__va_list_tag>())).overflow_arg_area as *const _ as usize
+        },
         8usize,
         concat!(
             "Offset of field: ",
-            stringify!(__va_list),
+            stringify!(__va_list_tag),
             "::",
-            stringify!(__gr_top)
+            stringify!(overflow_arg_area)
         )
     );
     assert_eq!(
-        unsafe { &(*(::core::ptr::null::<__va_list>())).__vr_top as *const _ as usize },
+        unsafe { &(*(::core::ptr::null::<__va_list_tag>())).reg_save_area as *const _ as usize },
         16usize,
         concat!(
             "Offset of field: ",
-            stringify!(__va_list),
+            stringify!(__va_list_tag),
             "::",
-            stringify!(__vr_top)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::core::ptr::null::<__va_list>())).__gr_offs as *const _ as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__va_list),
-            "::",
-            stringify!(__gr_offs)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::core::ptr::null::<__va_list>())).__vr_offs as *const _ as usize },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__va_list),
-            "::",
-            stringify!(__vr_offs)
+            stringify!(reg_save_area)
         )
     );
 }

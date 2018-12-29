@@ -10,7 +10,7 @@ extern crate core;
 #[cfg(not(feature="sysroot"))]
 mod error {
 
-    #[derive(Debug)]
+    #[derive(Debug, Clone)]
     pub struct LibnxError {
         pub error_code : Option<u32>,
         pub error_msg : Option<String>
@@ -68,6 +68,12 @@ mod libnx_bindings;
 
 #[cfg(not(feature="sysroot"))]
 pub mod usbcomms;
+
+#[cfg(not(feature="sysroot"))]
+pub mod usbhs;
+
+#[cfg(not(feature="sysroot"))]
+pub mod usb;
 
 #[cfg(not(feature="sysroot"))]
 pub mod console;
