@@ -166,6 +166,29 @@ impl ClientInterfaceSession {
         }
     }
 
+    pub fn is_connected(&self) -> Result<bool, LibnxError> {
+        let max_interfaces = 10;
+        let mut raw_buff : Vec<libnx_bindings::UsbHsInterface> = Vec::with_capacity(max_interfaces + 2);
+        let buff_ptr = raw_buff.as_mut_slice().as_mut_ptr();
+        let mut retsize = 0;
+        let mut retsize_ptr = &mut retsize as *mut _ as *mut _;
+
+        let err = unsafe{ libnx_bindings::usbHsQueryAcquiredInterfaces(buff_ptr, max_interfaces * IFACE_SIZE, retsize_ptr)};
+        if err != 0 {
+            return Err(LibnxError::from_raw(err));
+        }
+        unsafe {raw_buff.set_len(retsize)};
+        for inner_iface in raw_buff {
+            if inner_iface.inf == self.inner.inf.inf {
+                return Ok(true);
+            }
+        }
+        return Ok(false);
+    }
+
+    pub fn interface(&self) -> Interface {
+        Interface::from_inner(self.inner.inf)
+    }
 }
 
 impl Drop for ClientInterfaceSession {
@@ -430,6 +453,7 @@ impl Drop for InterfaceAvailableEvent {
     }
 }
 
+#[derive(Debug, Eq, PartialEq, Copy, Clone, Hash)]
 pub struct InterfaceInfo {
     inner : libnx_bindings::UsbHsInterfaceInfo,
 }
