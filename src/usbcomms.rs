@@ -17,7 +17,7 @@ use core::mem;
 impl UsbCommsContext {
     pub fn initialize(interfaces : &mut [UsbCommsInterface]) -> Result<UsbCommsContext, LibnxError> {
         let ln = interfaces.len();
-        if ln <= 0 {
+        if ln == 0 {
             return Ok(UsbCommsContext{});
         }
         else if ln > TOTAL_INTERFACES {
