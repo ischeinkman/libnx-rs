@@ -66,7 +66,7 @@ impl FileSystem {
     pub fn from_name(name : &str) -> Result<FileSystem, LibnxError> {
         unsafe {
             let c_str = CString::new(name).map_err(|e| LibnxError::from_msg(format!("CString create err: {:?}", e)))?;
-            let inner : *mut  FsFileSystem = fsdevGetDeviceFileSystem(c_str.as_ptr());
+            let inner : *mut  FsFileSystem = fsdevGetDeviceFileSystem(c_str.as_ptr() as *const u8);
             Ok(FileSystem {
                 inner
             })
@@ -77,7 +77,7 @@ impl FileSystem {
         let c_str = CString::new(path).map_err(|e| LibnxError::from_msg(format!("CString create err: {:?}", e)))?;
         let mut rval : File = unsafe {std::mem::zeroed()};
         unsafe {
-            let res = fsFsOpenFile(self.inner, c_str.as_ptr(), flags, &mut rval.inner as *mut FsFile);
+            let res = fsFsOpenFile(self.inner, c_str.as_ptr() as *const u8, flags, &mut rval.inner as *mut FsFile);
             if res != 0 {
                 Err(LibnxError::from_raw(res))
             }
