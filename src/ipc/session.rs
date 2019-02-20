@@ -1,7 +1,11 @@
 pub use ipc::payloads::*;
 pub use ipc::*;
 
+use libnx::{waitHandles, svcAcceptSession, svcReplyAndReceive};
+
 use std::slice;
+use std::time::Duration;
+use std::mem;
 
 #[derive(Copy, Clone, Hash, Debug, Eq, PartialEq)]
 pub struct IpcSession {
@@ -118,6 +122,16 @@ impl IpcSession {
         let ipc_command =IpcCommandHeader::with_args(message);
         self.dispatch_command(ipc_command)
     }
+
+    pub unsafe fn accept_session(&self) -> Result<IpcSession, LibnxError> {
+        let mut retal_inner = 0;
+        let err = svcAcceptSession(&mut retal_inner as *mut u32, self.handle);
+        match err {
+            0 => Ok(retal_inner.into()),
+            e => Err(LibnxError::from_raw(e))
+        }
+    }
+
 } 
 
 impl From<libnx::Handle> for IpcSession {
@@ -200,5 +214,104 @@ impl IpcCommandReadable for ConvertSessionToDomainResponse {
     }
     fn word_count(&self) -> u32 {
         5
+    }
+}
+
+
+pub trait Waitable {
+    type Trigger;
+    fn wait_synchronization(&self, timeout : Duration) -> Result<Self::Trigger, LibnxError>;
+}
+
+impl Waitable for IpcSession {
+    type Trigger = IpcSession;
+    fn wait_synchronization(&self, timeout : Duration) -> Result<IpcSession, LibnxError> {
+        let buffer_ptr = &self as *const _ as *const libnx::Handle;
+        let mut retval_idx = -1;
+        let timeout_nanos = timeout.as_nanos() as u64;
+
+        let err_code = unsafe { waitHandles(&mut retval_idx as *mut i32, buffer_ptr, 1, timeout_nanos)};
+        if err_code != 0 {
+            Err(LibnxError::from_raw(err_code))
+        }
+        else if retval_idx != 0 {
+            let idx_code = unsafe{ mem::transmute(retval_idx)};
+            Err(LibnxError::from_raw(idx_code))
+        }
+        else {
+            Ok(*self)
+        }
+    }
+}
+
+impl <T> Waitable for T where T : AsRef<[IpcSession]> {
+    type Trigger = IpcSession;
+    fn wait_synchronization(&self, timeout : Duration) -> Result<IpcSession, LibnxError> {
+        let buffer = self.as_ref();
+        let buffer_size = buffer.len();
+        let mut retval_idx : i32 = -1;
+        let timeout_secs = timeout.as_nanos() as u64;
+        let err_code = unsafe {
+            waitHandles(&mut retval_idx as *mut i32, buffer as *const _ as *const libnx::Handle, buffer_size as i32, timeout_secs)
+        };
+
+        if err_code != 0 {
+            Err(LibnxError::from_raw(err_code))
+        }
+        else if retval_idx < 0 || (retval_idx as usize) >= buffer_size{
+            let idx_code = unsafe{ mem::transmute(retval_idx)};
+            Err(LibnxError::from_raw(idx_code))
+        }
+        else {
+            Ok(buffer[retval_idx as usize])
+        }
+    }
+}
+
+pub trait IpcSessionList : Waitable<Trigger=IpcSession> {
+    fn reply_and_receive(&self, target : Option<IpcSession>, timeout : Duration) -> Result<IpcSession, LibnxError>;
+}
+
+impl IpcSessionList for IpcSession {
+    fn reply_and_receive(&self, target : Option<IpcSession>, timeout : Duration) -> Result<IpcSession, LibnxError> {
+        let target_handle : libnx::Handle = target.map_or(0, |s| s.handle);
+        let buffer_ptr = self as *const IpcSession as *const libnx::Handle;
+        let buffer_size = 1;
+        let timeout_nanos = timeout.as_nanos() as u64;
+        let mut retval_idx = -1i32;
+        let err_code = unsafe { svcReplyAndReceive(&mut retval_idx as *mut i32, buffer_ptr, buffer_size, target_handle, timeout_nanos)};
+        if err_code != 0 {
+            Err(LibnxError::from_raw(err_code))
+        }
+        else if retval_idx < 0 || retval_idx >= buffer_size{
+            let idx_code = unsafe{ mem::transmute(retval_idx)};
+            Err(LibnxError::from_raw(idx_code))
+        }
+        else {
+            Ok(*self)
+        }
+    }
+}
+
+impl <T> IpcSessionList for T where T : AsRef<[IpcSession]> {
+    fn reply_and_receive(&self, target : Option<IpcSession>, timeout : Duration) -> Result<IpcSession, LibnxError> {
+        let target_handle : libnx::Handle = target.map_or(0, |s| s.handle);
+        let buffer = self.as_ref();
+        let buffer_ptr = buffer as *const [IpcSession] as *const libnx::Handle;
+        let buffer_size = buffer.len() as i32;
+        let timeout_nanos = timeout.as_nanos() as u64;
+        let mut retval_idx = -1i32;
+        let err_code = unsafe { svcReplyAndReceive(&mut retval_idx as *mut i32, buffer_ptr, buffer_size, target_handle, timeout_nanos)};
+        if err_code != 0 {
+            Err(LibnxError::from_raw(err_code))
+        }
+        else if retval_idx < 0 || retval_idx >= buffer_size{
+            let idx_code = unsafe{ mem::transmute(retval_idx)};
+            Err(LibnxError::from_raw(idx_code))
+        }
+        else {
+            Ok(buffer[retval_idx as usize])
+        }
+
     }
 }
