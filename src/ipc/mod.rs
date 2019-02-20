@@ -3,6 +3,7 @@ use super::libnx;
 use super::LibnxError;
 use libnx::lang_items::c_void;
 use std::mem::size_of;
+use std::slice;
 use std::mem;
 
 
@@ -65,7 +66,7 @@ impl <ArgsType : IpcCommandWriteable> IpcCommandHeader<ArgsType> {
         };
         self.inner.Statics[off] = buffer_ptr;
         self.inner.StaticSizes[off] = byte_count;
-        self.inner.StaticIndices[off] = index;
+        self.inner.StaticIndices[off] = buffer_index as u8;
         match direction {
             StaticDirection::Send => {self.inner.NumStaticIn += 1},
             StaticDirection::Recieve => {self.inner.NumStaticOut += 1},
@@ -276,7 +277,10 @@ impl <T : IpcCommandReadable> IpcCommandMessage <T> {
         let padding_word_count = 4 - (data_nopad_idx % 4);
         let data_idx = data_nopad_idx + padding_word_count;
 
-        let data = T::read(&buffer[data_idx..]);
+        let raw_bytes_claimed = r.RawSize;
+        let raw_bytes_passed = buffer.len() - data_idx;
+
+        let data = T::read(&buffer[data_idx..data_idx + raw_bytes_claimed.min(raw_bytes_passed)]);
 
         if num_bufs > IPC_MAX_BUFFERS as usize {
             num_bufs = IPC_MAX_BUFFERS as usize;
@@ -299,6 +303,13 @@ impl <T : IpcCommandReadable> IpcCommandMessage <T> {
         };
         retval.inner.Raw = &retval.data as *const _ as *mut _;
         return retval;
+    }
+
+    pub unsafe fn parse_from_tls() -> IpcCommandMessage<T> {
+        let tls_ptr = get_tls_space() as *mut u32;
+        let tls_len : usize = 0xFF; //TODO: how can we pre-calculate how big this should be? Dow we even care?
+        let tls_slice : &mut [u32] = slice::from_raw_parts_mut(tls_ptr, tls_len);
+        Self::parse_from_buffer(tls_slice)
     }
 
     pub fn payload(&self) -> &T {
@@ -457,7 +468,7 @@ impl From<u8> for IpcCommandType {
 
 //Thanks roblabla
 #[cfg(all(target_os = "horizon", target_arch="aarch64"))]
-unsafe fn get_tls_space() -> *mut c_void {
+pub unsafe fn get_tls_space() -> *mut c_void {
     let addr: *mut c_void;
     asm!("mrs $0, tpidrro_el0" : "=r" (addr));
     if addr.is_null() {
@@ -467,7 +478,7 @@ unsafe fn get_tls_space() -> *mut c_void {
 }
 
 #[cfg(not(all(target_os = "horizon", target_arch="aarch64")))]
-unsafe fn get_tls_space() -> *mut c_void {
+pub unsafe fn get_tls_space() -> *mut c_void {
     use std::ptr;
     ptr::null_mut()
 }
