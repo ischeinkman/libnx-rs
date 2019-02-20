@@ -1,14 +1,35 @@
 use super::libnx::{
     FsFile, FsFileSystem, 
-    fsFsOpenFile, fsFileGetSize, fsFileClose, fsFsDeleteFile,
-    fsFileRead, fsFileWrite, 
+    fsFsOpenFile, fsFileGetSize, fsFileClose,
+    fsFileRead, 
     fsFileFlush, 
     fsdevGetDefaultFileSystem,
     fsdevGetDeviceFileSystem,
+    fsInitialize,
+    fsExit,
     lang_items
 };
 use super::error::{LibnxError };
 use std::ffi::{CString};
+
+pub struct FsContext {
+
+}
+
+impl FsContext {
+    pub fn initialize() -> Result<FsContext, LibnxError> {
+        let err = unsafe {fsInitialize()};
+        match err {
+            0 => Ok(FsContext {}),
+            e => Err(LibnxError::from_raw(e)),
+        }
+    }
+    pub fn exit(self) {
+        unsafe {
+            fsExit();
+        }
+    }
+}
 
 pub struct File {
     inner : FsFile
