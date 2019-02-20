@@ -3,7 +3,7 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_snake_case)]
 #![allow(dead_code)]
-
+#![cfg_attr(not(feature="sysroot"), feature(asm))]
 #[cfg(not(feature="sysroot"))]
 extern crate core;
 
@@ -83,3 +83,9 @@ pub mod hid;
 
 #[cfg(not(feature="sysroot"))]
 pub mod fs;
+
+#[cfg(not(feature="sysroot"))]
+pub mod ipc;
+
+#[cfg(not(feature="sysroot"))]
+pub mod service;
