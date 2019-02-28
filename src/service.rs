@@ -19,6 +19,16 @@ impl SmContext {
         }
     }
 
+    pub unsafe fn get_handle() -> SmContext {
+        SmContext {}
+    }
+
+    pub fn exit(self) {
+        unsafe {
+            libnx::smExit();
+        }
+    }
+
     pub fn get_service(&mut self, name : &str) -> Result<Service, LibnxError> {
         let mut service_out = libnx::Service {
             handle : u32::max_value(), 
