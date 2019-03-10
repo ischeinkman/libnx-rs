@@ -66,18 +66,10 @@ impl UsbHsContext {
     }
 
     pub fn acquire_interface(&mut self, interface : &Interface) -> Result<ClientInterfaceSession, LibnxError> {
-        use std::fs::{File, OpenOptions};
-        use std::io::{Write};
-        let mut log_hs = OpenOptions::new().append(true).create(true).open("libnx_usbhs_log.txt").map_err(|e| LibnxError::from_msg(format!("std::io::err: {:?}", e)))?;
-        log_hs.write_fmt(format_args!("Starting acqiface using {:?}\n", interface));
-        log_hs.flush();
         let mut retval_inner : libnx_bindings::UsbHsClientIfSession = unsafe {std::mem::zeroed()};
         let retval_inner_ptr = &mut retval_inner as *mut libnx_bindings::UsbHsClientIfSession;
         let iface_inner_ptr = &interface.inner as *const libnx_bindings::UsbHsInterface as *mut libnx_bindings::UsbHsInterface;
         let err = unsafe { libnx_bindings::usbHsAcquireUsbIf(retval_inner_ptr, iface_inner_ptr) };
-        log_hs.write_fmt(format_args!("Got retval {}\n", err));
-        log_hs.write_fmt(format_args!("Retval: {{ ID: {:?}, inf: {:?} }}\n", retval_inner.ID, Interface::from_inner(retval_inner.inf)));
-        log_hs.flush();
         match err {
             0 => Ok(ClientInterfaceSession::from_inner(retval_inner)),
             e => Err(LibnxError::from_raw(e))
@@ -125,22 +117,13 @@ impl ClientInterfaceSession {
         }
     }
     pub fn open_endpoint_raw(&mut self, max_urb_count : u16, max_transfer_size : u32, endpoint_desc : &UsbEndpointDescriptor) -> Result<ClientEndpointSession, LibnxError> {
-        use std::fs::{File, OpenOptions};
-        use std::io::{Write};
-        let mut log_hs = OpenOptions::new().append(true).create(true).open("libnx_usbhs_log.txt").map_err(|e| LibnxError::from_msg(format!("std::io::err: {:?}", e)))?;
         let raw_epdesc = endpoint_desc.inner();
-        log_hs.write_fmt(format_args!("Starting acqep using {:?}\n", endpoint_desc));
-        log_hs.write_fmt(format_args!("Params: {{ max_urb_count: {}, max_transfer_size: {} }}\n", max_urb_count, max_transfer_size));
-        log_hs.flush();
         let ep_desc_ptr = &raw_epdesc as *const _ as *mut _;
         let iface_sess_ptr = &mut self.inner as *mut _;
         let mut retval_inner : libnx_bindings::UsbHsClientEpSession = unsafe {std::mem::zeroed()};
         let retval_inner_ptr = &mut retval_inner as *mut _;
 
         let err = unsafe {libnx_bindings::usbHsIfOpenUsbEp(iface_sess_ptr, retval_inner_ptr, max_urb_count, max_transfer_size, ep_desc_ptr)};
-        log_hs.write_fmt(format_args!("Got retval of {}\n", err));
-        log_hs.write_fmt(format_args!("Output ptr: {:?}\n", retval_inner));
-        log_hs.flush();
         if err != 0 {
             Err(LibnxError::from_raw(err))
         }
@@ -210,11 +193,6 @@ impl ClientEndpointSession {
         }
     }
     pub fn read(&mut self, output : &mut [u8]) -> Result<usize, LibnxError> {
-        use std::fs::{File, OpenOptions};
-        use std::io::{Write};
-        let mut log_hs = OpenOptions::new().append(true).create(true).open("libnx_usbhs_log.epread.txt").map_err(|e| LibnxError::from_msg(format!("std::io::err: {:?}", e)))?;
-        log_hs.write_fmt(format_args!("Starting read using {:?}\n", self.inner));
-        log_hs.flush();
         if output.is_empty() {
             return Err(LibnxError::from_msg(format!("Can't read to empty output!")));
         }
@@ -227,23 +205,13 @@ impl ClientEndpointSession {
         let size = output.len() as u32;
         let mut transfered_size_loc : u32 = 0;
         let transfered_size = &mut transfered_size_loc as *mut u32;
-        log_hs.write_fmt(format_args!("Raw params: {{ buffer : {:?}, buffer_size : {} }}\n", buffer as usize, size));
         let err = unsafe {libnx_bindings::usbHsEpPostBuffer(s, buffer, size, transfered_size)};
-        log_hs.write_fmt(format_args!("Got retval of {}\n", transfered_size_loc));
-        log_hs.write_fmt(format_args!("Output: {:?}\n", output));
-        log_hs.flush();
         match err {
             0 => Ok(transfered_size_loc as usize),
             e => Err(LibnxError::from_raw(e)),
         }
     }
     pub fn write(&mut self, input : &[u8]) -> Result<usize, LibnxError> {
-        use std::fs::{File, OpenOptions};
-        use std::io::{Write};
-        let mut log_hs = OpenOptions::new().append(true).create(true).open("libnx_usbhs_log.epwrite.txt").map_err(|e| LibnxError::from_msg(format!("std::io::err: {:?}", e)))?;
-        log_hs.write_fmt(format_args!("Starting write using {:?}\n", self.inner));
-        log_hs.write_fmt(format_args!("Output {:?}\n", input));
-        log_hs.flush();
         if input.is_empty() {
             return Err(LibnxError::from_msg(format!("Can't write from empty output!")));
         }
@@ -256,12 +224,7 @@ impl ClientEndpointSession {
         let size = input.len() as u32;
         let mut transfered_size_loc : u32 = 0;
         let transfered_size = &mut transfered_size_loc as *mut u32;
-        log_hs.write_fmt(format_args!("Raw params: {{ buffer : {:?}, buffer_size : {} }}\n", buffer as usize, size));
-        log_hs.flush();
         let err = unsafe {libnx_bindings::usbHsEpPostBuffer(s, buffer, size, transfered_size)};
-        log_hs.write_fmt(format_args!("Got retval of {}\n", err));
-        log_hs.write_fmt(format_args!("Output: {:?}\n", transfered_size_loc));
-        log_hs.flush();
         match err {
             0 => Ok(transfered_size_loc as usize),
             e => Err(LibnxError::from_raw(e)),
@@ -384,7 +347,7 @@ impl Interface {
 use std::fmt;
 impl fmt::Debug for Interface {
     fn fmt(&self, f : &mut fmt::Formatter) -> fmt::Result {
-        let pathstr_cstr = unsafe { std::ffi::CStr::from_ptr(&self.inner.pathstr as *const _) };
+        let pathstr_cstr = unsafe { std::ffi::CStr::from_ptr(&self.inner.pathstr as *const _ as *const _) };
         let pathstr = pathstr_cstr.to_string_lossy();
         write!(f, "Interface:{{ inf: {:?}, pathstr: {:?}, busid: {:?}, deviceid: {:?}, device_desc: {:?}, config_desc: {:?}, timestamp: {:?} }}", 
         self.inner.inf, pathstr, self.inner.busID, self.inner.deviceID, self.inner.device_desc, self.inner.config_desc, self.inner.timestamp)
