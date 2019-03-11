@@ -176,8 +176,8 @@ impl ClientInterfaceSession {
 
 impl Drop for ClientInterfaceSession {
     fn drop(&mut self) {
-        unsafe {
-            libnx_bindings::usbHsIfClose(&mut self.inner as *mut libnx_bindings::UsbHsClientIfSession);
+        if self.is_connected().unwrap(){
+            self.reset().unwrap()
         }
     }
 }
@@ -239,7 +239,7 @@ impl ClientEndpointSession {
 impl Drop for ClientEndpointSession {
     fn drop(&mut self) {
         unsafe {
-            libnx_bindings::usbHsEpClose(&mut self.inner as *mut _);
+            //libnx_bindings::usbHsEpClose(&mut self.inner as *mut _);
         }
     }
 }
