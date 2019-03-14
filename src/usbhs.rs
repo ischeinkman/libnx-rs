@@ -69,6 +69,18 @@ impl UsbHsContext {
         let mut retval_inner : libnx_bindings::UsbHsClientIfSession = unsafe {std::mem::zeroed()};
         let retval_inner_ptr = &mut retval_inner as *mut libnx_bindings::UsbHsClientIfSession;
         let iface_inner_ptr = &interface.inner as *const libnx_bindings::UsbHsInterface as *mut libnx_bindings::UsbHsInterface;
+
+        // First reset the device, since the previous connection may have left it in an invalid state. 
+        let first_err = unsafe { libnx_bindings::usbHsAcquireUsbIf(retval_inner_ptr, iface_inner_ptr) };
+        if first_err != 0 {
+            return Err(LibnxError::from_raw(first_err));
+        }
+        let reset_err = unsafe {libnx_bindings::usbHsIfResetDevice(retval_inner_ptr)};
+        if reset_err != 0 {
+            return Err(LibnxError::from_raw(reset_err));
+        }
+
+        // Now actually acquire it. 
         let err = unsafe { libnx_bindings::usbHsAcquireUsbIf(retval_inner_ptr, iface_inner_ptr) };
         match err {
             0 => Ok(ClientInterfaceSession::from_inner(retval_inner)),
