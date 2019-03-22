@@ -8,7 +8,8 @@ links = "nx"
 crate_type = ["rlib"]
 
 [build-dependencies]
-bindgen = {version="0.37.4", optional=true}
+bindgen = { version = "0.37.4", optional = true }
 
 [features]
-default = ["bindgen"]
+prebindgen = []
+atbindgen = ["bindgen"]

@@ -1,9 +1,14 @@
+#[cfg(feature = "atbindgen")]
 extern crate bindgen;
 
+#[cfg(feature = "atbindgen")]
 use bindgen::callbacks::{ EnumVariantCustomBehavior, EnumVariantValue, IntKind, MacroParsingBehavior, ParseCallbacks };
 
+#[cfg(feature = "atbindgen")]
 #[derive(Debug)]
 struct CustomCallbacks;
+
+#[cfg(feature = "atbindgen")]
 impl ParseCallbacks for CustomCallbacks
 {
     fn will_parse_macro(&self, _name: &str) -> MacroParsingBehavior
@@ -46,6 +51,7 @@ impl ParseCallbacks for CustomCallbacks
     }
 }
 
+#[cfg(feature = "atbindgen")]
 pub fn main()
 {
     // Where the Rust code will be generated to
@@ -63,4 +69,9 @@ pub fn main()
         Err(_e) => "No fine..."
     };
     println!("{}", res_str);
+}
+
+#[cfg(not(feature = "atbindgen"))]
+pub fn main()
+{
 }
