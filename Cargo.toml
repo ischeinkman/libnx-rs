@@ -11,5 +11,4 @@ crate_type = ["rlib"]
 bindgen = { version = "0.37.4", optional = true }
 
 [features]
-prebindgen = []
-atbindgen = ["bindgen"]
+default = ["bindgen"]

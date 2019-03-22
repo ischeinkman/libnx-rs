@@ -1,4 +1,3 @@
-#[cfg(features="atbindgen")]
 pub mod lang_items
 {
     pub enum c_void {}
@@ -19,5 +18,4 @@ pub mod lang_items
     pub type c_double = f64; 
 }
 
-#[cfg(features="atbindgen")]
 include!("../bindgen/libnx.bindgen.rs");
