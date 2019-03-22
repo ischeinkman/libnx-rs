@@ -1,7 +1,7 @@
 [package]
-name = "libnx-rs"
+name = "libnx"
 version = "0.1.0"
-authors = ["ischeinkman <scheinkman.ilan@gmail.com>"]
+authors = ["ischeinkman <scheinkman.ilan@gmail.com>", "XorTroll"]
 links = "nx"
 
 [lib]
@@ -11,5 +11,4 @@ crate_type = ["rlib"]
 bindgen = {version="0.37.4", optional=true}
 
 [features]
-sysroot = []
-make_bindings = ["bindgen"]
+default = ["bindgen"]

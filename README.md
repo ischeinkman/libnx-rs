@@ -1,15 +1,11 @@
-# libnx-rs
+# libnx - Rust edition (ported version)
 
-## Description
+This mostly consists on [libnx](https://github.com/swicthbrew/libnx) raw bindings plus some high level implementations within modules.
 
-Raw bindings to [libnx](https://github.com/switchbrew/libnx) to be used from Rust for the purpose of making Switch homebrew in Rust.
-
-Note that the API is currently unstable; at the moment all function and struct bindings are generated at final compile time in `libnx_rs::libnx` via bindgen, but this may change.
-
-For information on how to actually *use* this library, see [libnx-rs-template](https://github.com/ischeinkman/libnx-rs-template).
+As soon as the project gets bigger and more stable, more information and examples will be added here.
 
 ## Credits and Thanks
 
-* [Igor1201's rusted-switch](https://github.com/Igor1201/rusted-switch) which provided the foundation for this template.
+- [ischeinkman](https://github.com/ischeinkman)'s [libnx-rs](https://github.com/ischeinkman/libnx-rs) as the base of this idea, considering that this is a slightly different (and soon extended) version of his bindings.
 
-* [Roblabla and his mighty Megaton Hammer](https://github.com/MegatonHammer/megaton-hammer) for allowing me to take over his Discord server.
+- SwitchBrew and libnx, of course.
