@@ -12,3 +12,8 @@ pub unsafe fn get_service(name: &str) -> Result<nx::Service, u32>
     let rc = nx::smGetService(&mut srv, name.as_ptr());
     resultfinal!(rc, srv);
 }
+
+pub unsafe fn exit()
+{
+    nx::smExit();
+}

@@ -9,3 +9,4 @@ pub mod macros;
 pub mod nx;
 pub mod sm;
 pub mod console;
+pub mod applet;

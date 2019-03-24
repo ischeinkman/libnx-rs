@@ -1,4 +1,4 @@
-# libnx - Rust edition (ported version)
+# libnx - Rust edition
 
 This mostly consists on [libnx](https://github.com/swicthbrew/libnx) raw bindings plus some high level implementations within modules.
 
