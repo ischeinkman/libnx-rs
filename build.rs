@@ -58,7 +58,7 @@ pub fn main()
     std::fs::remove_file(gen_path);
 
     // Use bindgen crate to process libnx headers
-    let res_str = match bindgen::Builder::default().trust_clang_mangling(false).use_core().rust_target(bindgen::RustTarget::Nightly).ctypes_prefix("lang_items").parse_callbacks(Box::new(CustomCallbacks {})).header(header_wrapper).clang_arg("-Ic:\\devkitpro\\libnx\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\aarch64-none-elf\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\lib\\gcc\\aarch64-none-elf\\8.2.0\\include").blacklist_type("u8").blacklist_type("u16").blacklist_type("u32").blacklist_type("u64").generate().map_err(|_| std::io::Error::new(std::io::ErrorKind::Other, "Could not create file!")).and_then(|bnd| bnd.write_to_file(gen_path).map(|_| bnd))
+    let res_str = match bindgen::Builder::default().trust_clang_mangling(false).use_core().rust_target(bindgen::RustTarget::Nightly).ctypes_prefix("c").parse_callbacks(Box::new(CustomCallbacks {})).header(header_wrapper).clang_arg("-Ic:\\devkitpro\\libnx\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\aarch64-none-elf\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\lib\\gcc\\aarch64-none-elf\\8.2.0\\include").blacklist_type("u8").blacklist_type("u16").blacklist_type("u32").blacklist_type("u64").generate().map_err(|_| std::io::Error::new(std::io::ErrorKind::Other, "Could not create file!")).and_then(|bnd| bnd.write_to_file(gen_path).map(|_| bnd))
     {
         Ok(_b) =>"Worked fine!",
         Err(_e) => "No fine..."

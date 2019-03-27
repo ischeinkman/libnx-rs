@@ -1,4 +1,4 @@
-pub mod lang_items
+pub mod c
 {
     pub enum c_void {}
     pub type c_char = u8;

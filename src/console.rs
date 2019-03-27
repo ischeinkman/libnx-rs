@@ -1,16 +1,33 @@
 use nx;
 
-pub unsafe fn initialize()
+pub fn initialize()
 {
-    nx::consoleInit(core::ptr::null_mut());
+    unsafe
+    {
+        nx::consoleInit(core::ptr::null_mut());
+    }
 }
 
-pub unsafe fn flush()
+pub fn flush()
 {
-    nx::consoleUpdate(core::ptr::null_mut());
+    unsafe
+    {
+        nx::consoleUpdate(core::ptr::null_mut());
+    }
 }
 
-pub unsafe fn exit()
+pub fn clear()
 {
-    nx::consoleExit(core::ptr::null_mut());
+    unsafe
+    {
+        nx::consoleClear();
+    }
+}
+
+pub fn exit()
+{
+    unsafe
+    {
+        nx::consoleExit(core::ptr::null_mut());
+    }
 }
