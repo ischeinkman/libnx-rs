@@ -11,10 +11,10 @@ impl LibraryApplet
     {
         unsafe
         {
-            let mut aph : nx::AppletHolder = core::mem::zeroed();
+            let mut aph: nx::AppletHolder = std::mem::zeroed();
             let mut rc = nx::appletCreateLibraryApplet(&mut aph, id, mode);
             resultok!(rc);
-            let mut largs : nx::LibAppletArgs = core::mem::zeroed();
+            let mut largs: nx::LibAppletArgs = std::mem::zeroed();
             nx::libappletArgsCreate(&mut largs, version);
             rc = nx::libappletArgsPush(&mut largs, &mut aph);
             resultfinal!(rc, LibraryApplet { holder: aph })
@@ -58,7 +58,7 @@ impl LibraryApplet
     {
         unsafe
         {
-            let mut tsize : usize = 0;
+            let mut tsize: usize = 0;
             let rc = nx::libappletPopOutData(&mut self.holder, out as *mut nx::c::c_void, size, &mut tsize);
             resultfinal!(rc, tsize)
         }

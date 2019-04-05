@@ -4,7 +4,7 @@ pub fn initialize()
 {
     unsafe
     {
-        nx::consoleInit(core::ptr::null_mut());
+        nx::consoleInit(std::ptr::null_mut());
     }
 }
 
@@ -12,7 +12,7 @@ pub fn flush()
 {
     unsafe
     {
-        nx::consoleUpdate(core::ptr::null_mut());
+        nx::consoleUpdate(std::ptr::null_mut());
     }
 }
 
@@ -28,6 +28,6 @@ pub fn exit()
 {
     unsafe
     {
-        nx::consoleExit(core::ptr::null_mut());
+        nx::consoleExit(std::ptr::null_mut());
     }
 }

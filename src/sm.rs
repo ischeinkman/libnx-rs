@@ -13,7 +13,7 @@ pub fn get_service(name: &str) -> Result<nx::Service, u32>
 {
     unsafe
     {
-        let mut srv : nx::Service = core::mem::zeroed();
+        let mut srv: nx::Service = std::mem::zeroed();
         let rc = nx::smGetService(&mut srv, name.as_ptr());
         resultfinal!(rc, srv)
     }
