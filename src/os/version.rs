@@ -1,4 +1,4 @@
-use nx;
+use native;
 
 pub struct Version
 {
@@ -32,7 +32,7 @@ pub fn get_version() -> Version
 {
     unsafe
     {
-        let hosv: u32 = nx::hosversionGet();
+        let hosv: u32 = native::hosversionGet();
         hosv_to_version(hosv)
     }
 }

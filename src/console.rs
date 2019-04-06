@@ -1,10 +1,10 @@
-use nx;
+use native;
 
-pub fn initialize()
+pub fn init()
 {
     unsafe
     {
-        nx::consoleInit(std::ptr::null_mut());
+        native::consoleInit(std::ptr::null_mut());
     }
 }
 
@@ -12,7 +12,7 @@ pub fn flush()
 {
     unsafe
     {
-        nx::consoleUpdate(std::ptr::null_mut());
+        native::consoleUpdate(std::ptr::null_mut());
     }
 }
 
@@ -20,7 +20,7 @@ pub fn clear()
 {
     unsafe
     {
-        nx::consoleClear();
+        native::consoleClear();
     }
 }
 
@@ -28,6 +28,6 @@ pub fn exit()
 {
     unsafe
     {
-        nx::consoleExit(std::ptr::null_mut());
+        native::consoleExit(std::ptr::null_mut());
     }
 }

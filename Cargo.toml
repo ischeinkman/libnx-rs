@@ -1,7 +1,7 @@
 [package]
-name = "libnx"
+name = "nx"
 version = "0.1.0"
-authors = ["ischeinkman <scheinkman.ilan@gmail.com>", "Switchbrew", "XorTroll"]
+authors = ["XorTroll", "ischeinkman <scheinkman.ilan@gmail.com>", "Switchbrew"]
 links = "nx"
 
 [lib]

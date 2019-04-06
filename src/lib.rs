@@ -7,10 +7,15 @@
 extern crate core;
 
 pub mod macros;
-pub mod nx;
+
+pub mod native;
+
 pub mod sm;
+
 pub mod console;
+
 pub mod hid;
+
 pub mod applet;
-pub mod swkbd;
+
 pub mod os;

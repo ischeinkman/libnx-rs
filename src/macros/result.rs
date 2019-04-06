@@ -1,7 +1,7 @@
 #![macro_use]
 
 #[macro_export]
-macro_rules! resultmake
+macro_rules! result_make
 {
     ($mdl:expr, $desc:expr) =>
     {{
@@ -10,7 +10,7 @@ macro_rules! resultmake
 }
 
 #[macro_export]
-macro_rules! resultok
+macro_rules! result_assert
 {
     ($rc:expr) =>
     {{
@@ -31,7 +31,7 @@ macro_rules! resultok
 }
 
 #[macro_export]
-macro_rules! resultfinal
+macro_rules! result_final
 {
     ($rc:expr) =>
     {{

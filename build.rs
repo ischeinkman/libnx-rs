@@ -47,21 +47,28 @@ impl ParseCallbacks for CustomCallbacks
     }
 }
 
+pub fn regen_libnx_native(input: &str, output: &str) -> Result<bindgen::Bindings, std::io::Error>
+{
+    std::fs::remove_file(output);
+    bindgen::Builder::default().trust_clang_mangling(false).use_core().rust_target(bindgen::RustTarget::Nightly).generate_inline_functions(true).parse_callbacks(Box::new(CustomCallbacks {})).header(input).clang_arg("-Ic:\\devkitpro\\libnx\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\aarch64-none-elf\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\lib\\gcc\\aarch64-none-elf\\8.2.0\\include").blacklist_type("u8").blacklist_type("u16").blacklist_type("u32").blacklist_type("u64").generate().map_err(|_| std::io::Error::new(std::io::ErrorKind::Other, "Could not create file!")).and_then(|bnd| bnd.write_to_file(output).map(|_| bnd))
+}
+
 pub fn main()
 {
     // Where the Rust code will be generated to
-    let gen_path = "bindgen/libnx.bindgen.rs";
+    let gen_path = "src/native.rs";
 
     // Input header
     let header_wrapper = "bindgen/libnx.h";
-    
-    std::fs::remove_file(gen_path);
 
-    // Use bindgen crate to process libnx headers
-    let res_str = match bindgen::Builder::default().trust_clang_mangling(false).use_core().rust_target(bindgen::RustTarget::Nightly).ctypes_prefix("c").parse_callbacks(Box::new(CustomCallbacks {})).header(header_wrapper).clang_arg("-Ic:\\devkitpro\\libnx\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\aarch64-none-elf\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\lib\\gcc\\aarch64-none-elf\\8.2.0\\include").blacklist_type("u8").blacklist_type("u16").blacklist_type("u32").blacklist_type("u64").generate().map_err(|_| std::io::Error::new(std::io::ErrorKind::Other, "Could not create file!")).and_then(|bnd| bnd.write_to_file(gen_path).map(|_| bnd))
+    // Only build if the output doesn't exist
+    if !std::path::Path::new(gen_path).exists()
     {
-        Ok(_b) =>"Worked fine!",
-        Err(_e) => "No fine..."
-    };
-    println!("{}", res_str);
+        // Use bindgen crate to process libnx headers
+        match regen_libnx_native(header_wrapper, gen_path)
+        {
+            Err(e) => panic!("{}", e),
+            _ => println!("Ok")
+        };
+    }
 }

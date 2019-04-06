@@ -1,21 +1,22 @@
-use nx;
+use native;
+use os;
 
-pub fn initialize() -> nx::HorizonResult<()>
+pub fn initialize() -> os::Result<()>
 {
     unsafe
     {
-        let rc = nx::smInitialize();
-        resultfinal!(rc)
+        let rc = native::smInitialize();
+        result_final!(rc)
     }
 }
 
-pub fn get_service(name: &str) -> nx::HorizonResult<nx::Service>
+pub fn get_service(name: &str) -> os::Result<native::Service>
 {
     unsafe
     {
-        let mut srv: nx::Service = std::mem::zeroed();
-        let rc = nx::smGetService(&mut srv, name.as_ptr());
-        resultfinal!(rc, srv)
+        let mut srv: native::Service = std::mem::zeroed();
+        let rc = native::smGetService(&mut srv, name.as_ptr());
+        result_final!(rc, srv)
     }
 }
 
@@ -23,6 +24,6 @@ pub fn exit()
 {
     unsafe
     {
-        nx::smExit();
+        native::smExit();
     }
 }
