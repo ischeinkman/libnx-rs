@@ -18,4 +18,6 @@ pub mod c
     pub type c_double = f64; 
 }
 
+pub type HorizonResult<T> = std::result::Result<T, u32>;
+
 include!("../bindgen/libnx.bindgen.rs");

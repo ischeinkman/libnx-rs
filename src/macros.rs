@@ -19,6 +19,15 @@ macro_rules! resultok
             return Err($rc);
         }
     }};
+
+    ($rc:expr, $cb:expr) =>
+    {{
+        if $rc != 0
+        {
+            $cb();
+            return Err($rc);
+        }
+    }};
 }
 
 #[macro_export]

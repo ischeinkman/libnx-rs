@@ -1,6 +1,6 @@
 use nx;
 
-pub fn initialize() -> Result<(), u32>
+pub fn initialize() -> nx::HorizonResult<()>
 {
     unsafe
     {
@@ -9,7 +9,7 @@ pub fn initialize() -> Result<(), u32>
     }
 }
 
-pub fn get_service(name: &str) -> Result<nx::Service, u32>
+pub fn get_service(name: &str) -> nx::HorizonResult<nx::Service>
 {
     unsafe
     {

@@ -37,7 +37,7 @@ macro_rules! hidall
 pub enum Controller
 {
     Invalid,
-    Handleld,
+    Handheld,
     Player(u8),
 }
 
@@ -74,7 +74,7 @@ fn ctrlid_to_controller(id: nx::HidControllerID) -> Controller
         nx::HidControllerID_CONTROLLER_PLAYER_6 => Controller::Player(6),
         nx::HidControllerID_CONTROLLER_PLAYER_7 => Controller::Player(7),
         nx::HidControllerID_CONTROLLER_PLAYER_8 => Controller::Player(8),
-        nx::HidControllerID_CONTROLLER_HANDHELD => Controller::Handleld,
+        nx::HidControllerID_CONTROLLER_HANDHELD => Controller::Handheld,
         _ => Controller::Invalid
     }
 }
@@ -91,7 +91,7 @@ fn controller_to_ctrlid(id: Controller) -> nx::HidControllerID
         Controller::Player(6) => nx::HidControllerID_CONTROLLER_PLAYER_6,
         Controller::Player(7) => nx::HidControllerID_CONTROLLER_PLAYER_7,
         Controller::Player(8) => nx::HidControllerID_CONTROLLER_PLAYER_8,
-        Controller::Handleld => nx::HidControllerID_CONTROLLER_HANDHELD,
+        Controller::Handheld => nx::HidControllerID_CONTROLLER_HANDHELD,
         _ => nx::HidControllerID_CONTROLLER_UNKNOWN,
     }
 }

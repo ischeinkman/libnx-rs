@@ -15,7 +15,7 @@ pub enum KeyboardPreset
 
 impl Keyboard
 {
-    pub fn new() -> Result<Self, u32>
+    pub fn new() -> nx::HorizonResult<Self>
     {
         unsafe
         {
@@ -47,7 +47,7 @@ impl Keyboard
         }
     }
 
-    pub fn show(&mut self) -> Result<String, u32>
+    pub fn show(&mut self) -> nx::HorizonResult<String>
     {
         unsafe
         {
@@ -55,6 +55,17 @@ impl Keyboard
             let slptr = slstr.as_mut_ptr();
             let rc = nx::swkbdShow(&mut self.kbd, slptr, 500);
             resultfinal!(rc, String::from_utf8_lossy(std::slice::from_raw_parts(slptr, 500)).to_string())
+        }
+    }
+}
+
+impl Drop for Keyboard
+{
+    fn drop(&mut self)
+    {
+        unsafe
+        {
+            nx::swkbdClose(&mut self.kbd);
         }
     }
 }

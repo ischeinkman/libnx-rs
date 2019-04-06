@@ -7,13 +7,13 @@ pub struct LibraryApplet
 
 impl LibraryApplet
 {
-    pub fn new(id: nx::AppletId, mode: nx::LibAppletMode, version: u32) -> Result<Self, u32>
+    pub fn new(id: nx::AppletId, mode: nx::LibAppletMode, version: u32) -> nx::HorizonResult<Self>
     {
         unsafe
         {
             let mut aph: nx::AppletHolder = std::mem::zeroed();
             let mut rc = nx::appletCreateLibraryApplet(&mut aph, id, mode);
-            resultok!(rc);
+            resultok!(rc, { println!("Exit"); });
             let mut largs: nx::LibAppletArgs = std::mem::zeroed();
             nx::libappletArgsCreate(&mut largs, version);
             rc = nx::libappletArgsPush(&mut largs, &mut aph);
@@ -21,7 +21,7 @@ impl LibraryApplet
         }
     }
 
-    pub fn push_data(&mut self, data: *const u8, size: usize) -> Result<(), u32>
+    pub fn push_data(&mut self, data: *const u8, size: usize) -> nx::HorizonResult<()>
     {
         unsafe
         {
@@ -30,7 +30,7 @@ impl LibraryApplet
         }
     }
 
-    pub fn show(&mut self) -> Result<(), u32>
+    pub fn show(&mut self) -> nx::HorizonResult<()>
     {
         unsafe
         {
@@ -39,7 +39,7 @@ impl LibraryApplet
         }
     }
 
-    pub fn show_and_wait(&mut self) -> Result<(), u32>
+    pub fn show_and_wait(&mut self) -> nx::HorizonResult<()>
     {
         unsafe
         {
@@ -54,7 +54,7 @@ impl LibraryApplet
         }
     }
 
-    pub fn pop_data(&mut self, out: *mut u8, size: usize) -> Result<usize, u32>
+    pub fn pop_data(&mut self, out: *mut u8, size: usize) -> nx::HorizonResult<usize>
     {
         unsafe
         {
