@@ -50,13 +50,29 @@ impl ParseCallbacks for CustomCallbacks
 pub fn regen_libnx_native(input: &str, output: &str) -> Result<bindgen::Bindings, std::io::Error>
 {
     std::fs::remove_file(output);
-    bindgen::Builder::default().trust_clang_mangling(false).use_core().rust_target(bindgen::RustTarget::Nightly).generate_inline_functions(true).parse_callbacks(Box::new(CustomCallbacks {})).header(input).clang_arg("-Ic:\\devkitpro\\libnx\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\aarch64-none-elf\\include").clang_arg("-Ic:\\devkitpro\\devkitA64\\lib\\gcc\\aarch64-none-elf\\8.2.0\\include").blacklist_type("u8").blacklist_type("u16").blacklist_type("u32").blacklist_type("u64").generate().map_err(|_| std::io::Error::new(std::io::ErrorKind::Other, "Could not create file!")).and_then(|bnd| bnd.write_to_file(output).map(|_| bnd))
+    let iswin = cfg!(windows);
+    let ilibnx = match iswin
+    {
+        true => "-Ic:\\devkitpro\\libnx\\include",
+        false => "-I/opt/devkitpro/libnx/include",
+    };
+    let igcc1 = match iswin
+    {
+        true => "-Ic:\\devkitpro\\devkitA64\\aarch64-none-elf\\include",
+        false => "-I/opt/devkitpro/devkitA64/aarch64-none-elf/include",
+    };
+    let igcc2 = match iswin
+    {
+        true => "-Ic:\\devkitpro\\devkitA64\\lib\\gcc\\aarch64-none-elf\\8.2.0\\include",
+        false => "-I/opt/devkitpro/devkitA64/lib/gcc/aarch64-none-elf/8.2.0/include",
+    };
+    bindgen::Builder::default().trust_clang_mangling(false).use_core().rust_target(bindgen::RustTarget::Nightly).ctypes_prefix("ctypes").generate_inline_functions(true).parse_callbacks(Box::new(CustomCallbacks{})).header(input).clang_arg(ilibnx).clang_arg(igcc1).clang_arg(igcc2).blacklist_type("u8").blacklist_type("u16").blacklist_type("u32").blacklist_type("u64").generate().map_err(|_| std::io::Error::new(std::io::ErrorKind::Other, "Could not create file!")).and_then(|bnd| bnd.write_to_file(output).map(|_| bnd))
 }
 
 pub fn main()
 {
     // Where the Rust code will be generated to
-    let gen_path = "src/native.rs";
+    let gen_path = "bindgen/libnx.rs";
 
     // Input header
     let header_wrapper = "bindgen/libnx.h";
@@ -67,8 +83,8 @@ pub fn main()
         // Use bindgen crate to process libnx headers
         match regen_libnx_native(header_wrapper, gen_path)
         {
-            Err(e) => panic!("{}", e),
-            _ => println!("Ok")
+            Err(e) => panic!("Error generating libnx bindings: '{}'", e),
+            _ => {},
         };
     }
 }

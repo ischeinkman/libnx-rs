@@ -1,4 +1,4 @@
-use native;
+use sys;
 
 pub fn get_current_process_handle() -> u32
 {
@@ -9,7 +9,7 @@ pub fn is_nso() -> bool
 {
     unsafe
     {
-        native::envIsNso()
+        sys::envIsNso()
     }
 }
 
@@ -22,7 +22,7 @@ pub fn nro_exec(path: String)
 {
     unsafe
     {
-        native::envSetNextLoad(path.as_ptr(), path.as_ptr());
+        sys::envSetNextLoad(path.as_ptr(), path.as_ptr());
         std::process::exit(0);
     }
 }

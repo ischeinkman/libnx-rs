@@ -1,4 +1,4 @@
-use native;
+use sys;
 
 pub enum Controller
 {
@@ -28,41 +28,41 @@ pub enum JoyConHoldMode
     Horizontal,
 }
 
-fn ctrlid_to_controller(id: native::HidControllerID) -> Controller
+fn ctrlid_to_controller(id: sys::HidControllerID) -> Controller
 {
     match id
     {
-        native::HidControllerID_CONTROLLER_PLAYER_1 => Controller::Player(1),
-        native::HidControllerID_CONTROLLER_PLAYER_2 => Controller::Player(2),
-        native::HidControllerID_CONTROLLER_PLAYER_3 => Controller::Player(3),
-        native::HidControllerID_CONTROLLER_PLAYER_4 => Controller::Player(4),
-        native::HidControllerID_CONTROLLER_PLAYER_5 => Controller::Player(5),
-        native::HidControllerID_CONTROLLER_PLAYER_6 => Controller::Player(6),
-        native::HidControllerID_CONTROLLER_PLAYER_7 => Controller::Player(7),
-        native::HidControllerID_CONTROLLER_PLAYER_8 => Controller::Player(8),
-        native::HidControllerID_CONTROLLER_HANDHELD => Controller::Handheld,
+        sys::HidControllerID_CONTROLLER_PLAYER_1 => Controller::Player(1),
+        sys::HidControllerID_CONTROLLER_PLAYER_2 => Controller::Player(2),
+        sys::HidControllerID_CONTROLLER_PLAYER_3 => Controller::Player(3),
+        sys::HidControllerID_CONTROLLER_PLAYER_4 => Controller::Player(4),
+        sys::HidControllerID_CONTROLLER_PLAYER_5 => Controller::Player(5),
+        sys::HidControllerID_CONTROLLER_PLAYER_6 => Controller::Player(6),
+        sys::HidControllerID_CONTROLLER_PLAYER_7 => Controller::Player(7),
+        sys::HidControllerID_CONTROLLER_PLAYER_8 => Controller::Player(8),
+        sys::HidControllerID_CONTROLLER_HANDHELD => Controller::Handheld,
         _ => Controller::Invalid
     }
 }
 
-fn controller_to_ctrlid(id: Controller) -> native::HidControllerID
+fn controller_to_ctrlid(id: Controller) -> sys::HidControllerID
 {
     match id
     {
-        Controller::Player(1) => native::HidControllerID_CONTROLLER_PLAYER_1,
-        Controller::Player(2) => native::HidControllerID_CONTROLLER_PLAYER_2,
-        Controller::Player(3) => native::HidControllerID_CONTROLLER_PLAYER_3,
-        Controller::Player(4) => native::HidControllerID_CONTROLLER_PLAYER_4,
-        Controller::Player(5) => native::HidControllerID_CONTROLLER_PLAYER_5,
-        Controller::Player(6) => native::HidControllerID_CONTROLLER_PLAYER_6,
-        Controller::Player(7) => native::HidControllerID_CONTROLLER_PLAYER_7,
-        Controller::Player(8) => native::HidControllerID_CONTROLLER_PLAYER_8,
-        Controller::Handheld => native::HidControllerID_CONTROLLER_HANDHELD,
-        _ => native::HidControllerID_CONTROLLER_UNKNOWN,
+        Controller::Player(1) => sys::HidControllerID_CONTROLLER_PLAYER_1,
+        Controller::Player(2) => sys::HidControllerID_CONTROLLER_PLAYER_2,
+        Controller::Player(3) => sys::HidControllerID_CONTROLLER_PLAYER_3,
+        Controller::Player(4) => sys::HidControllerID_CONTROLLER_PLAYER_4,
+        Controller::Player(5) => sys::HidControllerID_CONTROLLER_PLAYER_5,
+        Controller::Player(6) => sys::HidControllerID_CONTROLLER_PLAYER_6,
+        Controller::Player(7) => sys::HidControllerID_CONTROLLER_PLAYER_7,
+        Controller::Player(8) => sys::HidControllerID_CONTROLLER_PLAYER_8,
+        Controller::Handheld => sys::HidControllerID_CONTROLLER_HANDHELD,
+        _ => sys::HidControllerID_CONTROLLER_UNKNOWN,
     }
 }
 
-fn key_to_enum(id: native::HidControllerKeys) -> Key
+fn key_to_enum(id: sys::HidControllerKeys) -> Key
 {
     // TODO: Port all keys
     Key::None
@@ -72,7 +72,7 @@ pub fn is_controller_connected(ctrl: Controller) -> bool
 {
     unsafe
     {
-        native::hidIsControllerConnected(controller_to_ctrlid(ctrl))
+        sys::hidIsControllerConnected(controller_to_ctrlid(ctrl))
     }
 }
 
@@ -80,7 +80,7 @@ pub fn flush()
 {
     unsafe
     {
-        native::hidScanInput();
+        sys::hidScanInput();
     }
 }
 
@@ -89,7 +89,7 @@ pub fn input_down(ctrl: Controller) -> u64
     unsafe
     {
         flush();
-        native::hidKeysDown(controller_to_ctrlid(ctrl))
+        sys::hidKeysDown(controller_to_ctrlid(ctrl))
     }
 }
 
@@ -98,7 +98,7 @@ pub fn input_up(ctrl: Controller) -> u64
     unsafe
     {
         flush();
-        native::hidKeysUp(controller_to_ctrlid(ctrl))
+        sys::hidKeysUp(controller_to_ctrlid(ctrl))
     }
 }
 
@@ -107,7 +107,7 @@ pub fn input_held(ctrl: Controller) -> u64
     unsafe
     {
         flush();
-        native::hidKeysHeld(controller_to_ctrlid(ctrl))
+        sys::hidKeysHeld(controller_to_ctrlid(ctrl))
     }
 }
 
@@ -115,7 +115,7 @@ pub fn get_touch_count() -> u32
 {
     unsafe
     {
-        native::hidTouchCount()
+        sys::hidTouchCount()
     }
 }
 
@@ -124,8 +124,8 @@ pub fn get_touch_coords(index: u32) -> (u32, u32)
     unsafe
     {
         flush();
-        let mut tch: native::touchPosition = std::mem::zeroed();
-        native::hidTouchRead(&mut tch, index);
+        let mut tch: sys::touchPosition = std::mem::zeroed();
+        sys::hidTouchRead(&mut tch, index);
         (tch.px, tch.py)
     }
 }

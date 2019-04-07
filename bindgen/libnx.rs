@@ -376,26 +376,26 @@ pub const SHA256_HASH_SIZE: i32 = 32;
 pub const SHA256_BLOCK_SIZE: i32 = 64;
 pub const SHA1_HASH_SIZE: i32 = 20;
 pub const SHA1_BLOCK_SIZE: i32 = 64;
-pub type __int8_t = ::std::os::raw::c_schar;
-pub type __uint8_t = ::std::os::raw::c_uchar;
-pub type __int16_t = ::std::os::raw::c_short;
-pub type __uint16_t = ::std::os::raw::c_ushort;
-pub type __int32_t = ::std::os::raw::c_int;
-pub type __uint32_t = ::std::os::raw::c_uint;
-pub type __int64_t = ::std::os::raw::c_longlong;
-pub type __uint64_t = ::std::os::raw::c_ulonglong;
-pub type __int_least8_t = ::std::os::raw::c_schar;
-pub type __uint_least8_t = ::std::os::raw::c_uchar;
-pub type __int_least16_t = ::std::os::raw::c_short;
-pub type __uint_least16_t = ::std::os::raw::c_ushort;
-pub type __int_least32_t = ::std::os::raw::c_int;
-pub type __uint_least32_t = ::std::os::raw::c_uint;
-pub type __int_least64_t = ::std::os::raw::c_longlong;
-pub type __uint_least64_t = ::std::os::raw::c_ulonglong;
-pub type __intmax_t = ::std::os::raw::c_longlong;
-pub type __uintmax_t = ::std::os::raw::c_ulonglong;
-pub type __intptr_t = ::std::os::raw::c_longlong;
-pub type __uintptr_t = ::std::os::raw::c_ulonglong;
+pub type __int8_t = ctypes::c_schar;
+pub type __uint8_t = ctypes::c_uchar;
+pub type __int16_t = ctypes::c_short;
+pub type __uint16_t = ctypes::c_ushort;
+pub type __int32_t = ctypes::c_int;
+pub type __uint32_t = ctypes::c_uint;
+pub type __int64_t = ctypes::c_longlong;
+pub type __uint64_t = ctypes::c_ulonglong;
+pub type __int_least8_t = ctypes::c_schar;
+pub type __uint_least8_t = ctypes::c_uchar;
+pub type __int_least16_t = ctypes::c_short;
+pub type __uint_least16_t = ctypes::c_ushort;
+pub type __int_least32_t = ctypes::c_int;
+pub type __uint_least32_t = ctypes::c_uint;
+pub type __int_least64_t = ctypes::c_longlong;
+pub type __uint_least64_t = ctypes::c_ulonglong;
+pub type __intmax_t = ctypes::c_longlong;
+pub type __uintmax_t = ctypes::c_ulonglong;
+pub type __intptr_t = ctypes::c_longlong;
+pub type __uintptr_t = ctypes::c_ulonglong;
 pub type intmax_t = __intmax_t;
 pub type uintmax_t = __uintmax_t;
 pub type int_least8_t = __int_least8_t;
@@ -406,19 +406,19 @@ pub type int_least32_t = __int_least32_t;
 pub type uint_least32_t = __uint_least32_t;
 pub type int_least64_t = __int_least64_t;
 pub type uint_least64_t = __uint_least64_t;
-pub type int_fast8_t = ::std::os::raw::c_schar;
-pub type uint_fast8_t = ::std::os::raw::c_uchar;
-pub type int_fast16_t = ::std::os::raw::c_short;
-pub type uint_fast16_t = ::std::os::raw::c_ushort;
-pub type int_fast32_t = ::std::os::raw::c_int;
-pub type uint_fast32_t = ::std::os::raw::c_uint;
-pub type int_fast64_t = ::std::os::raw::c_longlong;
-pub type uint_fast64_t = ::std::os::raw::c_ulonglong;
-pub type wchar_t = ::std::os::raw::c_ushort;
+pub type int_fast8_t = ctypes::c_schar;
+pub type uint_fast8_t = ctypes::c_uchar;
+pub type int_fast16_t = ctypes::c_short;
+pub type uint_fast16_t = ctypes::c_ushort;
+pub type int_fast32_t = ctypes::c_int;
+pub type uint_fast32_t = ctypes::c_uint;
+pub type int_fast64_t = ctypes::c_longlong;
+pub type uint_fast64_t = ctypes::c_ulonglong;
+pub type wchar_t = ctypes::c_ushort;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct max_align_t {
-    pub __clang_max_align_nonce1: ::std::os::raw::c_longlong,
+    pub __clang_max_align_nonce1: ctypes::c_longlong,
     pub __bindgen_padding_0: u64,
     pub __clang_max_align_nonce2: f64,
 }
@@ -477,8 +477,7 @@ pub type vs64 = s64;
 pub type vs128 = s128;
 pub type Handle = u32;
 pub type Result = u32;
-pub type ThreadFunc =
-    ::core::option::Option<unsafe extern "C" fn(arg1: *mut ::std::os::raw::c_void)>;
+pub type ThreadFunc = ::core::option::Option<unsafe extern "C" fn(arg1: *mut ctypes::c_void)>;
 pub type VoidFn = ::core::option::Option<unsafe extern "C" fn()>;
 pub const Module_Kernel: _bindgen_ty_1 = 1;
 pub const Module_Libnx: _bindgen_ty_1 = 345;
@@ -952,8 +951,8 @@ fn bindgen_test_layout_NroAssetHeader() {
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct NacpLanguageEntry {
-    pub name: [::std::os::raw::c_char; 512usize],
-    pub author: [::std::os::raw::c_char; 256usize],
+    pub name: [ctypes::c_char; 512usize],
+    pub author: [ctypes::c_char; 256usize],
 }
 #[test]
 fn bindgen_test_layout_NacpLanguageEntry() {
@@ -1000,7 +999,7 @@ pub struct NacpStruct {
     pub x3034_unk: u32,
     pub titleID0: u64,
     pub x3040_unk: [u8; 32usize],
-    pub version: [::std::os::raw::c_char; 16usize],
+    pub version: [ctypes::c_char; 16usize],
     pub titleID_DlcBase: u64,
     pub titleID1: u64,
     pub x3080_unk: u32,
@@ -1012,7 +1011,7 @@ pub struct NacpStruct {
     pub x30F0_unk: u32,
     pub x30F4_unk: u32,
     pub titleID3: u64,
-    pub bcatPassphrase: [::std::os::raw::c_char; 64usize],
+    pub bcatPassphrase: [ctypes::c_char; 64usize],
     pub x3140_unk: [u8; 3776usize],
 }
 #[test]
@@ -1271,28 +1270,28 @@ extern "C" {
     /// @param size Size of the buffer, in bytes.
     /// @remarks Cache flush is defined as Clean + Invalidate.
     /// @note The start and end addresses of the buffer are forcibly rounded to cache line boundaries (read from CTR_EL0 system register).
-    pub fn armDCacheFlush(addr: *mut ::std::os::raw::c_void, size: usize);
+    pub fn armDCacheFlush(addr: *mut ctypes::c_void, size: usize);
 }
 extern "C" {
     /// @brief Performs a data cache clean on the specified buffer.
     /// @param addr Address of the buffer.
     /// @param size Size of the buffer, in bytes.
     /// @note The start and end addresses of the buffer are forcibly rounded to cache line boundaries (read from CTR_EL0 system register).
-    pub fn armDCacheClean(addr: *mut ::std::os::raw::c_void, size: usize);
+    pub fn armDCacheClean(addr: *mut ctypes::c_void, size: usize);
 }
 extern "C" {
     /// @brief Performs an instruction cache invalidation clean on the specified buffer.
     /// @param addr Address of the buffer.
     /// @param size Size of the buffer, in bytes.
     /// @note The start and end addresses of the buffer are forcibly rounded to cache line boundaries (read from CTR_EL0 system register).
-    pub fn armICacheInvalidate(addr: *mut ::std::os::raw::c_void, size: usize);
+    pub fn armICacheInvalidate(addr: *mut ctypes::c_void, size: usize);
 }
 extern "C" {
     /// @brief Performs a data cache zeroing operation on the specified buffer.
     /// @param addr Address of the buffer.
     /// @param size Size of the buffer, in bytes.
     /// @note The start and end addresses of the buffer are forcibly rounded to cache line boundaries (read from CTR_EL0 system register).
-    pub fn armDCacheZero(addr: *mut ::std::os::raw::c_void, size: usize);
+    pub fn armDCacheZero(addr: *mut ctypes::c_void, size: usize);
 }
 /// Armv8 CPU register.
 #[repr(C)]
@@ -2324,7 +2323,7 @@ extern "C" {
     /// @param[in] size Size of the heap, must be a multiple of 0x2000000 and [2.0.0+] less than 0x18000000.
     /// @return Result code.
     /// @note Syscall number 0x00.
-    pub fn svcSetHeapSize(out_addr: *mut *mut ::std::os::raw::c_void, size: u64) -> Result;
+    pub fn svcSetHeapSize(out_addr: *mut *mut ctypes::c_void, size: u64) -> Result;
 }
 extern "C" {
     /// @brief Set the memory permissions of a (page-aligned) range of memory.
@@ -2335,11 +2334,7 @@ extern "C" {
     /// @remark Perm_X is not allowed. Setting write-only is not allowed either (Perm_W).
     /// This can be used to move back and forth between Perm_None, Perm_R and Perm_Rw.
     /// @note Syscall number 0x01.
-    pub fn svcSetMemoryPermission(
-        addr: *mut ::std::os::raw::c_void,
-        size: u64,
-        perm: u32,
-    ) -> Result;
+    pub fn svcSetMemoryPermission(addr: *mut ctypes::c_void, size: u64, perm: u32) -> Result;
 }
 extern "C" {
     /// @brief Set the memory attributes of a (page-aligned) range of memory.
@@ -2351,7 +2346,7 @@ extern "C" {
     /// @remark See <a href="https://switchbrew.org/wiki/SVC#svcSetMemoryAttribute">switchbrew.org Wiki</a> for more details.
     /// @note Syscall number 0x02.
     pub fn svcSetMemoryAttribute(
-        addr: *mut ::std::os::raw::c_void,
+        addr: *mut ctypes::c_void,
         size: u64,
         val0: u32,
         val1: u32,
@@ -2366,8 +2361,8 @@ extern "C" {
     /// @return Result code.
     /// @note Syscall number 0x04.
     pub fn svcMapMemory(
-        dst_addr: *mut ::std::os::raw::c_void,
-        src_addr: *mut ::std::os::raw::c_void,
+        dst_addr: *mut ctypes::c_void,
+        src_addr: *mut ctypes::c_void,
         size: u64,
     ) -> Result;
 }
@@ -2379,8 +2374,8 @@ extern "C" {
     /// @return Result code.
     /// @note Syscall number 0x05.
     pub fn svcUnmapMemory(
-        dst_addr: *mut ::std::os::raw::c_void,
-        src_addr: *mut ::std::os::raw::c_void,
+        dst_addr: *mut ctypes::c_void,
+        src_addr: *mut ctypes::c_void,
         size: u64,
     ) -> Result;
 }
@@ -2404,11 +2399,11 @@ extern "C" {
     /// @note Syscall number 0x08.
     pub fn svcCreateThread(
         out: *mut Handle,
-        entry: *mut ::std::os::raw::c_void,
-        arg: *mut ::std::os::raw::c_void,
-        stack_top: *mut ::std::os::raw::c_void,
-        prio: ::std::os::raw::c_int,
-        cpuid: ::std::os::raw::c_int,
+        entry: *mut ctypes::c_void,
+        arg: *mut ctypes::c_void,
+        stack_top: *mut ctypes::c_void,
+        prio: ctypes::c_int,
+        cpuid: ctypes::c_int,
     ) -> Result;
 }
 extern "C" {
@@ -2480,7 +2475,7 @@ extern "C" {
     /// @note Syscall number 0x13.
     pub fn svcMapSharedMemory(
         handle: Handle,
-        addr: *mut ::std::os::raw::c_void,
+        addr: *mut ctypes::c_void,
         size: usize,
         perm: u32,
     ) -> Result;
@@ -2489,11 +2484,7 @@ extern "C" {
     /// @brief Unmaps a block of shared memory.
     /// @return Result code.
     /// @note Syscall number 0x14.
-    pub fn svcUnmapSharedMemory(
-        handle: Handle,
-        addr: *mut ::std::os::raw::c_void,
-        size: usize,
-    ) -> Result;
+    pub fn svcUnmapSharedMemory(handle: Handle, addr: *mut ctypes::c_void, size: usize) -> Result;
 }
 extern "C" {
     /// @brief Creates a block of transfer memory.
@@ -2501,7 +2492,7 @@ extern "C" {
     /// @note Syscall number 0x15.
     pub fn svcCreateTransferMemory(
         out: *mut Handle,
-        addr: *mut ::std::os::raw::c_void,
+        addr: *mut ctypes::c_void,
         size: usize,
         perm: u32,
     ) -> Result;
@@ -2578,10 +2569,7 @@ extern "C" {
     /// @brief Connects to a registered named port.
     /// @return Result code.
     /// @note Syscall number 0x1F.
-    pub fn svcConnectToNamedPort(
-        session: *mut Handle,
-        name: *const ::std::os::raw::c_char,
-    ) -> Result;
+    pub fn svcConnectToNamedPort(session: *mut Handle, name: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// @brief Sends an IPC synchronization request to a session.
@@ -2595,7 +2583,7 @@ extern "C" {
     /// @remark size must be allocated to 0x1000 bytes.
     /// @note Syscall number 0x22.
     pub fn svcSendSyncRequestWithUserBuffer(
-        usrBuffer: *mut ::std::os::raw::c_void,
+        usrBuffer: *mut ctypes::c_void,
         size: u64,
         session: Handle,
     ) -> Result;
@@ -2607,7 +2595,7 @@ extern "C" {
     /// @note Syscall number 0x23.
     pub fn svcSendAsyncRequestWithUserBuffer(
         handle: *mut Handle,
-        usrBuffer: *mut ::std::os::raw::c_void,
+        usrBuffer: *mut ctypes::c_void,
         size: u64,
         session: Handle,
     ) -> Result;
@@ -2639,7 +2627,7 @@ extern "C" {
     /// @param[in] size Size of the text in bytes.
     /// @return Result code.
     /// @note Syscall number 0x27.
-    pub fn svcOutputDebugString(str: *const ::std::os::raw::c_char, size: u64) -> Result;
+    pub fn svcOutputDebugString(str: *const ctypes::c_char, size: u64) -> Result;
 }
 extern "C" {
     /// @brief Returns from an exception.
@@ -2663,14 +2651,14 @@ extern "C" {
     /// @return Result code.
     /// @note Syscall number 0x2C.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
-    pub fn svcMapPhysicalMemory(address: *mut ::std::os::raw::c_void, size: u64) -> Result;
+    pub fn svcMapPhysicalMemory(address: *mut ctypes::c_void, size: u64) -> Result;
 }
 extern "C" {
     /// @brief Undoes the effects of \ref svcMapPhysicalMemory. [3.0.0+]
     /// @return Result code.
     /// @note Syscall number 0x2D.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
-    pub fn svcUnmapPhysicalMemory(address: *mut ::std::os::raw::c_void, size: u64) -> Result;
+    pub fn svcUnmapPhysicalMemory(address: *mut ctypes::c_void, size: u64) -> Result;
 }
 extern "C" {
     /// @brief Gets the maximum value a LimitableResource can have, for a Resource Limit handle.
@@ -2748,7 +2736,7 @@ extern "C" {
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcReplyAndReceiveWithUserBuffer(
         index: *mut s32,
-        usrBuffer: *mut ::std::os::raw::c_void,
+        usrBuffer: *mut ctypes::c_void,
         size: u64,
         handles: *const Handle,
         handleCount: s32,
@@ -2768,14 +2756,14 @@ extern "C" {
     /// @return Result code.
     /// @note Syscall number 0x48.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
-    pub fn svcMapPhysicalMemoryUnsafe(address: *mut ::std::os::raw::c_void, size: u64) -> Result;
+    pub fn svcMapPhysicalMemoryUnsafe(address: *mut ctypes::c_void, size: u64) -> Result;
 }
 extern "C" {
     /// @brief Undoes the effects of \ref svcMapPhysicalMemoryUnsafe. [5.0.0+]
     /// @return Result code.
     /// @note Syscall number 0x49.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
-    pub fn svcUnmapPhysicalMemoryUnsafe(address: *mut ::std::os::raw::c_void, size: u64) -> Result;
+    pub fn svcUnmapPhysicalMemoryUnsafe(address: *mut ctypes::c_void, size: u64) -> Result;
 }
 extern "C" {
     /// @brief Sets the system-wide limit for unsafe memory mappable using \ref svcMapPhysicalMemoryUnsafe. [5.0.0+]
@@ -2791,7 +2779,7 @@ extern "C" {
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcCreateCodeMemory(
         code_handle: *mut Handle,
-        src_addr: *mut ::std::os::raw::c_void,
+        src_addr: *mut ctypes::c_void,
         size: u64,
     ) -> Result;
 }
@@ -2803,7 +2791,7 @@ extern "C" {
     pub fn svcControlCodeMemory(
         code_handle: Handle,
         op: CodeMapOperation,
-        dst_addr: *mut ::std::os::raw::c_void,
+        dst_addr: *mut ctypes::c_void,
         size: u64,
         perm: u64,
     ) -> Result;
@@ -2834,7 +2822,7 @@ extern "C" {
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcMapTransferMemory(
         tmem_handle: Handle,
-        addr: *mut ::std::os::raw::c_void,
+        addr: *mut ctypes::c_void,
         size: usize,
         perm: u32,
     ) -> Result;
@@ -2846,7 +2834,7 @@ extern "C" {
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcUnmapTransferMemory(
         tmem_handle: Handle,
-        addr: *mut ::std::os::raw::c_void,
+        addr: *mut ctypes::c_void,
         size: usize,
     ) -> Result;
 }
@@ -3056,7 +3044,7 @@ extern "C" {
     /// @note Syscall number 0x6A.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcReadDebugProcessMemory(
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         debug: Handle,
         addr: u64,
         size: u64,
@@ -3069,7 +3057,7 @@ extern "C" {
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcWriteDebugProcessMemory(
         debug: Handle,
-        buffer: *const ::std::os::raw::c_void,
+        buffer: *const ctypes::c_void,
         addr: u64,
         size: u64,
     ) -> Result;
@@ -3109,7 +3097,7 @@ extern "C" {
         portClient: *mut Handle,
         max_sessions: s32,
         is_light: bool,
-        name: *const ::std::os::raw::c_char,
+        name: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -3119,7 +3107,7 @@ extern "C" {
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcManageNamedPort(
         portServer: *mut Handle,
-        name: *const ::std::os::raw::c_char,
+        name: *const ctypes::c_char,
         maxSessions: s32,
     ) -> Result;
 }
@@ -3153,7 +3141,7 @@ extern "C" {
     /// @note Syscall number 0x74.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcMapProcessMemory(
-        dst: *mut ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
         proc_: Handle,
         src: u64,
         size: u64,
@@ -3170,7 +3158,7 @@ extern "C" {
     /// @note Syscall number 0x75.
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcUnmapProcessMemory(
-        dst: *mut ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
         proc_: Handle,
         src: u64,
         size: u64,
@@ -3205,7 +3193,7 @@ extern "C" {
     /// @warning This is a privileged syscall. Use \ref envIsSyscallHinted to check if it is available.
     pub fn svcCreateProcess(
         out: *mut Handle,
-        proc_info: *mut ::std::os::raw::c_void,
+        proc_info: *mut ctypes::c_void,
         caps: *mut u32,
         cap_num: u64,
     ) -> Result;
@@ -3340,34 +3328,33 @@ extern "C" {
     pub fn __libc_lock_release_recursive(lock: *mut _LOCK_RECURSIVE_T);
 }
 extern "C" {
-    pub fn __libc_lock_try_acquire(lock: *mut _LOCK_T) -> ::std::os::raw::c_int;
+    pub fn __libc_lock_try_acquire(lock: *mut _LOCK_T) -> ctypes::c_int;
 }
 extern "C" {
-    pub fn __libc_lock_try_acquire_recursive(lock: *mut _LOCK_RECURSIVE_T)
-        -> ::std::os::raw::c_int;
+    pub fn __libc_lock_try_acquire_recursive(lock: *mut _LOCK_RECURSIVE_T) -> ctypes::c_int;
 }
 extern "C" {
-    pub fn __libc_cond_init(cond: *mut _COND_T) -> ::std::os::raw::c_int;
+    pub fn __libc_cond_init(cond: *mut _COND_T) -> ctypes::c_int;
 }
 extern "C" {
-    pub fn __libc_cond_signal(cond: *mut _COND_T) -> ::std::os::raw::c_int;
+    pub fn __libc_cond_signal(cond: *mut _COND_T) -> ctypes::c_int;
 }
 extern "C" {
-    pub fn __libc_cond_broadcast(cond: *mut _COND_T) -> ::std::os::raw::c_int;
+    pub fn __libc_cond_broadcast(cond: *mut _COND_T) -> ctypes::c_int;
 }
 extern "C" {
     pub fn __libc_cond_wait(
         cond: *mut _COND_T,
         lock: *mut _LOCK_T,
         timeout_ns: u64,
-    ) -> ::std::os::raw::c_int;
+    ) -> ctypes::c_int;
 }
 extern "C" {
     pub fn __libc_cond_wait_recursive(
         cond: *mut _COND_T,
         lock: *mut _LOCK_RECURSIVE_T,
         timeout_ns: u64,
-    ) -> ::std::os::raw::c_int;
+    ) -> ctypes::c_int;
 }
 /// Mutex datatype, defined in newlib.
 pub type Mutex = _LOCK_T;
@@ -3611,9 +3598,9 @@ pub struct TransferMemory {
     /// < Permissions of the transfer memory object.
     pub perm: Permission,
     /// < Address of the source backing memory.
-    pub src_addr: *mut ::std::os::raw::c_void,
+    pub src_addr: *mut ctypes::c_void,
     /// < Address to which the transfer memory object is mapped.
-    pub map_addr: *mut ::std::os::raw::c_void,
+    pub map_addr: *mut ctypes::c_void,
 }
 #[test]
 fn bindgen_test_layout_TransferMemory() {
@@ -3695,7 +3682,7 @@ extern "C" {
     /// @return Result code.
     pub fn tmemCreateFromMemory(
         t: *mut TransferMemory,
-        buf: *mut ::std::os::raw::c_void,
+        buf: *mut ctypes::c_void,
         size: usize,
         perm: Permission,
     ) -> Result;
@@ -3739,7 +3726,7 @@ pub struct SharedMemory {
     /// < Permissions.
     pub perm: Permission,
     /// < Address to which the shared memory object is mapped.
-    pub map_addr: *mut ::std::os::raw::c_void,
+    pub map_addr: *mut ctypes::c_void,
 }
 #[test]
 fn bindgen_test_layout_SharedMemory() {
@@ -4221,12 +4208,12 @@ pub struct Thread {
     /// < Thread handle.
     pub handle: Handle,
     /// < Pointer to stack memory.
-    pub stack_mem: *mut ::std::os::raw::c_void,
+    pub stack_mem: *mut ctypes::c_void,
     /// < Pointer to stack memory mirror.
-    pub stack_mirror: *mut ::std::os::raw::c_void,
+    pub stack_mirror: *mut ctypes::c_void,
     /// < Stack size.
     pub stack_sz: usize,
-    pub tls_array: *mut *mut ::std::os::raw::c_void,
+    pub tls_array: *mut *mut ctypes::c_void,
     pub next: *mut Thread,
     pub prev_next: *mut *mut Thread,
 }
@@ -4325,10 +4312,10 @@ extern "C" {
     pub fn threadCreate(
         t: *mut Thread,
         entry: ThreadFunc,
-        arg: *mut ::std::os::raw::c_void,
+        arg: *mut ctypes::c_void,
         stack_sz: usize,
-        prio: ::std::os::raw::c_int,
-        cpuid: ::std::os::raw::c_int,
+        prio: ctypes::c_int,
+        cpuid: ctypes::c_int,
     ) -> Result;
 }
 extern "C" {
@@ -4383,20 +4370,20 @@ extern "C" {
     /// @param destructor Function to run automatically when a thread exits.
     /// @return TLS slot ID on success, or a negative value on failure.
     pub fn threadTlsAlloc(
-        destructor: ::core::option::Option<unsafe extern "C" fn(arg1: *mut ::std::os::raw::c_void)>,
+        destructor: ::core::option::Option<unsafe extern "C" fn(arg1: *mut ctypes::c_void)>,
     ) -> s32;
 }
 extern "C" {
     /// @brief Retrieves the value stored in a TLS slot.
     /// @param slot_id TLS slot ID.
     /// @return Value.
-    pub fn threadTlsGet(slot_id: s32) -> *mut ::std::os::raw::c_void;
+    pub fn threadTlsGet(slot_id: s32) -> *mut ctypes::c_void;
 }
 extern "C" {
     /// @brief Stores the specified value into a TLS slot.
     /// @param slot_id TLS slot ID.
     /// @param value Value.
-    pub fn threadTlsSet(slot_id: s32, value: *mut ::std::os::raw::c_void);
+    pub fn threadTlsSet(slot_id: s32, value: *mut ctypes::c_void);
 }
 extern "C" {
     /// @brief Frees a TLS slot.
@@ -4482,29 +4469,29 @@ extern "C" {
     /// @brief Reserves a slice of general purpose address space.
     /// @param size The size of the slice of address space that will be reserved (rounded up to page alignment).
     /// @return Pointer to the slice of address space, or NULL on failure.
-    pub fn virtmemReserve(size: usize) -> *mut ::std::os::raw::c_void;
+    pub fn virtmemReserve(size: usize) -> *mut ctypes::c_void;
 }
 extern "C" {
     /// @brief Relinquishes a slice of address space reserved with virtmemReserve (currently no-op).
     /// @param addr Pointer to the slice.
     /// @param size Size of the slice.
-    pub fn virtmemFree(addr: *mut ::std::os::raw::c_void, size: usize);
+    pub fn virtmemFree(addr: *mut ctypes::c_void, size: usize);
 }
 extern "C" {
     /// @brief Reserves a slice of address space inside the stack memory mapping region (for use with svcMapMemory).
     /// @param size The size of the slice of address space that will be reserved (rounded up to page alignment).
     /// @return Pointer to the slice of address space, or NULL on failure.
-    pub fn virtmemReserveStack(size: usize) -> *mut ::std::os::raw::c_void;
+    pub fn virtmemReserveStack(size: usize) -> *mut ctypes::c_void;
 }
 extern "C" {
     /// @brief Relinquishes a slice of address space reserved with virtmemReserveStack (currently no-op).
     /// @param addr Pointer to the slice.
     /// @param size Size of the slice.
-    pub fn virtmemFreeStack(addr: *mut ::std::os::raw::c_void, size: usize);
+    pub fn virtmemFreeStack(addr: *mut ctypes::c_void, size: usize);
 }
 extern "C" {
     /// Returns the kernel version that can be detected by checking kernel capabilities. This only goes from 1 (representing 1.0.0) up to 6 (representing 6.0.0 and above). Generally, \ref hosversionGet should be used instead of this function.
-    pub fn detectKernelVersion() -> ::std::os::raw::c_int;
+    pub fn detectKernelVersion() -> ctypes::c_int;
 }
 extern "C" {
     /// Returns true if the process has a debugger attached.
@@ -4522,7 +4509,7 @@ extern "C" {
     /// @brief Fills a buffer with random data.
     /// @param buf Pointer to the buffer.
     /// @param len Size of the buffer in bytes.
-    pub fn randomGet(buf: *mut ::std::os::raw::c_void, len: usize);
+    pub fn randomGet(buf: *mut ctypes::c_void, len: usize);
 }
 extern "C" {
     /// @brief Returns a random 64-bit value.
@@ -4540,9 +4527,9 @@ pub type JitType = u32;
 pub struct Jit {
     pub type_: JitType,
     pub size: usize,
-    pub src_addr: *mut ::std::os::raw::c_void,
-    pub rx_addr: *mut ::std::os::raw::c_void,
-    pub rw_addr: *mut ::std::os::raw::c_void,
+    pub src_addr: *mut ctypes::c_void,
+    pub rx_addr: *mut ctypes::c_void,
+    pub rw_addr: *mut ctypes::c_void,
     pub is_executable: bool,
     pub handle: Handle,
 }
@@ -4653,13 +4640,13 @@ extern "C" {
     /// @brief Gets the address of the writable memory alias of a JIT buffer.
     /// @param j JIT buffer.
     /// @return Pointer to alias of the JIT buffer that can be written to.
-    pub fn jitGetRwAddr(j: *mut Jit) -> *mut ::std::os::raw::c_void;
+    pub fn jitGetRwAddr(j: *mut Jit) -> *mut ctypes::c_void;
 }
 extern "C" {
     /// @brief Gets the address of the executable memory alias of a JIT buffer.
     /// @param j JIT buffer.
     /// @return Pointer to alias of the JIT buffer that can be executed.
-    pub fn jitGetRxAddr(j: *mut Jit) -> *mut ::std::os::raw::c_void;
+    pub fn jitGetRxAddr(j: *mut Jit) -> *mut ctypes::c_void;
 }
 /// < Regular buffer.
 pub const BufferType_BufferType_Normal: BufferType = 0;
@@ -4808,12 +4795,12 @@ pub struct IpcCommand {
     pub NumSend: usize,
     pub NumRecv: usize,
     pub NumExch: usize,
-    pub Buffers: [*const ::std::os::raw::c_void; 8usize],
+    pub Buffers: [*const ctypes::c_void; 8usize],
     pub BufferSizes: [usize; 8usize],
     pub BufferTypes: [BufferType; 8usize],
     pub NumStaticIn: usize,
     pub NumStaticOut: usize,
-    pub Statics: [*const ::std::os::raw::c_void; 8usize],
+    pub Statics: [*const ctypes::c_void; 8usize],
     pub StaticSizes: [usize; 8usize],
     pub StaticIndices: [u8; 8usize],
     pub SendPid: bool,
@@ -5177,7 +5164,7 @@ pub struct IpcParsedCommand {
     /// < Number of buffers in the response.
     pub NumBuffers: usize,
     /// < Pointers to the buffers.
-    pub Buffers: [*mut ::std::os::raw::c_void; 8usize],
+    pub Buffers: [*mut ctypes::c_void; 8usize],
     /// < Sizes of the buffers.
     pub BufferSizes: [usize; 8usize],
     /// < Types of the buffers.
@@ -5187,7 +5174,7 @@ pub struct IpcParsedCommand {
     /// < Number of statics in the response.
     pub NumStatics: usize,
     /// < Pointers to the statics.
-    pub Statics: [*mut ::std::os::raw::c_void; 8usize],
+    pub Statics: [*mut ctypes::c_void; 8usize],
     /// < Sizes of the statics.
     pub StaticSizes: [usize; 8usize],
     /// < Indices of the statics.
@@ -5195,9 +5182,9 @@ pub struct IpcParsedCommand {
     /// < Number of output statics available in the response.
     pub NumStaticsOut: usize,
     /// < Pointer to the raw embedded data structure in the response.
-    pub Raw: *mut ::std::os::raw::c_void,
+    pub Raw: *mut ctypes::c_void,
     /// < Pointer to the raw embedded data structure, without padding.
-    pub RawWithoutPadding: *mut ::std::os::raw::c_void,
+    pub RawWithoutPadding: *mut ctypes::c_void,
     /// < Size of the raw embedded data.
     pub RawSize: usize,
 }
@@ -5665,7 +5652,7 @@ extern "C" {
     /// @param[out] service_out Service structure which will be filled in.
     /// @param[in] name Name of the service to request.
     /// @return Result code.
-    pub fn smGetService(service_out: *mut Service, name: *const ::std::os::raw::c_char) -> Result;
+    pub fn smGetService(service_out: *mut Service, name: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// @brief Requests a service from SM, as an IPC session handle directly
@@ -5689,16 +5676,16 @@ extern "C" {
     /// @return Result code.
     pub fn smRegisterService(
         handle_out: *mut Handle,
-        name: *const ::std::os::raw::c_char,
+        name: *const ctypes::c_char,
         is_light: bool,
-        max_sessions: ::std::os::raw::c_int,
+        max_sessions: ctypes::c_int,
     ) -> Result;
 }
 extern "C" {
     /// @brief Unregisters a previously registered service in SM.
     /// @param[in] name Name of the service.
     /// @return Result code.
-    pub fn smUnregisterService(name: *const ::std::os::raw::c_char) -> Result;
+    pub fn smUnregisterService(name: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// @brief Check whether SM is initialized.
@@ -5709,7 +5696,7 @@ extern "C" {
     /// @brief Encodes a service name as a 64-bit integer.
     /// @param[in] name Name of the service.
     /// @return Encoded name.
-    pub fn smEncodeName(name: *const ::std::os::raw::c_char) -> u64;
+    pub fn smEncodeName(name: *const ctypes::c_char) -> u64;
 }
 extern "C" {
     /// @brief Overrides a service with a custom IPC service handle.
@@ -5900,7 +5887,7 @@ fn bindgen_test_layout_FsDeviceOperator() {
 #[repr(C)]
 pub struct FsDirectoryEntry {
     /// < Entry name.
-    pub name: [::std::os::raw::c_char; 769usize],
+    pub name: [ctypes::c_char; 769usize],
     pub pad: [u8; 3usize],
     /// < See FsEntryType.
     pub type_: s8,
@@ -6443,7 +6430,7 @@ extern "C" {
     pub fn fsOpenBisFileSystem(
         out: *mut FsFileSystem,
         PartitionId: u32,
-        string: *const ::std::os::raw::c_char,
+        string: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -6502,7 +6489,7 @@ extern "C" {
     pub fn fsOpenFileSystem(
         out: *mut FsFileSystem,
         fsType: FsFileSystemType,
-        contentPath: *const ::std::os::raw::c_char,
+        contentPath: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -6511,73 +6498,67 @@ extern "C" {
         out: *mut FsFileSystem,
         titleId: u64,
         fsType: FsFileSystemType,
-        contentPath: *const ::std::os::raw::c_char,
+        contentPath: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     /// works on all firmwares, titleId is ignored on 1.0.0
     pub fn fsFsCreateFile(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         size: usize,
-        flags: ::std::os::raw::c_int,
+        flags: ctypes::c_int,
     ) -> Result;
 }
 extern "C" {
-    pub fn fsFsDeleteFile(fs: *mut FsFileSystem, path: *const ::std::os::raw::c_char) -> Result;
+    pub fn fsFsDeleteFile(fs: *mut FsFileSystem, path: *const ctypes::c_char) -> Result;
 }
 extern "C" {
-    pub fn fsFsCreateDirectory(
-        fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
-    ) -> Result;
+    pub fn fsFsCreateDirectory(fs: *mut FsFileSystem, path: *const ctypes::c_char) -> Result;
 }
 extern "C" {
-    pub fn fsFsDeleteDirectory(
-        fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
-    ) -> Result;
+    pub fn fsFsDeleteDirectory(fs: *mut FsFileSystem, path: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     pub fn fsFsDeleteDirectoryRecursively(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn fsFsRenameFile(
         fs: *mut FsFileSystem,
-        path0: *const ::std::os::raw::c_char,
-        path1: *const ::std::os::raw::c_char,
+        path0: *const ctypes::c_char,
+        path1: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn fsFsRenameDirectory(
         fs: *mut FsFileSystem,
-        path0: *const ::std::os::raw::c_char,
-        path1: *const ::std::os::raw::c_char,
+        path0: *const ctypes::c_char,
+        path1: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn fsFsGetEntryType(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         out: *mut FsEntryType,
     ) -> Result;
 }
 extern "C" {
     pub fn fsFsOpenFile(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
-        flags: ::std::os::raw::c_int,
+        path: *const ctypes::c_char,
+        flags: ctypes::c_int,
         out: *mut FsFile,
     ) -> Result;
 }
 extern "C" {
     pub fn fsFsOpenDirectory(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
-        flags: ::std::os::raw::c_int,
+        path: *const ctypes::c_char,
+        flags: ctypes::c_int,
         out: *mut FsDir,
     ) -> Result;
 }
@@ -6587,21 +6568,21 @@ extern "C" {
 extern "C" {
     pub fn fsFsGetFreeSpace(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         out: *mut u64,
     ) -> Result;
 }
 extern "C" {
     pub fn fsFsGetTotalSpace(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         out: *mut u64,
     ) -> Result;
 }
 extern "C" {
     pub fn fsFsGetFileTimeStampRaw(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         out: *mut FsTimeStampRaw,
     ) -> Result;
 }
@@ -6609,18 +6590,18 @@ extern "C" {
     /// 3.0.0+
     pub fn fsFsCleanDirectoryRecursively(
         fs: *mut FsFileSystem,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     /// 3.0.0+
     pub fn fsFsQueryEntry(
         fs: *mut FsFileSystem,
-        out: *mut ::std::os::raw::c_void,
+        out: *mut ctypes::c_void,
         out_size: usize,
-        in_: *const ::std::os::raw::c_void,
+        in_: *const ctypes::c_void,
         in_size: usize,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         query_type: FsFileSystemQueryType,
     ) -> Result;
 }
@@ -6631,24 +6612,19 @@ extern "C" {
 extern "C" {
     /// Uses \ref fsFsQueryEntry to set the archive bit on the specified absolute directory path.
     /// This will cause HOS to treat the directory as if it were a file containing the directory's concatenated contents.
-    pub fn fsFsSetArchiveBit(fs: *mut FsFileSystem, path: *const ::std::os::raw::c_char) -> Result;
+    pub fn fsFsSetArchiveBit(fs: *mut FsFileSystem, path: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     pub fn fsFileRead(
         f: *mut FsFile,
         off: u64,
-        buf: *mut ::std::os::raw::c_void,
+        buf: *mut ctypes::c_void,
         len: usize,
         out: *mut usize,
     ) -> Result;
 }
 extern "C" {
-    pub fn fsFileWrite(
-        f: *mut FsFile,
-        off: u64,
-        buf: *const ::std::os::raw::c_void,
-        len: usize,
-    ) -> Result;
+    pub fn fsFileWrite(f: *mut FsFile, off: u64, buf: *const ctypes::c_void, len: usize) -> Result;
 }
 extern "C" {
     pub fn fsFileFlush(f: *mut FsFile) -> Result;
@@ -6681,7 +6657,7 @@ extern "C" {
     pub fn fsStorageRead(
         s: *mut FsStorage,
         off: u64,
-        buf: *mut ::std::os::raw::c_void,
+        buf: *mut ctypes::c_void,
         len: usize,
     ) -> Result;
 }
@@ -6689,7 +6665,7 @@ extern "C" {
     pub fn fsStorageWrite(
         s: *mut FsStorage,
         off: u64,
-        buf: *const ::std::os::raw::c_void,
+        buf: *const ctypes::c_void,
         len: usize,
     ) -> Result;
 }
@@ -6754,9 +6730,9 @@ extern "C" {
 extern "C" {
     pub fn smManagerRegisterProcess(
         pid: u64,
-        acid_sac: *const ::std::os::raw::c_void,
+        acid_sac: *const ctypes::c_void,
         acid_sac_size: usize,
-        aci0_sac: *const ::std::os::raw::c_void,
+        aci0_sac: *const ctypes::c_void,
         aci0_sac_size: usize,
     ) -> Result;
 }
@@ -6772,7 +6748,7 @@ extern "C" {
 extern "C" {
     pub fn fsldrOpenCodeFileSystem(
         tid: u64,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         out: *mut FsFileSystem,
     ) -> Result;
 }
@@ -6793,9 +6769,9 @@ extern "C" {
         pid: u64,
         titleID: u64,
         storageID: FsStorageId,
-        fs_access_header: *const ::std::os::raw::c_void,
+        fs_access_header: *const ctypes::c_void,
         fah_size: usize,
-        fs_access_control: *const ::std::os::raw::c_void,
+        fs_access_control: *const ctypes::c_void,
         fac_size: usize,
     ) -> Result;
 }
@@ -6929,7 +6905,7 @@ pub struct AccountProfileBase {
     /// < POSIX UTC timestamp, for the last account edit.
     pub lastEditTimestamp: u64,
     /// < UTF-8 Username.
-    pub username: [::std::os::raw::c_char; 32usize],
+    pub username: [ctypes::c_char; 32usize],
 }
 #[test]
 fn bindgen_test_layout_AccountProfileBase() {
@@ -7028,7 +7004,7 @@ extern "C" {
     /// Load the JPEG profile icon, valid for both Miis and character icons. The output image_size is the same as the one from \ref accountProfileGetImageSize.
     pub fn accountProfileLoadImage(
         profile: *mut AccountProfile,
-        buf: *mut ::std::os::raw::c_void,
+        buf: *mut ctypes::c_void,
         len: usize,
         image_size: *mut usize,
     ) -> Result;
@@ -7177,9 +7153,8 @@ pub const AppletThemeColorType_AppletThemeColorType_Unknown3: AppletThemeColorTy
 /// ThemeColorType
 pub type AppletThemeColorType = u32;
 /// applet hook function.
-pub type AppletHookFn = ::core::option::Option<
-    unsafe extern "C" fn(hook: AppletHookType, param: *mut ::std::os::raw::c_void),
->;
+pub type AppletHookFn =
+    ::core::option::Option<unsafe extern "C" fn(hook: AppletHookType, param: *mut ctypes::c_void)>;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct AppletHookCookie {
@@ -7188,7 +7163,7 @@ pub struct AppletHookCookie {
     /// < Hook callback.
     pub callback: AppletHookFn,
     /// < Callback parameter.
-    pub param: *mut ::std::os::raw::c_void,
+    pub param: *mut ctypes::c_void,
 }
 #[test]
 fn bindgen_test_layout_AppletHookCookie() {
@@ -7728,7 +7703,7 @@ extern "C" {
     /// @param writable Controls whether writing to the storage is allowed with \ref appletStorageWrite.
     pub fn appletCreateTransferMemoryStorage(
         s: *mut AppletStorage,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: s64,
         writable: bool,
     ) -> Result;
@@ -7747,7 +7722,7 @@ extern "C" {
     /// @param size Size of storage.
     pub fn appletCreateHandleStorageTmem(
         s: *mut AppletStorage,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: s64,
     ) -> Result;
 }
@@ -7774,7 +7749,7 @@ extern "C" {
     pub fn appletStorageWrite(
         s: *mut AppletStorage,
         offset: s64,
-        buffer: *const ::std::os::raw::c_void,
+        buffer: *const ctypes::c_void,
         size: usize,
     ) -> Result;
 }
@@ -7788,7 +7763,7 @@ extern "C" {
     pub fn appletStorageRead(
         s: *mut AppletStorage,
         offset: s64,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
     ) -> Result;
 }
@@ -7813,7 +7788,7 @@ extern "C" {
     /// @param size Output size (optional).
     pub fn appletStorageMap(
         s: *mut AppletStorage,
-        addr: *mut *mut ::std::os::raw::c_void,
+        addr: *mut *mut ctypes::c_void,
         size: *mut usize,
     ) -> Result;
 }
@@ -7841,7 +7816,7 @@ extern "C" {
     pub fn appletHook(
         cookie: *mut AppletHookCookie,
         callback: AppletHookFn,
-        param: *mut ::std::os::raw::c_void,
+        param: *mut ctypes::c_void,
     );
 }
 extern "C" {
@@ -7873,7 +7848,7 @@ pub type PcmFormat = u32;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct AudioDeviceName {
-    pub name: [::std::os::raw::c_char; 256usize],
+    pub name: [ctypes::c_char; 256usize],
 }
 #[test]
 fn bindgen_test_layout_AudioDeviceName() {
@@ -7906,7 +7881,7 @@ pub struct AudioInBuffer {
     /// < Next buffer. (Unused)
     pub next: *mut AudioInBuffer,
     /// < Sample buffer (aligned to 0x1000 bytes).
-    pub buffer: *mut ::std::os::raw::c_void,
+    pub buffer: *mut ctypes::c_void,
     /// < Sample buffer size (aligned to 0x1000 bytes).
     pub buffer_size: u64,
     /// < Size of data inside the buffer.
@@ -7985,14 +7960,14 @@ extern "C" {
 }
 extern "C" {
     pub fn audinListAudioIns(
-        DeviceNames: *mut ::std::os::raw::c_char,
+        DeviceNames: *mut ctypes::c_char,
         DeviceNamesCount: *mut u32,
     ) -> Result;
 }
 extern "C" {
     pub fn audinOpenAudioIn(
-        DeviceNameIn: *const ::std::os::raw::c_char,
-        DeviceNameOut: *mut ::std::os::raw::c_char,
+        DeviceNameIn: *const ctypes::c_char,
+        DeviceNameOut: *mut ctypes::c_char,
         SampleRateIn: u32,
         ChannelCountIn: u32,
         SampleRateOut: *mut u32,
@@ -8068,7 +8043,7 @@ pub struct AudioOutBuffer {
     /// < Next buffer. (Unused)
     pub next: *mut AudioOutBuffer,
     /// < Sample buffer (aligned to 0x1000 bytes).
-    pub buffer: *mut ::std::os::raw::c_void,
+    pub buffer: *mut ctypes::c_void,
     /// < Sample buffer size (aligned to 0x1000 bytes).
     pub buffer_size: u64,
     /// < Size of data inside the buffer.
@@ -8147,14 +8122,14 @@ extern "C" {
 }
 extern "C" {
     pub fn audoutListAudioOuts(
-        DeviceNames: *mut ::std::os::raw::c_char,
+        DeviceNames: *mut ctypes::c_char,
         DeviceNamesCount: *mut u32,
     ) -> Result;
 }
 extern "C" {
     pub fn audoutOpenAudioOut(
-        DeviceNameIn: *const ::std::os::raw::c_char,
-        DeviceNameOut: *mut ::std::os::raw::c_char,
+        DeviceNameIn: *const ctypes::c_char,
+        DeviceNameOut: *mut ctypes::c_char,
         SampleRateIn: u32,
         ChannelCountIn: u32,
         SampleRateOut: *mut u32,
@@ -8229,11 +8204,11 @@ pub type AudioRendererOutputRate = u32;
 #[derive(Debug, Copy, Clone)]
 pub struct AudioRendererConfig {
     pub output_rate: AudioRendererOutputRate,
-    pub num_voices: ::std::os::raw::c_int,
-    pub num_effects: ::std::os::raw::c_int,
-    pub num_sinks: ::std::os::raw::c_int,
-    pub num_mix_objs: ::std::os::raw::c_int,
-    pub num_mix_buffers: ::std::os::raw::c_int,
+    pub num_voices: ctypes::c_int,
+    pub num_effects: ctypes::c_int,
+    pub num_sinks: ctypes::c_int,
+    pub num_mix_objs: ctypes::c_int,
+    pub num_mix_buffers: ctypes::c_int,
 }
 #[test]
 fn bindgen_test_layout_AudioRendererConfig() {
@@ -8594,7 +8569,7 @@ pub const AudioRendererMemPoolState_AudioRendererMemPoolState_Released: AudioRen
 pub type AudioRendererMemPoolState = u32;
 #[repr(C)]
 pub struct AudioRendererMemPoolInfoIn {
-    pub address: *const ::std::os::raw::c_void,
+    pub address: *const ctypes::c_void,
     pub size: u64,
     pub state: AudioRendererMemPoolState,
     pub _padding2: [u32; 3usize],
@@ -8921,7 +8896,7 @@ fn bindgen_test_layout_AudioRendererAdpcmContext() {
 }
 #[repr(C)]
 pub struct AudioRendererWaveBuf {
-    pub address: *const ::std::os::raw::c_void,
+    pub address: *const ctypes::c_void,
     pub size: u64,
     pub start_sample_offset: s32,
     pub end_sample_offset: s32,
@@ -8929,7 +8904,7 @@ pub struct AudioRendererWaveBuf {
     pub end_of_stream: bool,
     pub sent_to_server: bool,
     pub _padding1: [u8; 5usize],
-    pub context_addr: *const ::std::os::raw::c_void,
+    pub context_addr: *const ctypes::c_void,
     pub context_sz: u64,
     pub _padding2: u64,
 }
@@ -9096,7 +9071,7 @@ pub struct AudioRendererVoiceInfoIn {
     pub wavebuf_head: s16,
     pub _padding1: u16,
     pub _padding2: u32,
-    pub extra_params_ptr: *const ::std::os::raw::c_void,
+    pub extra_params_ptr: *const ctypes::c_void,
     pub extra_params_sz: u64,
     pub dest_mix_id: u32,
     pub dest_splitter_id: u32,
@@ -9691,7 +9666,7 @@ pub const AudioRendererSinkType_AudioRendererSinkType_CircularBuffer: AudioRende
 pub type AudioRendererSinkType = u32;
 #[repr(C)]
 pub struct AudioRendererDeviceSinkInfoIn {
-    pub name: [::std::os::raw::c_char; 255usize],
+    pub name: [ctypes::c_char; 255usize],
     pub _padding1: u8,
     pub input_count: u32,
     pub inputs: [u8; 6usize],
@@ -9803,7 +9778,7 @@ fn bindgen_test_layout_AudioRendererDeviceSinkInfoIn() {
 }
 #[repr(C)]
 pub struct AudioRendererCircularBufferSinkInfoIn {
-    pub buffer_ptr: *mut ::std::os::raw::c_void,
+    pub buffer_ptr: *mut ctypes::c_void,
     pub buffer_sz: u32,
     pub input_count: u32,
     pub sample_count: u32,
@@ -10258,11 +10233,11 @@ extern "C" {
 }
 extern "C" {
     pub fn audrenRequestUpdateAudioRenderer(
-        in_param_buf: *const ::std::os::raw::c_void,
+        in_param_buf: *const ctypes::c_void,
         in_param_buf_size: usize,
-        out_param_buf: *mut ::std::os::raw::c_void,
+        out_param_buf: *mut ctypes::c_void,
         out_param_buf_size: usize,
-        perf_buf: *mut ::std::os::raw::c_void,
+        perf_buf: *mut ctypes::c_void,
         perf_buf_size: usize,
     ) -> Result;
 }
@@ -10273,7 +10248,7 @@ extern "C" {
     pub fn audrenStopAudioRenderer() -> Result;
 }
 extern "C" {
-    pub fn audrenSetAudioRendererRenderingTimeLimit(percent: ::std::os::raw::c_int) -> Result;
+    pub fn audrenSetAudioRendererRenderingTimeLimit(percent: ctypes::c_int) -> Result;
 }
 extern "C" {
     pub fn auddevInitialize() -> Result;
@@ -10503,7 +10478,7 @@ extern "C" {
         decoder: *mut HwopusDecoder,
         DecodedDataSize: *mut s32,
         DecodedSampleCount: *mut s32,
-        opusin: *const ::std::os::raw::c_void,
+        opusin: *const ctypes::c_void,
         opusin_size: usize,
         pcmbuf: *mut s16,
         pcmbuf_size: usize,
@@ -10516,7 +10491,7 @@ extern "C" {
     pub fn csrngExit();
 }
 extern "C" {
-    pub fn csrngGetRandomBytes(out: *mut ::std::os::raw::c_void, out_size: usize) -> Result;
+    pub fn csrngGetRandomBytes(out: *mut ctypes::c_void, out_size: usize) -> Result;
 }
 extern "C" {
     pub fn lblInitialize() -> Result;
@@ -10591,7 +10566,7 @@ extern "C" {
 extern "C" {
     pub fn i2csessionSendAuto(
         s: *mut I2cSession,
-        buf: *mut ::std::os::raw::c_void,
+        buf: *mut ctypes::c_void,
         size: usize,
         option: I2cTransactionOption,
     ) -> Result;
@@ -11543,7 +11518,7 @@ pub struct TimeCalendarAdditionalInfo {
     /// < 0-based day-of-year.
     pub yday: u32,
     /// < Timezone name string.
-    pub timezoneName: [::std::os::raw::c_char; 8usize],
+    pub timezoneName: [ctypes::c_char; 8usize],
     /// < 0 = no DST, 1 = DST.
     pub DST: u32,
     /// < Seconds relative to UTC for this timezone.
@@ -12449,9 +12424,9 @@ pub struct UsbDsDeviceInfo {
     /// < PID
     pub idProduct: u16,
     pub bcdDevice: u16,
-    pub Manufacturer: [::std::os::raw::c_char; 32usize],
-    pub Product: [::std::os::raw::c_char; 32usize],
-    pub SerialNumber: [::std::os::raw::c_char; 32usize],
+    pub Manufacturer: [ctypes::c_char; 32usize],
+    pub Product: [ctypes::c_char; 32usize],
+    pub SerialNumber: [ctypes::c_char; 32usize],
 }
 #[test]
 fn bindgen_test_layout_UsbDsDeviceInfo() {
@@ -12803,7 +12778,7 @@ extern "C" {
     pub fn usbDsGetDsInterface(
         out: *mut *mut UsbDsInterface,
         descriptor: *mut usb_interface_descriptor,
-        interface_name: *const ::std::os::raw::c_char,
+        interface_name: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -12820,10 +12795,8 @@ extern "C" {
     pub fn usbDsClearDeviceData() -> Result;
 }
 extern "C" {
-    pub fn usbDsAddUsbStringDescriptor(
-        out_index: *mut u8,
-        string: *const ::std::os::raw::c_char,
-    ) -> Result;
+    pub fn usbDsAddUsbStringDescriptor(out_index: *mut u8, string: *const ctypes::c_char)
+        -> Result;
 }
 extern "C" {
     pub fn usbDsAddUsbLanguageStringDescriptor(
@@ -12842,8 +12815,7 @@ extern "C" {
     ) -> Result;
 }
 extern "C" {
-    pub fn usbDsSetBinaryObjectStore(bos: *const ::std::os::raw::c_void, bos_size: usize)
-        -> Result;
+    pub fn usbDsSetBinaryObjectStore(bos: *const ctypes::c_void, bos_size: usize) -> Result;
 }
 extern "C" {
     pub fn usbDsEnable() -> Result;
@@ -12858,7 +12830,7 @@ extern "C" {
 extern "C" {
     pub fn usbDsInterface_GetSetupPacket(
         interface: *mut UsbDsInterface,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
     ) -> Result;
 }
@@ -12871,7 +12843,7 @@ extern "C" {
 extern "C" {
     pub fn usbDsInterface_CtrlInPostBufferAsync(
         interface: *mut UsbDsInterface,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
         urbId: *mut u32,
     ) -> Result;
@@ -12879,7 +12851,7 @@ extern "C" {
 extern "C" {
     pub fn usbDsInterface_CtrlOutPostBufferAsync(
         interface: *mut UsbDsInterface,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
         urbId: *mut u32,
     ) -> Result;
@@ -12919,7 +12891,7 @@ extern "C" {
     pub fn usbDsInterface_AppendConfigurationData(
         interface: *mut UsbDsInterface,
         speed: UsbDeviceSpeed,
-        buffer: *const ::std::os::raw::c_void,
+        buffer: *const ctypes::c_void,
         size: usize,
     ) -> Result;
 }
@@ -12933,7 +12905,7 @@ extern "C" {
 extern "C" {
     pub fn usbDsEndpoint_PostBufferAsync(
         endpoint: *mut UsbDsEndpoint,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
         urbId: *mut u32,
     ) -> Result;
@@ -13311,7 +13283,7 @@ fn bindgen_test_layout_UsbHsInterfaceInfo() {
 #[repr(C, packed)]
 pub struct UsbHsInterface {
     pub inf: UsbHsInterfaceInfo,
-    pub pathstr: [::std::os::raw::c_char; 64usize],
+    pub pathstr: [ctypes::c_char; 64usize],
     pub busID: u32,
     pub deviceID: u32,
     pub device_desc: usb_device_descriptor,
@@ -13739,7 +13711,7 @@ extern "C" {
         wValue: u16,
         wIndex: u16,
         wLength: u16,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         transferredSize: *mut u32,
     ) -> Result;
 }
@@ -13770,7 +13742,7 @@ extern "C" {
     /// Uses a data transfer with the specified endpoint, this will block until the transfer finishes. The buffer address and size should be aligned to 0x1000-bytes, where the input size is the original size.
     pub fn usbHsEpPostBuffer(
         s: *mut UsbHsClientEpSession,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: u32,
         transferredSize: *mut u32,
     ) -> Result;
@@ -16192,7 +16164,7 @@ extern "C" {
     pub fn hidGetSessionService() -> *mut Service;
 }
 extern "C" {
-    pub fn hidGetSharedmemAddr() -> *mut ::std::os::raw::c_void;
+    pub fn hidGetSharedmemAddr() -> *mut ctypes::c_void;
 }
 extern "C" {
     pub fn hidSetControllerLayout(id: HidControllerID, layoutType: HidControllerLayoutType);
@@ -16863,7 +16835,7 @@ extern "C" {
     pub fn irsGetSessionService() -> *mut Service;
 }
 extern "C" {
-    pub fn irsGetSharedmemAddr() -> *mut ::std::os::raw::c_void;
+    pub fn irsGetSharedmemAddr() -> *mut ctypes::c_void;
 }
 extern "C" {
     /// (De)activate the IR sensor, this is automatically used by \ref irsExit. Must be called after irsInitialize() to activate the IR sensor.
@@ -16887,7 +16859,7 @@ extern "C" {
 extern "C" {
     pub fn irsGetImageTransferProcessorState(
         IrCameraHandle: u32,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
         state: *mut IrsImageTransferProcessorState,
     ) -> Result;
@@ -16927,7 +16899,7 @@ pub struct PlFontData {
     pub type_: u32,
     pub offset: u32,
     pub size: u32,
-    pub address: *mut ::std::os::raw::c_void,
+    pub address: *mut ctypes::c_void,
 }
 #[test]
 fn bindgen_test_layout_PlFontData() {
@@ -16989,7 +16961,7 @@ extern "C" {
     pub fn plExit();
 }
 extern "C" {
-    pub fn plGetSharedmemAddr() -> *mut ::std::os::raw::c_void;
+    pub fn plGetSharedmemAddr() -> *mut ctypes::c_void;
 }
 extern "C" {
     pub fn plGetSharedFontByType(font: *mut PlFontData, SharedFontType: u32) -> Result;
@@ -17005,7 +16977,7 @@ extern "C" {
 #[repr(C)]
 pub struct ViDisplay {
     pub display_id: u64,
-    pub display_name: [::std::os::raw::c_char; 64usize],
+    pub display_name: [ctypes::c_char; 64usize],
     pub initialized: bool,
 }
 #[test]
@@ -17176,10 +17148,7 @@ extern "C" {
     pub fn viSetContentVisibility(v: bool) -> Result;
 }
 extern "C" {
-    pub fn viOpenDisplay(
-        display_name: *const ::std::os::raw::c_char,
-        display: *mut ViDisplay,
-    ) -> Result;
+    pub fn viOpenDisplay(display_name: *const ctypes::c_char, display: *mut ViDisplay) -> Result;
 }
 extern "C" {
     pub fn viCloseDisplay(display: *mut ViDisplay) -> Result;
@@ -17251,7 +17220,7 @@ extern "C" {
 }
 extern "C" {
     pub fn viGetIndirectLayerImageMap(
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
         width: s32,
         height: s32,
@@ -17281,17 +17250,17 @@ pub const NvEventId_NvEventId_CtrlGpu_ErrorEventHandle: NvEventId = 1;
 pub const NvEventId_NvEventId_CtrlGpu_Unknown: NvEventId = 2;
 pub type NvEventId = u32;
 extern "C" {
-    pub fn nvOpen(fd: *mut u32, devicepath: *const ::std::os::raw::c_char) -> Result;
+    pub fn nvOpen(fd: *mut u32, devicepath: *const ctypes::c_char) -> Result;
 }
 extern "C" {
-    pub fn nvIoctl(fd: u32, request: u32, argp: *mut ::std::os::raw::c_void) -> Result;
+    pub fn nvIoctl(fd: u32, request: u32, argp: *mut ctypes::c_void) -> Result;
 }
 extern "C" {
     pub fn nvIoctl2(
         fd: u32,
         request: u32,
-        argp: *mut ::std::os::raw::c_void,
-        inbuf: *const ::std::os::raw::c_void,
+        argp: *mut ctypes::c_void,
+        inbuf: *const ctypes::c_void,
         inbuf_size: usize,
     ) -> Result;
 }
@@ -17302,7 +17271,7 @@ extern "C" {
     pub fn nvQueryEvent(fd: u32, event_id: u32, event_out: *mut Event) -> Result;
 }
 extern "C" {
-    pub fn nvConvertError(rc: ::std::os::raw::c_int) -> Result;
+    pub fn nvConvertError(rc: ctypes::c_int) -> Result;
 }
 /// < Initializes nifm:u.
 pub const NifmServiceType_NifmServiceType_NotInitialized: NifmServiceType = 0;
@@ -17799,7 +17768,7 @@ extern "C" {
 extern "C" {
     pub fn nsdevPrepareLaunchProgramFromHost(
         out: *mut NsLaunchProperties,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         path_len: usize,
     ) -> Result;
 }
@@ -18037,7 +18006,7 @@ extern "C" {
 extern "C" {
     pub fn ldrShellAddTitleToLaunchQueue(
         tid: u64,
-        args: *const ::std::os::raw::c_void,
+        args: *const ctypes::c_void,
         args_size: usize,
     ) -> Result;
 }
@@ -18047,7 +18016,7 @@ extern "C" {
 extern "C" {
     pub fn ldrDmntAddTitleToLaunchQueue(
         tid: u64,
-        args: *const ::std::os::raw::c_void,
+        args: *const ctypes::c_void,
         args_size: usize,
     ) -> Result;
 }
@@ -18345,10 +18314,10 @@ pub struct SetSysFirmwareVersion {
     pub revision_minor: u8,
     pub padding2: u8,
     pub padding3: u8,
-    pub platform: [::std::os::raw::c_char; 32usize],
-    pub version_hash: [::std::os::raw::c_char; 64usize],
-    pub display_version: [::std::os::raw::c_char; 24usize],
-    pub display_title: [::std::os::raw::c_char; 128usize],
+    pub platform: [ctypes::c_char; 32usize],
+    pub version_hash: [ctypes::c_char; 64usize],
+    pub display_version: [ctypes::c_char; 24usize],
+    pub display_title: [ctypes::c_char; 128usize],
 }
 #[test]
 fn bindgen_test_layout_SetSysFirmwareVersion() {
@@ -18555,8 +18524,8 @@ extern "C" {
     /// @param item_key Item key string.
     /// @param size_out Pointer to output the size to.
     pub fn setsysGetSettingsItemValueSize(
-        name: *const ::std::os::raw::c_char,
-        item_key: *const ::std::os::raw::c_char,
+        name: *const ctypes::c_char,
+        item_key: *const ctypes::c_char,
         size_out: *mut u64,
     ) -> Result;
 }
@@ -18567,16 +18536,16 @@ extern "C" {
     /// @param value_out Pointer to output the value to.
     /// @param value_out_size Size of the value_out buffer.
     pub fn setsysGetSettingsItemValue(
-        name: *const ::std::os::raw::c_char,
-        item_key: *const ::std::os::raw::c_char,
-        value_out: *mut ::std::os::raw::c_void,
+        name: *const ctypes::c_char,
+        item_key: *const ctypes::c_char,
+        value_out: *mut ctypes::c_void,
         value_out_size: usize,
     ) -> Result;
 }
 extern "C" {
     /// @brief Gets the system's serial number.
     /// @param serial Pointer to output the serial to. (The buffer size needs to be at least 0x19 bytes)
-    pub fn setsysGetSerialNumber(serial: *mut ::std::os::raw::c_char) -> Result;
+    pub fn setsysGetSerialNumber(serial: *mut ctypes::c_char) -> Result;
 }
 extern "C" {
     /// @brief Gets the status of the specified settings flag.
@@ -18676,63 +18645,63 @@ extern "C" {
     pub fn lrLrResolveProgramPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        out: *mut ::std::os::raw::c_char,
+        out: *mut ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn lrLrRedirectProgramPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn lrLrResolveApplicationControlPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        out: *mut ::std::os::raw::c_char,
+        out: *mut ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn lrLrResolveApplicationHtmlDocumentPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        out: *mut ::std::os::raw::c_char,
+        out: *mut ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn lrLrResolveDataPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        out: *mut ::std::os::raw::c_char,
+        out: *mut ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn lrLrRedirectApplicationControlPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn lrLrRedirectApplicationHtmlDocumentPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn lrLrResolveLegalInformationPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        out: *mut ::std::os::raw::c_char,
+        out: *mut ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     pub fn lrLrRedirectLegalInformationPath(
         lr: *mut LrLocationResolver,
         tid: u64,
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -18742,7 +18711,7 @@ extern "C" {
     pub fn lrRegLrResolveProgramPath(
         reg: *mut LrRegisteredLocationResolver,
         tid: u64,
-        out: *mut ::std::os::raw::c_char,
+        out: *mut ctypes::c_char,
     ) -> Result;
 }
 pub const SplConfigItem_SplConfigItem_DisableProgramVerification: SplConfigItem = 1;
@@ -18807,18 +18776,18 @@ extern "C" {
 }
 extern "C" {
     pub fn splUserExpMod(
-        input: *const ::std::os::raw::c_void,
-        modulus: *const ::std::os::raw::c_void,
-        exp: *const ::std::os::raw::c_void,
+        input: *const ctypes::c_void,
+        modulus: *const ctypes::c_void,
+        exp: *const ctypes::c_void,
         exp_size: usize,
-        dst: *mut ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splSetConfig(config_item: SplConfigItem, value: u64) -> Result;
 }
 extern "C" {
-    pub fn splGetRandomBytes(out: *mut ::std::os::raw::c_void, out_size: usize) -> Result;
+    pub fn splGetRandomBytes(out: *mut ctypes::c_void, out_size: usize) -> Result;
 }
 extern "C" {
     pub fn splIsDevelopment(out_is_development: *mut bool) -> Result;
@@ -18831,48 +18800,48 @@ extern "C" {
 }
 extern "C" {
     pub fn splCryptoGenerateAesKek(
-        wrapped_kek: *const ::std::os::raw::c_void,
+        wrapped_kek: *const ctypes::c_void,
         key_generation: u32,
         option: u32,
-        out_sealed_kek: *mut ::std::os::raw::c_void,
+        out_sealed_kek: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splCryptoLoadAesKey(
-        sealed_kek: *const ::std::os::raw::c_void,
-        wrapped_key: *const ::std::os::raw::c_void,
+        sealed_kek: *const ctypes::c_void,
+        wrapped_key: *const ctypes::c_void,
         keyslot: u32,
     ) -> Result;
 }
 extern "C" {
     pub fn splCryptoGenerateAesKey(
-        sealed_kek: *const ::std::os::raw::c_void,
-        wrapped_key: *const ::std::os::raw::c_void,
-        out_sealed_key: *mut ::std::os::raw::c_void,
+        sealed_kek: *const ctypes::c_void,
+        wrapped_key: *const ctypes::c_void,
+        out_sealed_key: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splCryptoDecryptAesKey(
-        wrapped_key: *const ::std::os::raw::c_void,
+        wrapped_key: *const ctypes::c_void,
         key_generation: u32,
         option: u32,
-        out_sealed_key: *mut ::std::os::raw::c_void,
+        out_sealed_key: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splCryptoCryptAesCtr(
-        input: *const ::std::os::raw::c_void,
-        output: *mut ::std::os::raw::c_void,
+        input: *const ctypes::c_void,
+        output: *mut ctypes::c_void,
         size: usize,
-        ctr: *const ::std::os::raw::c_void,
+        ctr: *const ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splCryptoComputeCmac(
-        input: *const ::std::os::raw::c_void,
+        input: *const ctypes::c_void,
         size: usize,
         keyslot: u32,
-        out_cmac: *mut ::std::os::raw::c_void,
+        out_cmac: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
@@ -18886,115 +18855,112 @@ extern "C" {
 }
 extern "C" {
     pub fn splRsaDecryptPrivateKey(
-        sealed_kek: *const ::std::os::raw::c_void,
-        wrapped_key: *const ::std::os::raw::c_void,
-        wrapped_rsa_key: *const ::std::os::raw::c_void,
+        sealed_kek: *const ctypes::c_void,
+        wrapped_key: *const ctypes::c_void,
+        wrapped_rsa_key: *const ctypes::c_void,
         wrapped_rsa_key_size: usize,
         version: RsaKeyVersion,
-        dst: *mut ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
         dst_size: usize,
     ) -> Result;
 }
 extern "C" {
     pub fn splSslLoadSecureExpModKey(
-        sealed_kek: *const ::std::os::raw::c_void,
-        wrapped_key: *const ::std::os::raw::c_void,
-        wrapped_rsa_key: *const ::std::os::raw::c_void,
+        sealed_kek: *const ctypes::c_void,
+        wrapped_key: *const ctypes::c_void,
+        wrapped_rsa_key: *const ctypes::c_void,
         wrapped_rsa_key_size: usize,
         version: RsaKeyVersion,
     ) -> Result;
 }
 extern "C" {
     pub fn splSslSecureExpMod(
-        input: *const ::std::os::raw::c_void,
-        modulus: *const ::std::os::raw::c_void,
-        dst: *mut ::std::os::raw::c_void,
+        input: *const ctypes::c_void,
+        modulus: *const ctypes::c_void,
+        dst: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splEsLoadRsaOaepKey(
-        sealed_kek: *const ::std::os::raw::c_void,
-        wrapped_key: *const ::std::os::raw::c_void,
-        wrapped_rsa_key: *const ::std::os::raw::c_void,
+        sealed_kek: *const ctypes::c_void,
+        wrapped_key: *const ctypes::c_void,
+        wrapped_rsa_key: *const ctypes::c_void,
         wrapped_rsa_key_size: usize,
         version: RsaKeyVersion,
     ) -> Result;
 }
 extern "C" {
     pub fn splEsUnwrapRsaOaepWrappedTitlekey(
-        rsa_wrapped_titlekey: *const ::std::os::raw::c_void,
-        modulus: *const ::std::os::raw::c_void,
-        label_hash: *const ::std::os::raw::c_void,
+        rsa_wrapped_titlekey: *const ctypes::c_void,
+        modulus: *const ctypes::c_void,
+        label_hash: *const ctypes::c_void,
         label_hash_size: usize,
         key_generation: u32,
-        out_sealed_titlekey: *mut ::std::os::raw::c_void,
+        out_sealed_titlekey: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splEsUnwrapAesWrappedTitlekey(
-        aes_wrapped_titlekey: *const ::std::os::raw::c_void,
+        aes_wrapped_titlekey: *const ctypes::c_void,
         key_generation: u32,
-        out_sealed_titlekey: *mut ::std::os::raw::c_void,
+        out_sealed_titlekey: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splEsLoadSecureExpModKey(
-        sealed_kek: *const ::std::os::raw::c_void,
-        wrapped_key: *const ::std::os::raw::c_void,
-        wrapped_rsa_key: *const ::std::os::raw::c_void,
+        sealed_kek: *const ctypes::c_void,
+        wrapped_key: *const ctypes::c_void,
+        wrapped_rsa_key: *const ctypes::c_void,
         wrapped_rsa_key_size: usize,
         version: RsaKeyVersion,
     ) -> Result;
 }
 extern "C" {
     pub fn splEsSecureExpMod(
-        input: *const ::std::os::raw::c_void,
-        modulus: *const ::std::os::raw::c_void,
-        dst: *mut ::std::os::raw::c_void,
+        input: *const ctypes::c_void,
+        modulus: *const ctypes::c_void,
+        dst: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splFsLoadSecureExpModKey(
-        sealed_kek: *const ::std::os::raw::c_void,
-        wrapped_key: *const ::std::os::raw::c_void,
-        wrapped_rsa_key: *const ::std::os::raw::c_void,
+        sealed_kek: *const ctypes::c_void,
+        wrapped_key: *const ctypes::c_void,
+        wrapped_rsa_key: *const ctypes::c_void,
         wrapped_rsa_key_size: usize,
         version: RsaKeyVersion,
     ) -> Result;
 }
 extern "C" {
     pub fn splFsSecureExpMod(
-        input: *const ::std::os::raw::c_void,
-        modulus: *const ::std::os::raw::c_void,
-        dst: *mut ::std::os::raw::c_void,
+        input: *const ctypes::c_void,
+        modulus: *const ctypes::c_void,
+        dst: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
     pub fn splFsGenerateSpecificAesKey(
-        wrapped_key: *const ::std::os::raw::c_void,
+        wrapped_key: *const ctypes::c_void,
         key_generation: u32,
         option: u32,
-        out_sealed_key: *mut ::std::os::raw::c_void,
+        out_sealed_key: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
-    pub fn splFsLoadTitlekey(
-        sealed_titlekey: *const ::std::os::raw::c_void,
-        keyslot: u32,
-    ) -> Result;
+    pub fn splFsLoadTitlekey(sealed_titlekey: *const ctypes::c_void, keyslot: u32) -> Result;
 }
 extern "C" {
-    pub fn splFsGetPackage2Hash(out_hash: *mut ::std::os::raw::c_void) -> Result;
+    pub fn splFsGetPackage2Hash(out_hash: *mut ctypes::c_void) -> Result;
 }
 extern "C" {
     pub fn splManuEncryptRsaKeyForImport(
-        sealed_kek_pre: *const ::std::os::raw::c_void,
-        wrapped_key_pre: *const ::std::os::raw::c_void,
-        sealed_kek_post: *const ::std::os::raw::c_void,
-        wrapped_kek_post: *const ::std::os::raw::c_void,
+        sealed_kek_pre: *const ctypes::c_void,
+        wrapped_key_pre: *const ctypes::c_void,
+        sealed_kek_post: *const ctypes::c_void,
+        wrapped_kek_post: *const ctypes::c_void,
         option: u32,
-        wrapped_rsa_key: *const ::std::os::raw::c_void,
-        out_wrapped_rsa_key: *mut ::std::os::raw::c_void,
+        wrapped_rsa_key: *const ctypes::c_void,
+        out_wrapped_rsa_key: *mut ctypes::c_void,
         rsa_key_size: usize,
     ) -> Result;
 }
@@ -19403,7 +19369,7 @@ extern "C" {
         cs: *mut NcmContentStorage,
         placeholderId: *const NcmNcaId,
         offset: u64,
-        srcData: *const ::std::os::raw::c_void,
+        srcData: *const ctypes::c_void,
         srcDataSize: usize,
     ) -> Result;
 }
@@ -19431,7 +19397,7 @@ extern "C" {
     pub fn ncmContentStorageGetPath(
         cs: *mut NcmContentStorage,
         ncaId: *const NcmNcaId,
-        out: *mut ::std::os::raw::c_char,
+        out: *mut ctypes::c_char,
         outSize: usize,
     ) -> Result;
 }
@@ -19439,7 +19405,7 @@ extern "C" {
     pub fn ncmContentStorageGetPlaceHolderPath(
         cs: *mut NcmContentStorage,
         ncaId: *const NcmNcaId,
-        out: *mut ::std::os::raw::c_char,
+        out: *mut ctypes::c_char,
         outSize: usize,
     ) -> Result;
 }
@@ -19461,7 +19427,7 @@ extern "C" {
         cs: *mut NcmContentStorage,
         ncaId: *const NcmNcaId,
         offset: u64,
-        outBuf: *mut ::std::os::raw::c_void,
+        outBuf: *mut ctypes::c_void,
         bufSize: usize,
     ) -> Result;
 }
@@ -19763,7 +19729,7 @@ extern "C" {
     /// @param buffer_index Starting image buffer index. Must be < buffer_count.
     /// @param timeout Timeout in nanoseconds. A default value of 100000000 can be used.
     pub fn capsscCaptureScreenshot(
-        buf: *mut ::std::os::raw::c_void,
+        buf: *mut ctypes::c_void,
         size: usize,
         inval: u32,
         width: u64,
@@ -19783,7 +19749,7 @@ extern "C" {
 extern "C" {
     /// Same as \ref capssuSaveScreenShotEx0, except this uses an all-zero CapsScreenShotAttribute where the first u32 is set to attr_val. attr_val can be zero.
     pub fn capssuSaveScreenShot(
-        buffer: *const ::std::os::raw::c_void,
+        buffer: *const ctypes::c_void,
         size: usize,
         unk: u32,
         attr_val: u32,
@@ -19793,7 +19759,7 @@ extern "C" {
 extern "C" {
     /// Saves an Album screenshot using the specified gfx data in buffer (1280x720 RGBA8), size must be at least 0x384000. unk can be zero.
     pub fn capssuSaveScreenShotEx0(
-        buffer: *const ::std::os::raw::c_void,
+        buffer: *const ctypes::c_void,
         size: usize,
         attr: *mut CapsScreenShotAttribute,
         unk: u32,
@@ -20648,7 +20614,7 @@ pub struct NfpuRegisterInfo {
     pub first_write_month: u8,
     pub first_write_day: u8,
     /// < utf-8, null-terminated
-    pub amiibo_name: [::std::os::raw::c_char; 11usize],
+    pub amiibo_name: [ctypes::c_char; 11usize],
     pub reserved: [u8; 153usize],
 }
 #[test]
@@ -20878,14 +20844,14 @@ extern "C" {
 extern "C" {
     pub fn nfpuGetApplicationArea(
         id: HidControllerID,
-        buf: *mut ::std::os::raw::c_void,
+        buf: *mut ctypes::c_void,
         buf_size: usize,
     ) -> Result;
 }
 extern "C" {
     pub fn nfpuSetApplicationArea(
         id: HidControllerID,
-        buf: *const ::std::os::raw::c_void,
+        buf: *const ctypes::c_void,
         buf_size: usize,
     ) -> Result;
 }
@@ -20893,7 +20859,7 @@ extern "C" {
     pub fn nfpuCreateApplicationArea(
         id: HidControllerID,
         app_id: u32,
-        buf: *const ::std::os::raw::c_void,
+        buf: *const ctypes::c_void,
         buf_size: usize,
     ) -> Result;
 }
@@ -21049,9 +21015,9 @@ extern "C" {
     pub fn binderTransactParcel(
         b: *mut Binder,
         code: u32,
-        parcel_data: *mut ::std::os::raw::c_void,
+        parcel_data: *mut ctypes::c_void,
         parcel_data_size: usize,
-        parcel_reply: *mut ::std::os::raw::c_void,
+        parcel_reply: *mut ctypes::c_void,
         parcel_reply_size: usize,
         flags: u32,
     ) -> Result;
@@ -21221,16 +21187,16 @@ extern "C" {
 extern "C" {
     pub fn parcelWriteData(
         ctx: *mut Parcel,
-        data: *const ::std::os::raw::c_void,
+        data: *const ctypes::c_void,
         data_size: usize,
-    ) -> *mut ::std::os::raw::c_void;
+    ) -> *mut ctypes::c_void;
 }
 extern "C" {
     pub fn parcelReadData(
         ctx: *mut Parcel,
-        data: *mut ::std::os::raw::c_void,
+        data: *mut ctypes::c_void,
         data_size: usize,
-    ) -> *mut ::std::os::raw::c_void;
+    ) -> *mut ctypes::c_void;
 }
 extern "C" {
     pub fn parcelWriteInt32(ctx: *mut Parcel, val: s32);
@@ -21239,7 +21205,7 @@ extern "C" {
     pub fn parcelWriteUInt32(ctx: *mut Parcel, val: u32);
 }
 extern "C" {
-    pub fn parcelWriteString16(ctx: *mut Parcel, str: *const ::std::os::raw::c_char);
+    pub fn parcelWriteString16(ctx: *mut Parcel, str: *const ctypes::c_char);
 }
 extern "C" {
     pub fn parcelReadInt32(ctx: *mut Parcel) -> s32;
@@ -21248,20 +21214,17 @@ extern "C" {
     pub fn parcelReadUInt32(ctx: *mut Parcel) -> u32;
 }
 extern "C" {
-    pub fn parcelWriteInterfaceToken(ctx: *mut Parcel, str: *const ::std::os::raw::c_char);
+    pub fn parcelWriteInterfaceToken(ctx: *mut Parcel, str: *const ctypes::c_char);
 }
 extern "C" {
-    pub fn parcelReadFlattenedObject(
-        ctx: *mut Parcel,
-        size: *mut usize,
-    ) -> *mut ::std::os::raw::c_void;
+    pub fn parcelReadFlattenedObject(ctx: *mut Parcel, size: *mut usize) -> *mut ctypes::c_void;
 }
 extern "C" {
     pub fn parcelWriteFlattenedObject(
         ctx: *mut Parcel,
-        data: *const ::std::os::raw::c_void,
+        data: *const ctypes::c_void,
         size: usize,
-    ) -> *mut ::std::os::raw::c_void;
+    ) -> *mut ctypes::c_void;
 }
 pub const PIXEL_FORMAT_RGBA_8888: _bindgen_ty_6 = 1;
 pub const PIXEL_FORMAT_RGBX_8888: _bindgen_ty_6 = 2;
@@ -21329,9 +21292,9 @@ pub type _bindgen_ty_11 = u32;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct NativeHandle {
-    pub version: ::std::os::raw::c_int,
-    pub num_fds: ::std::os::raw::c_int,
-    pub num_ints: ::std::os::raw::c_int,
+    pub version: ctypes::c_int,
+    pub num_fds: ctypes::c_int,
+    pub num_ints: ctypes::c_int,
 }
 #[test]
 fn bindgen_test_layout_NativeHandle() {
@@ -22756,7 +22719,7 @@ extern "C" {
         flags: u32,
         align: u32,
         kind: u8,
-        addr: *mut ::std::os::raw::c_void,
+        addr: *mut ctypes::c_void,
     ) -> Result;
 }
 extern "C" {
@@ -22830,7 +22793,7 @@ extern "C" {
     ) -> Result;
 }
 extern "C" {
-    pub fn nvioctlChannel_SetUserData(fd: u32, addr: *mut ::std::os::raw::c_void) -> Result;
+    pub fn nvioctlChannel_SetUserData(fd: u32, addr: *mut ctypes::c_void) -> Result;
 }
 pub type NvFence = nvioctl_fence;
 #[repr(C)]
@@ -24026,7 +23989,7 @@ pub struct NvMap {
     pub handle: u32,
     pub id: u32,
     pub size: u32,
-    pub cpu_addr: *mut ::std::os::raw::c_void,
+    pub cpu_addr: *mut ctypes::c_void,
     pub kind: NvKind,
     pub has_init: bool,
     pub is_cpu_cacheable: bool,
@@ -24121,7 +24084,7 @@ extern "C" {
 extern "C" {
     pub fn nvMapCreate(
         m: *mut NvMap,
-        cpu_addr: *mut ::std::os::raw::c_void,
+        cpu_addr: *mut ctypes::c_void,
         size: u32,
         align: u32,
         kind: NvKind,
@@ -24139,8 +24102,8 @@ extern "C" {
 pub struct Framebuffer {
     pub win: *mut NWindow,
     pub map: NvMap,
-    pub buf: *mut ::std::os::raw::c_void,
-    pub buf_linear: *mut ::std::os::raw::c_void,
+    pub buf: *mut ctypes::c_void,
+    pub buf_linear: *mut ctypes::c_void,
     pub stride: u32,
     pub width_aligned: u32,
     pub height_aligned: u32,
@@ -24304,10 +24267,7 @@ extern "C" {
     /// @note If \ref framebufferMakeLinear was used, this function will instead return a pointer to the shadow linear buffer.
     /// In this case, the offset of a pixel is \p y * \p out_stride + \p x * \p bytes_per_pixel.
     /// @note Each call to \ref framebufferBegin must be paired with a \ref framebufferEnd call.
-    pub fn framebufferBegin(
-        fb: *mut Framebuffer,
-        out_stride: *mut u32,
-    ) -> *mut ::std::os::raw::c_void;
+    pub fn framebufferBegin(fb: *mut Framebuffer, out_stride: *mut u32) -> *mut ctypes::c_void;
 }
 extern "C" {
     /// @brief Finishes rendering a frame in a \ref Framebuffer.
@@ -24461,7 +24421,7 @@ fn bindgen_test_layout_NvChannel() {
     );
 }
 extern "C" {
-    pub fn nvChannelCreate(c: *mut NvChannel, dev: *const ::std::os::raw::c_char) -> Result;
+    pub fn nvChannelCreate(c: *mut NvChannel, dev: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     pub fn nvChannelClose(c: *mut NvChannel);
@@ -24704,7 +24664,7 @@ extern "C" {
     pub fn audrvCreate(
         d: *mut AudioDriver,
         config: *const AudioRendererConfig,
-        num_final_mix_channels: ::std::os::raw::c_int,
+        num_final_mix_channels: ctypes::c_int,
     ) -> Result;
 }
 extern "C" {
@@ -24716,18 +24676,18 @@ extern "C" {
 extern "C" {
     pub fn audrvMemPoolAdd(
         d: *mut AudioDriver,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
-    ) -> ::std::os::raw::c_int;
+    ) -> ctypes::c_int;
 }
 extern "C" {
-    pub fn audrvMemPoolRemove(d: *mut AudioDriver, id: ::std::os::raw::c_int) -> bool;
+    pub fn audrvMemPoolRemove(d: *mut AudioDriver, id: ctypes::c_int) -> bool;
 }
 extern "C" {
-    pub fn audrvMemPoolAttach(d: *mut AudioDriver, id: ::std::os::raw::c_int) -> bool;
+    pub fn audrvMemPoolAttach(d: *mut AudioDriver, id: ctypes::c_int) -> bool;
 }
 extern "C" {
-    pub fn audrvMemPoolDetach(d: *mut AudioDriver, id: ::std::os::raw::c_int) -> bool;
+    pub fn audrvMemPoolDetach(d: *mut AudioDriver, id: ctypes::c_int) -> bool;
 }
 pub const AudioDriverWaveBufState_AudioDriverWaveBufState_Free: AudioDriverWaveBufState = 0;
 pub const AudioDriverWaveBufState_AudioDriverWaveBufState_Waiting: AudioDriverWaveBufState = 1;
@@ -24741,7 +24701,7 @@ pub struct AudioDriverWaveBuf {
     pub size: u64,
     pub start_sample_offset: s32,
     pub end_sample_offset: s32,
-    pub context_addr: *const ::std::os::raw::c_void,
+    pub context_addr: *const ctypes::c_void,
     pub context_sz: u64,
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize], u8>,
     pub is_looping: bool,
@@ -24753,7 +24713,7 @@ pub struct AudioDriverWaveBuf {
 pub union AudioDriverWaveBuf__bindgen_ty_1 {
     pub data_pcm16: *mut s16,
     pub data_adpcm: *mut u8,
-    pub data_raw: *const ::std::os::raw::c_void,
+    pub data_raw: *const ctypes::c_void,
     _bindgen_union_align: u64,
 }
 #[test]
@@ -24938,42 +24898,42 @@ impl AudioDriverWaveBuf {
 extern "C" {
     pub fn audrvVoiceInit(
         d: *mut AudioDriver,
-        id: ::std::os::raw::c_int,
-        num_channels: ::std::os::raw::c_int,
+        id: ctypes::c_int,
+        num_channels: ctypes::c_int,
         format: PcmFormat,
-        sample_rate: ::std::os::raw::c_int,
+        sample_rate: ctypes::c_int,
     ) -> bool;
 }
 extern "C" {
-    pub fn audrvVoiceDrop(d: *mut AudioDriver, id: ::std::os::raw::c_int);
+    pub fn audrvVoiceDrop(d: *mut AudioDriver, id: ctypes::c_int);
 }
 extern "C" {
-    pub fn audrvVoiceStop(d: *mut AudioDriver, id: ::std::os::raw::c_int);
+    pub fn audrvVoiceStop(d: *mut AudioDriver, id: ctypes::c_int);
 }
 extern "C" {
-    pub fn audrvVoiceIsPlaying(d: *mut AudioDriver, id: ::std::os::raw::c_int) -> bool;
+    pub fn audrvVoiceIsPlaying(d: *mut AudioDriver, id: ctypes::c_int) -> bool;
 }
 extern "C" {
     pub fn audrvVoiceAddWaveBuf(
         d: *mut AudioDriver,
-        id: ::std::os::raw::c_int,
+        id: ctypes::c_int,
         wavebuf: *mut AudioDriverWaveBuf,
     ) -> bool;
 }
 extern "C" {
-    pub fn audrvVoiceGetWaveBufSeq(d: *mut AudioDriver, id: ::std::os::raw::c_int) -> u32;
+    pub fn audrvVoiceGetWaveBufSeq(d: *mut AudioDriver, id: ctypes::c_int) -> u32;
 }
 extern "C" {
-    pub fn audrvVoiceGetPlayedSampleCount(d: *mut AudioDriver, id: ::std::os::raw::c_int) -> u32;
+    pub fn audrvVoiceGetPlayedSampleCount(d: *mut AudioDriver, id: ctypes::c_int) -> u32;
 }
 extern "C" {
-    pub fn audrvVoiceGetVoiceDropsCount(d: *mut AudioDriver, id: ::std::os::raw::c_int) -> u32;
+    pub fn audrvVoiceGetVoiceDropsCount(d: *mut AudioDriver, id: ctypes::c_int) -> u32;
 }
 extern "C" {
     pub fn audrvVoiceSetBiquadFilter(
         d: *mut AudioDriver,
-        id: ::std::os::raw::c_int,
-        biquad_id: ::std::os::raw::c_int,
+        id: ctypes::c_int,
+        biquad_id: ctypes::c_int,
         a0: f32,
         a1: f32,
         a2: f32,
@@ -24985,23 +24945,23 @@ extern "C" {
 extern "C" {
     pub fn audrvMixAdd(
         d: *mut AudioDriver,
-        sample_rate: ::std::os::raw::c_int,
-        num_channels: ::std::os::raw::c_int,
-    ) -> ::std::os::raw::c_int;
+        sample_rate: ctypes::c_int,
+        num_channels: ctypes::c_int,
+    ) -> ctypes::c_int;
 }
 extern "C" {
-    pub fn audrvMixRemove(d: *mut AudioDriver, id: ::std::os::raw::c_int);
+    pub fn audrvMixRemove(d: *mut AudioDriver, id: ctypes::c_int);
 }
 extern "C" {
     pub fn audrvDeviceSinkAdd(
         d: *mut AudioDriver,
-        device_name: *const ::std::os::raw::c_char,
-        num_channels: ::std::os::raw::c_int,
+        device_name: *const ctypes::c_char,
+        num_channels: ctypes::c_int,
         channel_ids: *const u8,
-    ) -> ::std::os::raw::c_int;
+    ) -> ctypes::c_int;
 }
 extern "C" {
-    pub fn audrvSinkRemove(d: *mut AudioDriver, id: ::std::os::raw::c_int);
+    pub fn audrvSinkRemove(d: *mut AudioDriver, id: ctypes::c_int);
 }
 /// CommonArguments
 #[repr(C)]
@@ -25123,7 +25083,7 @@ extern "C" {
     /// @param size Size to write.
     pub fn libappletCreateWriteStorage(
         s: *mut AppletStorage,
-        buffer: *const ::std::os::raw::c_void,
+        buffer: *const ctypes::c_void,
         size: usize,
     ) -> Result;
 }
@@ -25135,7 +25095,7 @@ extern "C" {
     /// @param transfer_size Optional output size field for the actual size used for the read, can be NULL.
     pub fn libappletReadStorage(
         s: *mut AppletStorage,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
         transfer_size: *mut usize,
     ) -> Result;
@@ -25153,7 +25113,7 @@ extern "C" {
     /// @param size Input data size.
     pub fn libappletPushInData(
         h: *mut AppletHolder,
-        buffer: *const ::std::os::raw::c_void,
+        buffer: *const ctypes::c_void,
         size: usize,
     ) -> Result;
 }
@@ -25165,7 +25125,7 @@ extern "C" {
     /// @param transfer_size Optional output size field for the actual size used for the read, can be NULL.
     pub fn libappletPopOutData(
         h: *mut AppletHolder,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
         transfer_size: *mut usize,
     ) -> Result;
@@ -25188,9 +25148,9 @@ extern "C" {
     pub fn libappletLaunch(
         id: AppletId,
         commonargs: *mut LibAppletArgs,
-        arg: *const ::std::os::raw::c_void,
+        arg: *const ctypes::c_void,
         arg_size: usize,
-        reply: *mut ::std::os::raw::c_void,
+        reply: *mut ctypes::c_void,
         reply_size: usize,
         out_reply_size: *mut usize,
     ) -> Result;
@@ -25808,9 +25768,9 @@ pub struct ErrorSystemArg {
     /// < See set.h.
     pub languageCode: u64,
     /// < UTF-8 Dialog message.
-    pub dialogMessage: [::std::os::raw::c_char; 2048usize],
+    pub dialogMessage: [ctypes::c_char; 2048usize],
     /// < UTF-8 Fullscreen message (displayed when the user clicks on "Details").
-    pub fullscreenMessage: [::std::os::raw::c_char; 2048usize],
+    pub fullscreenMessage: [ctypes::c_char; 2048usize],
 }
 #[test]
 fn bindgen_test_layout_ErrorSystemArg() {
@@ -25928,9 +25888,9 @@ pub struct ErrorApplicationArg {
     /// < See set.h.
     pub languageCode: u64,
     /// < UTF-8 Dialog message.
-    pub dialogMessage: [::std::os::raw::c_char; 2048usize],
+    pub dialogMessage: [ctypes::c_char; 2048usize],
     /// < UTF-8 Fullscreen message (displayed when the user clicks on "Details").
-    pub fullscreenMessage: [::std::os::raw::c_char; 2048usize],
+    pub fullscreenMessage: [ctypes::c_char; 2048usize],
 }
 #[test]
 fn bindgen_test_layout_ErrorApplicationArg() {
@@ -26103,8 +26063,8 @@ extern "C" {
     /// @warning This applet creates an error report that is logged in the system. Proceed at your own risk!
     pub fn errorSystemCreate(
         c: *mut ErrorSystemConfig,
-        dialog_message: *const ::std::os::raw::c_char,
-        fullscreen_message: *const ::std::os::raw::c_char,
+        dialog_message: *const ctypes::c_char,
+        fullscreen_message: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -26129,8 +26089,8 @@ extern "C" {
     /// @warning This applet creates an error report that is logged in the system. Proceed at your own risk!
     pub fn errorApplicationCreate(
         c: *mut ErrorApplicationConfig,
-        dialog_message: *const ::std::os::raw::c_char,
-        fullscreen_message: *const ::std::os::raw::c_char,
+        dialog_message: *const ctypes::c_char,
+        fullscreen_message: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -26222,7 +26182,7 @@ pub type SwkbdInlineMode = u32;
 /// TextCheck callback set by \ref swkbdConfigSetTextCheckCallback, for validating the input string when the swkbd ok-button is pressed. This buffer contains an UTF-8 string. This callback should validate the input string, then return a \ref SwkbdTextCheckResult indicating success/failure. On failure, this function must write an error message to the tmp_string buffer, which will then be displayed by swkbd.
 pub type SwkbdTextCheckCb = ::core::option::Option<
     unsafe extern "C" fn(
-        tmp_string: *mut ::std::os::raw::c_char,
+        tmp_string: *mut ctypes::c_char,
         tmp_string_size: usize,
     ) -> SwkbdTextCheckResult,
 >;
@@ -27587,22 +27547,22 @@ fn bindgen_test_layout_SwkbdDecidedEnterArg() {
 /// This callback is used by \ref swkbdInlineUpdate when handling ChangedString* replies (text changed by the user or by \ref swkbdInlineSetInputText).
 /// str is the UTF-8 string for the current text.
 pub type SwkbdChangedStringCb = ::core::option::Option<
-    unsafe extern "C" fn(str: *const ::std::os::raw::c_char, arg: *mut SwkbdChangedStringArg),
+    unsafe extern "C" fn(str: *const ctypes::c_char, arg: *mut SwkbdChangedStringArg),
 >;
 /// This callback is used by \ref swkbdInlineUpdate when handling MovedCursor* replies.
 /// str is the UTF-8 string for the current text.
 pub type SwkbdMovedCursorCb = ::core::option::Option<
-    unsafe extern "C" fn(str: *const ::std::os::raw::c_char, arg: *mut SwkbdMovedCursorArg),
+    unsafe extern "C" fn(str: *const ctypes::c_char, arg: *mut SwkbdMovedCursorArg),
 >;
 /// This callback is used by \ref swkbdInlineUpdate when handling MovedTab* replies.
 /// str is the UTF-8 string for the current text.
 pub type SwkbdMovedTabCb = ::core::option::Option<
-    unsafe extern "C" fn(str: *const ::std::os::raw::c_char, arg: *mut SwkbdMovedTabArg),
+    unsafe extern "C" fn(str: *const ctypes::c_char, arg: *mut SwkbdMovedTabArg),
 >;
 /// This callback is used by \ref swkbdInlineUpdate when handling DecidedEnter* replies (when the final text was submitted via the button).
 /// str is the UTF-8 string for the current text.
 pub type SwkbdDecidedEnterCb = ::core::option::Option<
-    unsafe extern "C" fn(str: *const ::std::os::raw::c_char, arg: *mut SwkbdDecidedEnterArg),
+    unsafe extern "C" fn(str: *const ctypes::c_char, arg: *mut SwkbdDecidedEnterArg),
 >;
 /// InlineKeyboard
 #[repr(C)]
@@ -27618,7 +27578,7 @@ pub struct SwkbdInline {
     pub wordInfoStorage: AppletStorage,
     pub interactive_tmpbuf: *mut u8,
     pub interactive_tmpbuf_size: usize,
-    pub interactive_strbuf: *mut ::std::os::raw::c_char,
+    pub interactive_strbuf: *mut ctypes::c_char,
     pub interactive_strbuf_size: usize,
     pub finishedInitializeCb: VoidFn,
     pub changedStringCb: SwkbdChangedStringCb,
@@ -27888,52 +27848,46 @@ extern "C" {
     /// @brief Sets the Ok button text. The default is "".
     /// @param c SwkbdConfig struct.
     /// @param str UTF-8 input string.
-    pub fn swkbdConfigSetOkButtonText(c: *mut SwkbdConfig, str: *const ::std::os::raw::c_char);
+    pub fn swkbdConfigSetOkButtonText(c: *mut SwkbdConfig, str: *const ctypes::c_char);
 }
 extern "C" {
     /// @brief Sets the LeftOptionalSymbolKey, for \ref SwkbdType_NumPad. The default is "".
     /// @param c SwkbdConfig struct.
     /// @param str UTF-8 input string.
-    pub fn swkbdConfigSetLeftOptionalSymbolKey(
-        c: *mut SwkbdConfig,
-        str: *const ::std::os::raw::c_char,
-    );
+    pub fn swkbdConfigSetLeftOptionalSymbolKey(c: *mut SwkbdConfig, str: *const ctypes::c_char);
 }
 extern "C" {
     /// @brief Sets the RightOptionalSymbolKey, for \ref SwkbdType_NumPad. The default is "".
     /// @param c SwkbdConfig struct.
     /// @param str UTF-8 input string.
-    pub fn swkbdConfigSetRightOptionalSymbolKey(
-        c: *mut SwkbdConfig,
-        str: *const ::std::os::raw::c_char,
-    );
+    pub fn swkbdConfigSetRightOptionalSymbolKey(c: *mut SwkbdConfig, str: *const ctypes::c_char);
 }
 extern "C" {
     /// @brief Sets the Header text. The default is "".
     /// @note See \ref SwkbdArgV0 stringLenMax.
     /// @param c SwkbdConfig struct.
     /// @param str UTF-8 input string.
-    pub fn swkbdConfigSetHeaderText(c: *mut SwkbdConfig, str: *const ::std::os::raw::c_char);
+    pub fn swkbdConfigSetHeaderText(c: *mut SwkbdConfig, str: *const ctypes::c_char);
 }
 extern "C" {
     /// @brief Sets the Sub text. The default is "".
     /// @note See \ref SwkbdArgV0 stringLenMax.
     /// @param c SwkbdConfig struct.
     /// @param str UTF-8 input string.
-    pub fn swkbdConfigSetSubText(c: *mut SwkbdConfig, str: *const ::std::os::raw::c_char);
+    pub fn swkbdConfigSetSubText(c: *mut SwkbdConfig, str: *const ctypes::c_char);
 }
 extern "C" {
     /// @brief Sets the Guide text. The default is "".
     /// @note The swkbd applet only displays this when the current displayed cursor position is 0.
     /// @param c SwkbdConfig struct.
     /// @param str UTF-8 input string.
-    pub fn swkbdConfigSetGuideText(c: *mut SwkbdConfig, str: *const ::std::os::raw::c_char);
+    pub fn swkbdConfigSetGuideText(c: *mut SwkbdConfig, str: *const ctypes::c_char);
 }
 extern "C" {
     /// @brief Sets the Initial text. The default is "".
     /// @param c SwkbdConfig struct.
     /// @param str UTF-8 input string.
-    pub fn swkbdConfigSetInitialText(c: *mut SwkbdConfig, str: *const ::std::os::raw::c_char);
+    pub fn swkbdConfigSetInitialText(c: *mut SwkbdConfig, str: *const ctypes::c_char);
 }
 extern "C" {
     /// @brief Sets the user dictionary.
@@ -27956,7 +27910,7 @@ extern "C" {
     /// @param out_string_size UTF-8 Output string buffer size, including NUL-terminator.
     pub fn swkbdShow(
         c: *mut SwkbdConfig,
-        out_string: *mut ::std::os::raw::c_char,
+        out_string: *mut ctypes::c_char,
         out_string_size: usize,
     ) -> Result;
 }
@@ -28046,7 +28000,7 @@ extern "C" {
     /// @param str Input UTF-8 string for the Ok button text, this can be empty/NULL to use the default.
     pub fn swkbdInlineAppearArgSetOkButtonText(
         arg: *mut SwkbdAppearArg,
-        str: *const ::std::os::raw::c_char,
+        str: *const ctypes::c_char,
     );
 }
 extern "C" {
@@ -28055,7 +28009,7 @@ extern "C" {
     /// @param str UTF-8 input string.
     pub fn swkbdInlineAppearArgSetLeftButtonText(
         arg: *mut SwkbdAppearArg,
-        str: *const ::std::os::raw::c_char,
+        str: *const ctypes::c_char,
     );
 }
 extern "C" {
@@ -28064,7 +28018,7 @@ extern "C" {
     /// @param str UTF-8 input string.
     pub fn swkbdInlineAppearArgSetRightButtonText(
         arg: *mut SwkbdAppearArg,
-        str: *const ::std::os::raw::c_char,
+        str: *const ctypes::c_char,
     );
 }
 extern "C" {
@@ -28080,7 +28034,7 @@ extern "C" {
     /// @note This will not affect the cursor position, see \ref swkbdInlineSetCursorPos for that.
     /// @param s SwkbdInline object.
     /// @param str UTF-8 input string.
-    pub fn swkbdInlineSetInputText(s: *mut SwkbdInline, str: *const ::std::os::raw::c_char);
+    pub fn swkbdInlineSetInputText(s: *mut SwkbdInline, str: *const ctypes::c_char);
 }
 extern "C" {
     /// @brief Sets the cursor character position in the string.
@@ -28129,7 +28083,7 @@ extern "C" {
     /// @param info Input \ref SwkbdCustomizeDicInfo
     pub fn swkbdInlineSetCustomizeDic(
         s: *mut SwkbdInline,
-        buffer: *mut ::std::os::raw::c_void,
+        buffer: *mut ctypes::c_void,
         size: usize,
         info: *mut SwkbdCustomizeDicInfo,
     ) -> Result;
@@ -28261,9 +28215,9 @@ pub struct WebWifiPageArg {
     /// < Official sw sets this to 0 with appletStorageWrite, separately from the rest of the config struct.
     pub unk_x0: u32,
     /// < Connection-test URL.
-    pub conntest_url: [::std::os::raw::c_char; 256usize],
+    pub conntest_url: [ctypes::c_char; 256usize],
     /// < Initial URL navigated to by the applet.
-    pub initial_url: [::std::os::raw::c_char; 1024usize],
+    pub initial_url: [ctypes::c_char; 1024usize],
     /// < NIFM Network UUID. Only used by the applet when conntest_url is set.
     pub uuid: u128,
     /// < Input value for nifm cmd SetRequirementByRevision. Only used by the applet when conntest_url is set.
@@ -28439,7 +28393,7 @@ pub struct WebCommonReturnValue {
     /// < Padding
     pub pad: u32,
     /// < LastUrl string
-    pub lastUrl: [::std::os::raw::c_char; 4096usize],
+    pub lastUrl: [ctypes::c_char; 4096usize],
     /// < Size of LastUrl, including NUL-terminator.
     pub lastUrlSize: u64,
 }
@@ -28899,8 +28853,8 @@ extern "C" {
     /// @param rev Input value for nifm cmd SetRequirementByRevision. Value 0 can be used. Only used by the applet when conntest_url is set.
     pub fn webWifiCreate(
         config: *mut WebWifiConfig,
-        conntest_url: *const ::std::os::raw::c_char,
-        initial_url: *const ::std::os::raw::c_char,
+        conntest_url: *const ctypes::c_char,
+        initial_url: *const ctypes::c_char,
         uuid: u128,
         rev: u32,
     );
@@ -28916,10 +28870,7 @@ extern "C" {
     /// @note Sets ::WebArgType_UnknownD, and ::WebArgType_Unknown12 on pre-3.0.0, to value 1.
     /// @param config WebCommonConfig object.
     /// @param url Initial URL navigated to by the applet.
-    pub fn webPageCreate(
-        config: *mut WebCommonConfig,
-        url: *const ::std::os::raw::c_char,
-    ) -> Result;
+    pub fn webPageCreate(config: *mut WebCommonConfig, url: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// @brief Creates the config for WebApplet. This is based on \ref webPageCreate, for News. Hence other functions referencing \ref webPageCreate also apply to this.
@@ -28927,10 +28878,7 @@ extern "C" {
     /// @note Sets ::WebArgType_UnknownD to value 1, and sets ::WebArgType_NewsFlag to true. Also uses \ref webConfigSetEcClientCert and \ref webConfigSetShopJump with flag=true.
     /// @param config WebCommonConfig object.
     /// @param url Initial URL navigated to by the applet.
-    pub fn webNewsCreate(
-        config: *mut WebCommonConfig,
-        url: *const ::std::os::raw::c_char,
-    ) -> Result;
+    pub fn webNewsCreate(config: *mut WebCommonConfig, url: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// @brief Creates the config for WebApplet. This is based on \ref webPageCreate, for YouTubeVideo. Hence other functions referencing \ref webPageCreate also apply to this. This uses a whitelist which essentially only allows youtube embed/ URLs (without mounting content from the host title).
@@ -28940,7 +28888,7 @@ extern "C" {
     /// @param url Initial URL navigated to by the applet.
     pub fn webYouTubeVideoCreate(
         config: *mut WebCommonConfig,
-        url: *const ::std::os::raw::c_char,
+        url: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -28961,7 +28909,7 @@ extern "C" {
         config: *mut WebCommonConfig,
         docKind: WebDocumentKind,
         titleID: u64,
-        docPath: *const ::std::os::raw::c_char,
+        docPath: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -28989,7 +28937,7 @@ extern "C" {
     /// @param url URL
     pub fn webConfigSetCallbackUrl(
         config: *mut WebCommonConfig,
-        url: *const ::std::os::raw::c_char,
+        url: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -28999,7 +28947,7 @@ extern "C" {
     /// @param url URL
     pub fn webConfigSetCallbackableUrl(
         config: *mut WebCommonConfig,
-        url: *const ::std::os::raw::c_char,
+        url: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -29010,7 +28958,7 @@ extern "C" {
     /// @param whitelist Whitelist string, each line is a regex for each whitelisted URL.
     pub fn webConfigSetWhitelist(
         config: *mut WebCommonConfig,
-        whitelist: *const ::std::os::raw::c_char,
+        whitelist: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -29160,7 +29108,7 @@ extern "C" {
     /// @param str String
     pub fn webConfigSetLobbyParameter(
         config: *mut WebCommonConfig,
-        str: *const ::std::os::raw::c_char,
+        str: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -29187,7 +29135,7 @@ extern "C" {
     /// @param str String
     pub fn webConfigSetAdditionalCommentText(
         config: *mut WebCommonConfig,
-        str: *const ::std::os::raw::c_char,
+        str: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -29204,7 +29152,7 @@ extern "C" {
     /// @param str String
     pub fn webConfigSetUserAgentAdditionalString(
         config: *mut WebCommonConfig,
-        str: *const ::std::os::raw::c_char,
+        str: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -29311,7 +29259,7 @@ extern "C" {
     /// @param out_size Output string length including NUL-terminator, for the original input string in the reply loaded from a separate size field.
     pub fn webReplyGetLastUrl(
         reply: *mut WebCommonReply,
-        outstr: *mut ::std::os::raw::c_char,
+        outstr: *mut ctypes::c_char,
         outstr_maxsize: usize,
         out_size: *mut usize,
     ) -> Result;
@@ -29336,7 +29284,7 @@ extern "C" {
     /// @param out_size Output string length including NUL-terminator, for the original input string in the reply loaded from a separate size field.
     pub fn webReplyGetPostServiceName(
         reply: *mut WebCommonReply,
-        outstr: *mut ::std::os::raw::c_char,
+        outstr: *mut ctypes::c_char,
         outstr_maxsize: usize,
         out_size: *mut usize,
     ) -> Result;
@@ -29351,7 +29299,7 @@ extern "C" {
     /// @param out_size Output string length including NUL-terminator, for the original input string in the reply loaded from a separate size field.
     pub fn webReplyGetPostId(
         reply: *mut WebCommonReply,
-        outstr: *mut ::std::os::raw::c_char,
+        outstr: *mut ctypes::c_char,
         outstr_maxsize: usize,
         out_size: *mut usize,
     ) -> Result;
@@ -29444,18 +29392,13 @@ pub type _bindgen_ty_14 = u32;
 pub const EnvAppletFlags_ApplicationOverride: _bindgen_ty_15 = 1;
 pub type _bindgen_ty_15 = u32;
 /// Loader return function.
-pub type LoaderReturnFn =
-    ::core::option::Option<unsafe extern "C" fn(result_code: ::std::os::raw::c_int)>;
+pub type LoaderReturnFn = ::core::option::Option<unsafe extern "C" fn(result_code: ctypes::c_int)>;
 extern "C" {
     /// @brief Parses the homebrew loader environment block (internally called).
     /// @param ctx Reserved.
     /// @param main_thread Reserved.
     /// @param saved_lr Reserved.
-    pub fn envSetup(
-        ctx: *mut ::std::os::raw::c_void,
-        main_thread: Handle,
-        saved_lr: LoaderReturnFn,
-    );
+    pub fn envSetup(ctx: *mut ctypes::c_void, main_thread: Handle, saved_lr: LoaderReturnFn);
 }
 extern "C" {
     /// Retrieves the handle to the main thread.
@@ -29471,7 +29414,7 @@ extern "C" {
 }
 extern "C" {
     /// Returns the address of the overriden heap.
-    pub fn envGetHeapOverrideAddr() -> *mut ::std::os::raw::c_void;
+    pub fn envGetHeapOverrideAddr() -> *mut ctypes::c_void;
 }
 extern "C" {
     /// Returns the size of the overriden heap.
@@ -29483,7 +29426,7 @@ extern "C" {
 }
 extern "C" {
     /// Returns the pointer to the argv array.
-    pub fn envGetArgv() -> *mut ::std::os::raw::c_void;
+    pub fn envGetArgv() -> *mut ctypes::c_void;
 }
 extern "C" {
     /// @brief Returns whether a syscall is hinted to be available.
@@ -29507,10 +29450,7 @@ extern "C" {
     /// @brief Configures the next homebrew application to load.
     /// @param path Path to the next homebrew application to load (.nro).
     /// @param argv Argument string to pass.
-    pub fn envSetNextLoad(
-        path: *const ::std::os::raw::c_char,
-        argv: *const ::std::os::raw::c_char,
-    ) -> Result;
+    pub fn envSetNextLoad(path: *const ctypes::c_char, argv: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// Returns true if the environment supports envSetNextLoad.
@@ -29546,45 +29486,45 @@ extern "C" {
     pub static mut __nxlink_host: in_addr;
 }
 extern "C" {
-    pub fn nxlinkStdio() -> ::std::os::raw::c_int;
+    pub fn nxlinkStdio() -> ctypes::c_int;
 }
-pub type _ssize_t = ::std::os::raw::c_long;
+pub type _ssize_t = ctypes::c_long;
 pub type u_int8_t = __uint8_t;
 pub type u_int16_t = __uint16_t;
 pub type u_int32_t = __uint32_t;
 pub type u_int64_t = __uint64_t;
-pub type register_t = ::std::os::raw::c_int;
-pub type __blkcnt_t = ::std::os::raw::c_long;
-pub type __blksize_t = ::std::os::raw::c_long;
+pub type register_t = ctypes::c_int;
+pub type __blkcnt_t = ctypes::c_long;
+pub type __blksize_t = ctypes::c_long;
 pub type __fsblkcnt_t = __uint64_t;
 pub type __fsfilcnt_t = __uint32_t;
-pub type _off_t = ::std::os::raw::c_long;
-pub type __pid_t = ::std::os::raw::c_int;
-pub type __dev_t = ::std::os::raw::c_short;
-pub type __uid_t = ::std::os::raw::c_ushort;
-pub type __gid_t = ::std::os::raw::c_ushort;
+pub type _off_t = ctypes::c_long;
+pub type __pid_t = ctypes::c_int;
+pub type __dev_t = ctypes::c_short;
+pub type __uid_t = ctypes::c_ushort;
+pub type __gid_t = ctypes::c_ushort;
 pub type __id_t = __uint32_t;
-pub type __ino_t = ::std::os::raw::c_ushort;
+pub type __ino_t = ctypes::c_ushort;
 pub type __mode_t = __uint32_t;
-pub type _off64_t = ::std::os::raw::c_longlong;
+pub type _off64_t = ctypes::c_longlong;
 pub type __off_t = _off_t;
 pub type __loff_t = _off64_t;
-pub type __key_t = ::std::os::raw::c_long;
-pub type _fpos_t = ::std::os::raw::c_long;
-pub type __size_t = ::std::os::raw::c_ulonglong;
+pub type __key_t = ctypes::c_long;
+pub type _fpos_t = ctypes::c_long;
+pub type __size_t = ctypes::c_ulonglong;
 pub type __ssize_t = _ssize_t;
-pub type wint_t = ::std::os::raw::c_ushort;
+pub type wint_t = ctypes::c_ushort;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct _mbstate_t {
-    pub __count: ::std::os::raw::c_int,
+    pub __count: ctypes::c_int,
     pub __value: _mbstate_t__bindgen_ty_1,
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _mbstate_t__bindgen_ty_1 {
     pub __wch: wint_t,
-    pub __wchb: [::std::os::raw::c_uchar; 4usize],
+    pub __wchb: [ctypes::c_uchar; 4usize],
     _bindgen_union_align: [u16; 2usize],
 }
 #[test]
@@ -29656,19 +29596,19 @@ fn bindgen_test_layout__mbstate_t() {
     );
 }
 pub type _flock_t = _LOCK_RECURSIVE_T;
-pub type _iconv_t = *mut ::std::os::raw::c_void;
-pub type __clock_t = ::std::os::raw::c_ulong;
+pub type _iconv_t = *mut ctypes::c_void;
+pub type __clock_t = ctypes::c_ulong;
 pub type __time_t = __int_least64_t;
-pub type __clockid_t = ::std::os::raw::c_ulong;
-pub type __timer_t = ::std::os::raw::c_ulong;
+pub type __clockid_t = ctypes::c_ulong;
+pub type __timer_t = ctypes::c_ulong;
 pub type __sa_family_t = __uint8_t;
 pub type __socklen_t = __uint32_t;
-pub type __nl_item = ::std::os::raw::c_int;
-pub type __nlink_t = ::std::os::raw::c_ushort;
-pub type __suseconds_t = ::std::os::raw::c_long;
-pub type __useconds_t = ::std::os::raw::c_ulong;
+pub type __nl_item = ctypes::c_int;
+pub type __nlink_t = ctypes::c_ushort;
+pub type __suseconds_t = ctypes::c_long;
+pub type __useconds_t = ctypes::c_ulong;
 pub type __va_list = __builtin_va_list;
-pub type __sigset_t = ::std::os::raw::c_ulong;
+pub type __sigset_t = ctypes::c_ulong;
 pub type suseconds_t = __suseconds_t;
 pub type time_t = __int_least64_t;
 #[repr(C)]
@@ -29714,7 +29654,7 @@ fn bindgen_test_layout_timeval() {
 #[derive(Debug, Copy, Clone)]
 pub struct timespec {
     pub tv_sec: time_t,
-    pub tv_nsec: ::std::os::raw::c_long,
+    pub tv_nsec: ctypes::c_long,
 }
 #[test]
 fn bindgen_test_layout_timespec() {
@@ -29795,7 +29735,7 @@ fn bindgen_test_layout_itimerspec() {
     );
 }
 pub type sigset_t = __sigset_t;
-pub type fd_mask = ::std::os::raw::c_ulong;
+pub type fd_mask = ctypes::c_ulong;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _types_fd_set {
@@ -29826,37 +29766,37 @@ fn bindgen_test_layout__types_fd_set() {
 }
 extern "C" {
     pub fn select(
-        __n: ::std::os::raw::c_int,
+        __n: ctypes::c_int,
         __readfds: *mut _types_fd_set,
         __writefds: *mut _types_fd_set,
         __exceptfds: *mut _types_fd_set,
         __timeout: *mut timeval,
-    ) -> ::std::os::raw::c_int;
+    ) -> ctypes::c_int;
 }
 extern "C" {
     pub fn pselect(
-        __n: ::std::os::raw::c_int,
+        __n: ctypes::c_int,
         __readfds: *mut _types_fd_set,
         __writefds: *mut _types_fd_set,
         __exceptfds: *mut _types_fd_set,
         __timeout: *const timespec,
         __set: *const sigset_t,
-    ) -> ::std::os::raw::c_int;
+    ) -> ctypes::c_int;
 }
 pub type in_addr_t = __uint32_t;
 pub type in_port_t = __uint16_t;
-pub type u_char = ::std::os::raw::c_uchar;
-pub type u_short = ::std::os::raw::c_ushort;
-pub type u_int = ::std::os::raw::c_uint;
-pub type u_long = ::std::os::raw::c_ulong;
-pub type ushort = ::std::os::raw::c_ushort;
-pub type uint = ::std::os::raw::c_uint;
-pub type ulong = ::std::os::raw::c_ulong;
+pub type u_char = ctypes::c_uchar;
+pub type u_short = ctypes::c_ushort;
+pub type u_int = ctypes::c_uint;
+pub type u_long = ctypes::c_ulong;
+pub type ushort = ctypes::c_ushort;
+pub type uint = ctypes::c_uint;
+pub type ulong = ctypes::c_ulong;
 pub type blkcnt_t = __blkcnt_t;
 pub type blksize_t = __blksize_t;
-pub type clock_t = ::std::os::raw::c_ulong;
-pub type daddr_t = ::std::os::raw::c_long;
-pub type caddr_t = *mut ::std::os::raw::c_char;
+pub type clock_t = ctypes::c_ulong;
+pub type daddr_t = ctypes::c_long;
+pub type caddr_t = *mut ctypes::c_char;
 pub type fsblkcnt_t = __fsblkcnt_t;
 pub type fsfilcnt_t = __fsfilcnt_t;
 pub type id_t = __id_t;
@@ -29876,7 +29816,7 @@ pub type sbintime_t = __int64_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct sched_param {
-    pub sched_priority: ::std::os::raw::c_int,
+    pub sched_priority: ctypes::c_int,
 }
 #[test]
 fn bindgen_test_layout_sched_param() {
@@ -29910,10 +29850,10 @@ pub type pthread_t = *mut __pthread_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct pthread_attr_t {
-    pub stackaddr: *mut ::std::os::raw::c_void,
-    pub stacksize: ::std::os::raw::c_int,
+    pub stackaddr: *mut ctypes::c_void,
+    pub stacksize: ctypes::c_int,
     pub schedparam: sched_param,
-    pub detachstate: ::std::os::raw::c_int,
+    pub detachstate: ctypes::c_int,
 }
 #[test]
 fn bindgen_test_layout_pthread_attr_t() {
@@ -29971,7 +29911,7 @@ fn bindgen_test_layout_pthread_attr_t() {
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct pthread_mutex_t {
-    pub type_: ::std::os::raw::c_int,
+    pub type_: ctypes::c_int,
     pub __bindgen_anon_1: pthread_mutex_t__bindgen_ty_1,
 }
 #[repr(C)]
@@ -30129,7 +30069,7 @@ pub type pthread_key_t = __uint32_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct pthread_once_t {
-    pub status: ::std::os::raw::c_int,
+    pub status: ctypes::c_int,
 }
 #[test]
 fn bindgen_test_layout_pthread_once_t() {
@@ -30310,9 +30250,9 @@ pub struct ConsoleRenderer {
     pub drawChar: ::core::option::Option<
         unsafe extern "C" fn(
             con: *mut PrintConsole,
-            x: ::std::os::raw::c_int,
-            y: ::std::os::raw::c_int,
-            c: ::std::os::raw::c_int,
+            x: ctypes::c_int,
+            y: ctypes::c_int,
+            c: ctypes::c_int,
         ),
     >,
     pub scrollWindow: ::core::option::Option<unsafe extern "C" fn(con: *mut PrintConsole)>,
@@ -30385,7 +30325,7 @@ fn bindgen_test_layout_ConsoleRenderer() {
 #[repr(C)]
 pub struct ConsoleFont {
     /// < A pointer to the font graphics
-    pub gfx: *const ::std::os::raw::c_void,
+    pub gfx: *const ctypes::c_void,
     /// < Offset to the first valid character in the font table
     pub asciiOffset: u16,
     /// < Number of characters in the font graphics
@@ -30493,33 +30433,33 @@ pub struct PrintConsole {
     /// < Renderer of the console
     pub renderer: *mut ConsoleRenderer,
     /// < Current X location of the cursor (as a tile offset by default)
-    pub cursorX: ::std::os::raw::c_int,
+    pub cursorX: ctypes::c_int,
     /// < Current Y location of the cursor (as a tile offset by default)
-    pub cursorY: ::std::os::raw::c_int,
+    pub cursorY: ctypes::c_int,
     /// < Internal state
-    pub prevCursorX: ::std::os::raw::c_int,
+    pub prevCursorX: ctypes::c_int,
     /// < Internal state
-    pub prevCursorY: ::std::os::raw::c_int,
+    pub prevCursorY: ctypes::c_int,
     /// < Width of the console hardware layer in characters
-    pub consoleWidth: ::std::os::raw::c_int,
+    pub consoleWidth: ctypes::c_int,
     /// < Height of the console hardware layer in characters
-    pub consoleHeight: ::std::os::raw::c_int,
+    pub consoleHeight: ctypes::c_int,
     /// < Window X location in characters
-    pub windowX: ::std::os::raw::c_int,
+    pub windowX: ctypes::c_int,
     /// < Window Y location in characters
-    pub windowY: ::std::os::raw::c_int,
+    pub windowY: ctypes::c_int,
     /// < Window width in characters
-    pub windowWidth: ::std::os::raw::c_int,
+    pub windowWidth: ctypes::c_int,
     /// < Window height in characters
-    pub windowHeight: ::std::os::raw::c_int,
+    pub windowHeight: ctypes::c_int,
     /// < Size of a tab
-    pub tabSize: ::std::os::raw::c_int,
+    pub tabSize: ctypes::c_int,
     /// < Foreground color
-    pub fg: ::std::os::raw::c_int,
+    pub fg: ctypes::c_int,
     /// < Background color
-    pub bg: ::std::os::raw::c_int,
+    pub bg: ctypes::c_int,
     /// < Reverse/bright flags
-    pub flags: ::std::os::raw::c_int,
+    pub flags: ctypes::c_int,
     /// < True if the console is initialized
     pub consoleInitialised: bool,
 }
@@ -30732,10 +30672,10 @@ extern "C" {
     /// @param height Height of the window.
     pub fn consoleSetWindow(
         console: *mut PrintConsole,
-        x: ::std::os::raw::c_int,
-        y: ::std::os::raw::c_int,
-        width: ::std::os::raw::c_int,
-        height: ::std::os::raw::c_int,
+        x: ctypes::c_int,
+        y: ctypes::c_int,
+        width: ctypes::c_int,
+        height: ctypes::c_int,
     );
 }
 extern "C" {
@@ -30852,27 +30792,19 @@ extern "C" {
 }
 extern "C" {
     /// Read data with the default interface.
-    pub fn usbCommsRead(buffer: *mut ::std::os::raw::c_void, size: usize) -> usize;
+    pub fn usbCommsRead(buffer: *mut ctypes::c_void, size: usize) -> usize;
 }
 extern "C" {
     /// Write data with the default interface.
-    pub fn usbCommsWrite(buffer: *const ::std::os::raw::c_void, size: usize) -> usize;
+    pub fn usbCommsWrite(buffer: *const ctypes::c_void, size: usize) -> usize;
 }
 extern "C" {
     /// Same as usbCommsRead except with the specified interface.
-    pub fn usbCommsReadEx(
-        buffer: *mut ::std::os::raw::c_void,
-        size: usize,
-        interface: u32,
-    ) -> usize;
+    pub fn usbCommsReadEx(buffer: *mut ctypes::c_void, size: usize, interface: u32) -> usize;
 }
 extern "C" {
     /// Same as usbCommsWrite except with the specified interface.
-    pub fn usbCommsWriteEx(
-        buffer: *const ::std::os::raw::c_void,
-        size: usize,
-        interface: u32,
-    ) -> usize;
+    pub fn usbCommsWriteEx(buffer: *const ctypes::c_void, size: usize, interface: u32) -> usize;
 }
 /// Open directory struct
 #[repr(C)]
@@ -30958,23 +30890,20 @@ extern "C" {
 extern "C" {
     /// Mounts the input fs with the specified device name. fsdev will handle closing the fs when required, including when fsdevMountDevice() fails.
     /// Returns -1 when any errors occur.
-    pub fn fsdevMountDevice(
-        name: *const ::std::os::raw::c_char,
-        fs: FsFileSystem,
-    ) -> ::std::os::raw::c_int;
+    pub fn fsdevMountDevice(name: *const ctypes::c_char, fs: FsFileSystem) -> ctypes::c_int;
 }
 extern "C" {
     /// Unmounts the specified device.
-    pub fn fsdevUnmountDevice(name: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
+    pub fn fsdevUnmountDevice(name: *const ctypes::c_char) -> ctypes::c_int;
 }
 extern "C" {
     /// Uses fsFsCommit() with the specified device. This must be used after any savedata-write operations(not just file-write). This should be used after each file-close where file-writing was done.
     /// This is not used automatically at device unmount.
-    pub fn fsdevCommitDevice(name: *const ::std::os::raw::c_char) -> Result;
+    pub fn fsdevCommitDevice(name: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// Returns the FsFileSystem for the specified device. Returns NULL when the specified device isn't found.
-    pub fn fsdevGetDeviceFileSystem(name: *const ::std::os::raw::c_char) -> *mut FsFileSystem;
+    pub fn fsdevGetDeviceFileSystem(name: *const ctypes::c_char) -> *mut FsFileSystem;
 }
 extern "C" {
     /// Returns the FsFileSystem for the default device (SD card), if mounted. Used internally by romfs_dev.
@@ -30983,14 +30912,14 @@ extern "C" {
 extern "C" {
     /// Writes the FS-path to outpath (which has buffer size FS_MAX_PATH), for the input device path. The FsFileSystem is also written to device when not NULL.
     pub fn fsdevTranslatePath(
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         device: *mut *mut FsFileSystem,
-        outpath: *mut ::std::os::raw::c_char,
-    ) -> ::std::os::raw::c_int;
+        outpath: *mut ctypes::c_char,
+    ) -> ctypes::c_int;
 }
 extern "C" {
     /// This calls fsFsSetArchiveBit on the filesystem specified by the input absolute path.
-    pub fn fsdevSetArchiveBit(path: *const ::std::os::raw::c_char) -> Result;
+    pub fn fsdevSetArchiveBit(path: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// Unmounts all devices and cleans up any resources used by the FS driver.
@@ -31198,18 +31127,14 @@ fn bindgen_test_layout_romfs_file() {
 extern "C" {
     /// @brief Mounts the Application's RomFS.
     /// @param name Device mount name.
-    pub fn romfsMount(name: *const ::std::os::raw::c_char) -> Result;
+    pub fn romfsMount(name: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// @brief Mounts RomFS from an open file.
     /// @param file FsFile of the RomFS image.
     /// @param offset Offset of the RomFS within the file.
     /// @param name Device mount name.
-    pub fn romfsMountFromFile(
-        file: FsFile,
-        offset: u64,
-        name: *const ::std::os::raw::c_char,
-    ) -> Result;
+    pub fn romfsMountFromFile(file: FsFile, offset: u64, name: *const ctypes::c_char) -> Result;
 }
 extern "C" {
     /// @brief Mounts RomFS from an open storage.
@@ -31219,7 +31144,7 @@ extern "C" {
     pub fn romfsMountFromStorage(
         storage: FsStorage,
         offset: u64,
-        name: *const ::std::os::raw::c_char,
+        name: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -31228,9 +31153,9 @@ extern "C" {
     /// @param offset Offset of the RomFS within the file.
     /// @param name Device mount name.
     pub fn romfsMountFromFsdev(
-        path: *const ::std::os::raw::c_char,
+        path: *const ctypes::c_char,
         offset: u64,
-        name: *const ::std::os::raw::c_char,
+        name: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
@@ -31241,12 +31166,12 @@ extern "C" {
     pub fn romfsMountFromDataArchive(
         dataId: u64,
         storageId: FsStorageId,
-        name: *const ::std::os::raw::c_char,
+        name: *const ctypes::c_char,
     ) -> Result;
 }
 extern "C" {
     /// Unmounts the RomFS device.
-    pub fn romfsUnmount(name: *const ::std::os::raw::c_char) -> Result;
+    pub fn romfsUnmount(name: *const ctypes::c_char) -> Result;
 }
 /// Configuration structure for socketInitalize
 #[repr(C)]
@@ -31274,7 +31199,7 @@ pub struct SocketInitConfig {
     /// < For name gethostbyname/getaddrinfo: bypass the Name Server Daemon.
     pub bypass_nsd: bool,
     /// < For DNS requests: timeout or 0.
-    pub dns_timeout: ::std::os::raw::c_int,
+    pub dns_timeout: ctypes::c_int,
 }
 #[test]
 fn bindgen_test_layout_SocketInitConfig() {
@@ -31537,7 +31462,7 @@ extern "C" {
     /// Initialize a 128-bit AES context.
     pub fn aes128ContextCreate(
         out: *mut Aes128Context,
-        key: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
@@ -31545,23 +31470,23 @@ extern "C" {
     /// Encrypt using an AES context (Requires is_encryptor when initializing)
     pub fn aes128EncryptBlock(
         ctx: *const Aes128Context,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
     );
 }
 extern "C" {
     /// Decrypt using an AES context (Requires !is_encryptor when initializing)
     pub fn aes128DecryptBlock(
         ctx: *const Aes128Context,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
     );
 }
 extern "C" {
     /// Initialize a 192-bit AES context.
     pub fn aes192ContextCreate(
         out: *mut Aes192Context,
-        key: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
@@ -31569,23 +31494,23 @@ extern "C" {
     /// Encrypt using an AES context (Requires is_encryptor when initializing)
     pub fn aes192EncryptBlock(
         ctx: *const Aes192Context,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
     );
 }
 extern "C" {
     /// Decrypt using an AES context (Requires !is_encryptor when initializing)
     pub fn aes192DecryptBlock(
         ctx: *const Aes192Context,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
     );
 }
 extern "C" {
     /// Initialize a 256-bit AES context.
     pub fn aes256ContextCreate(
         out: *mut Aes256Context,
-        key: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
@@ -31593,16 +31518,16 @@ extern "C" {
     /// Encrypt using an AES context (Requires is_encryptor when initializing)
     pub fn aes256EncryptBlock(
         ctx: *const Aes256Context,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
     );
 }
 extern "C" {
     /// Decrypt using an AES context (Requires !is_encryptor when initializing)
     pub fn aes256DecryptBlock(
         ctx: *const Aes256Context,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
     );
 }
 /// Context for AES-128 CBC.
@@ -31792,27 +31717,27 @@ extern "C" {
     /// 128-bit CBC API.
     pub fn aes128CbcContextCreate(
         out: *mut Aes128CbcContext,
-        key: *const ::std::os::raw::c_void,
-        iv: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
+        iv: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
 extern "C" {
-    pub fn aes128CbcContextResetIv(ctx: *mut Aes128CbcContext, iv: *const ::std::os::raw::c_void);
+    pub fn aes128CbcContextResetIv(ctx: *mut Aes128CbcContext, iv: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes128CbcEncrypt(
         ctx: *mut Aes128CbcContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
 extern "C" {
     pub fn aes128CbcDecrypt(
         ctx: *mut Aes128CbcContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
@@ -31820,27 +31745,27 @@ extern "C" {
     /// 192-bit CBC API.
     pub fn aes192CbcContextCreate(
         out: *mut Aes192CbcContext,
-        key: *const ::std::os::raw::c_void,
-        iv: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
+        iv: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
 extern "C" {
-    pub fn aes192CbcContextResetIv(ctx: *mut Aes192CbcContext, iv: *const ::std::os::raw::c_void);
+    pub fn aes192CbcContextResetIv(ctx: *mut Aes192CbcContext, iv: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes192CbcEncrypt(
         ctx: *mut Aes192CbcContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
 extern "C" {
     pub fn aes192CbcDecrypt(
         ctx: *mut Aes192CbcContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
@@ -31848,27 +31773,27 @@ extern "C" {
     /// 256-bit CBC API.
     pub fn aes256CbcContextCreate(
         out: *mut Aes256CbcContext,
-        key: *const ::std::os::raw::c_void,
-        iv: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
+        iv: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
 extern "C" {
-    pub fn aes256CbcContextResetIv(ctx: *mut Aes256CbcContext, iv: *const ::std::os::raw::c_void);
+    pub fn aes256CbcContextResetIv(ctx: *mut Aes256CbcContext, iv: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes256CbcEncrypt(
         ctx: *mut Aes256CbcContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
 extern "C" {
     pub fn aes256CbcDecrypt(
         ctx: *mut Aes256CbcContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
@@ -32065,18 +31990,18 @@ extern "C" {
     /// 128-bit CTR API.
     pub fn aes128CtrContextCreate(
         out: *mut Aes128CtrContext,
-        key: *const ::std::os::raw::c_void,
-        ctr: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
+        ctr: *const ctypes::c_void,
     );
 }
 extern "C" {
-    pub fn aes128CtrContextResetCtr(ctx: *mut Aes128CtrContext, ctr: *const ::std::os::raw::c_void);
+    pub fn aes128CtrContextResetCtr(ctx: *mut Aes128CtrContext, ctr: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes128CtrCrypt(
         ctx: *mut Aes128CtrContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
@@ -32084,18 +32009,18 @@ extern "C" {
     /// 192-bit CTR API.
     pub fn aes192CtrContextCreate(
         out: *mut Aes192CtrContext,
-        key: *const ::std::os::raw::c_void,
-        ctr: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
+        ctr: *const ctypes::c_void,
     );
 }
 extern "C" {
-    pub fn aes192CtrContextResetCtr(ctx: *mut Aes192CtrContext, ctr: *const ::std::os::raw::c_void);
+    pub fn aes192CtrContextResetCtr(ctx: *mut Aes192CtrContext, ctr: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes192CtrCrypt(
         ctx: *mut Aes192CtrContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
@@ -32103,18 +32028,18 @@ extern "C" {
     /// 256-bit CTR API.
     pub fn aes256CtrContextCreate(
         out: *mut Aes256CtrContext,
-        key: *const ::std::os::raw::c_void,
-        ctr: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
+        ctr: *const ctypes::c_void,
     );
 }
 extern "C" {
-    pub fn aes256CtrContextResetCtr(ctx: *mut Aes256CtrContext, ctr: *const ::std::os::raw::c_void);
+    pub fn aes256CtrContextResetCtr(ctx: *mut Aes256CtrContext, ctr: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes256CtrCrypt(
         ctx: *mut Aes256CtrContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
@@ -32338,16 +32263,13 @@ extern "C" {
     /// 128-bit XTS API.
     pub fn aes128XtsContextCreate(
         out: *mut Aes128XtsContext,
-        key0: *const ::std::os::raw::c_void,
-        key1: *const ::std::os::raw::c_void,
+        key0: *const ctypes::c_void,
+        key1: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
 extern "C" {
-    pub fn aes128XtsContextResetTweak(
-        ctx: *mut Aes128XtsContext,
-        tweak: *const ::std::os::raw::c_void,
-    );
+    pub fn aes128XtsContextResetTweak(ctx: *mut Aes128XtsContext, tweak: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes128XtsContextResetSector(ctx: *mut Aes128XtsContext, sector: u64, is_nintendo: bool);
@@ -32355,16 +32277,16 @@ extern "C" {
 extern "C" {
     pub fn aes128XtsEncrypt(
         ctx: *mut Aes128XtsContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
 extern "C" {
     pub fn aes128XtsDecrypt(
         ctx: *mut Aes128XtsContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
@@ -32372,16 +32294,13 @@ extern "C" {
     /// 192-bit XTS API.
     pub fn aes192XtsContextCreate(
         out: *mut Aes192XtsContext,
-        key0: *const ::std::os::raw::c_void,
-        key1: *const ::std::os::raw::c_void,
+        key0: *const ctypes::c_void,
+        key1: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
 extern "C" {
-    pub fn aes192XtsContextResetTweak(
-        ctx: *mut Aes192XtsContext,
-        tweak: *const ::std::os::raw::c_void,
-    );
+    pub fn aes192XtsContextResetTweak(ctx: *mut Aes192XtsContext, tweak: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes192XtsContextResetSector(ctx: *mut Aes192XtsContext, sector: u64, is_nintendo: bool);
@@ -32389,16 +32308,16 @@ extern "C" {
 extern "C" {
     pub fn aes192XtsEncrypt(
         ctx: *mut Aes192XtsContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
 extern "C" {
     pub fn aes192XtsDecrypt(
         ctx: *mut Aes192XtsContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
@@ -32406,16 +32325,13 @@ extern "C" {
     /// 256-bit XTS API.
     pub fn aes256XtsContextCreate(
         out: *mut Aes256XtsContext,
-        key0: *const ::std::os::raw::c_void,
-        key1: *const ::std::os::raw::c_void,
+        key0: *const ctypes::c_void,
+        key1: *const ctypes::c_void,
         is_encryptor: bool,
     );
 }
 extern "C" {
-    pub fn aes256XtsContextResetTweak(
-        ctx: *mut Aes256XtsContext,
-        tweak: *const ::std::os::raw::c_void,
-    );
+    pub fn aes256XtsContextResetTweak(ctx: *mut Aes256XtsContext, tweak: *const ctypes::c_void);
 }
 extern "C" {
     pub fn aes256XtsContextResetSector(ctx: *mut Aes256XtsContext, sector: u64, is_nintendo: bool);
@@ -32423,16 +32339,16 @@ extern "C" {
 extern "C" {
     pub fn aes256XtsEncrypt(
         ctx: *mut Aes256XtsContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
 extern "C" {
     pub fn aes256XtsDecrypt(
         ctx: *mut Aes256XtsContext,
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     ) -> usize;
 }
@@ -32687,76 +32603,76 @@ fn bindgen_test_layout_Aes256CmacContext() {
 }
 extern "C" {
     /// Initialize an AES-128-CMAC context.
-    pub fn cmacAes128ContextCreate(out: *mut Aes128CmacContext, key: *const ::std::os::raw::c_void);
+    pub fn cmacAes128ContextCreate(out: *mut Aes128CmacContext, key: *const ctypes::c_void);
 }
 extern "C" {
     /// Updates AES-128-CMAC context with data to hash
     pub fn cmacAes128ContextUpdate(
         ctx: *mut Aes128CmacContext,
-        src: *const ::std::os::raw::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
 extern "C" {
     /// Gets the context's output mac, finalizes the context.
-    pub fn cmacAes128ContextGetMac(ctx: *mut Aes128CmacContext, dst: *mut ::std::os::raw::c_void);
+    pub fn cmacAes128ContextGetMac(ctx: *mut Aes128CmacContext, dst: *mut ctypes::c_void);
 }
 extern "C" {
     /// Simple all-in-one AES-128-CMAC calculator.
     pub fn cmacAes128CalculateMac(
-        dst: *mut ::std::os::raw::c_void,
-        key: *const ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        key: *const ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
 extern "C" {
     /// Initialize an AES-192-CMAC context.
-    pub fn cmacAes192ContextCreate(out: *mut Aes192CmacContext, key: *const ::std::os::raw::c_void);
+    pub fn cmacAes192ContextCreate(out: *mut Aes192CmacContext, key: *const ctypes::c_void);
 }
 extern "C" {
     /// Updates AES-192-CMAC context with data to hash
     pub fn cmacAes192ContextUpdate(
         ctx: *mut Aes192CmacContext,
-        src: *const ::std::os::raw::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
 extern "C" {
     /// Gets the context's output mac, finalizes the context.
-    pub fn cmacAes192ContextGetMac(ctx: *mut Aes192CmacContext, dst: *mut ::std::os::raw::c_void);
+    pub fn cmacAes192ContextGetMac(ctx: *mut Aes192CmacContext, dst: *mut ctypes::c_void);
 }
 extern "C" {
     /// Simple all-in-one AES-192-CMAC calculator.
     pub fn cmacAes192CalculateMac(
-        dst: *mut ::std::os::raw::c_void,
-        key: *const ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        key: *const ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
 extern "C" {
     /// Initialize an AES-256-CMAC context.
-    pub fn cmacAes256ContextCreate(out: *mut Aes256CmacContext, key: *const ::std::os::raw::c_void);
+    pub fn cmacAes256ContextCreate(out: *mut Aes256CmacContext, key: *const ctypes::c_void);
 }
 extern "C" {
     /// Updates AES-256-CMAC context with data to hash
     pub fn cmacAes256ContextUpdate(
         ctx: *mut Aes256CmacContext,
-        src: *const ::std::os::raw::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
 extern "C" {
     /// Gets the context's output mac, finalizes the context.
-    pub fn cmacAes256ContextGetMac(ctx: *mut Aes256CmacContext, dst: *mut ::std::os::raw::c_void);
+    pub fn cmacAes256ContextGetMac(ctx: *mut Aes256CmacContext, dst: *mut ctypes::c_void);
 }
 extern "C" {
     /// Simple all-in-one AES-256-CMAC calculator.
     pub fn cmacAes256CalculateMac(
-        dst: *mut ::std::os::raw::c_void,
-        key: *const ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        key: *const ctypes::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
@@ -32840,23 +32756,15 @@ extern "C" {
 }
 extern "C" {
     /// Updates SHA256 context with data to hash
-    pub fn sha256ContextUpdate(
-        ctx: *mut Sha256Context,
-        src: *const ::std::os::raw::c_void,
-        size: usize,
-    );
+    pub fn sha256ContextUpdate(ctx: *mut Sha256Context, src: *const ctypes::c_void, size: usize);
 }
 extern "C" {
     /// Gets the context's output hash, finalizes the context.
-    pub fn sha256ContextGetHash(ctx: *mut Sha256Context, dst: *mut ::std::os::raw::c_void);
+    pub fn sha256ContextGetHash(ctx: *mut Sha256Context, dst: *mut ctypes::c_void);
 }
 extern "C" {
     /// Simple all-in-one SHA256 calculator.
-    pub fn sha256CalculateHash(
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
-        size: usize,
-    );
+    pub fn sha256CalculateHash(dst: *mut ctypes::c_void, src: *const ctypes::c_void, size: usize);
 }
 /// Context for SHA1 operations.
 #[repr(C)]
@@ -32936,23 +32844,15 @@ extern "C" {
 }
 extern "C" {
     /// Updates SHA1 context with data to hash
-    pub fn sha1ContextUpdate(
-        ctx: *mut Sha1Context,
-        src: *const ::std::os::raw::c_void,
-        size: usize,
-    );
+    pub fn sha1ContextUpdate(ctx: *mut Sha1Context, src: *const ctypes::c_void, size: usize);
 }
 extern "C" {
     /// Gets the context's output hash, finalizes the context.
-    pub fn sha1ContextGetHash(ctx: *mut Sha1Context, dst: *mut ::std::os::raw::c_void);
+    pub fn sha1ContextGetHash(ctx: *mut Sha1Context, dst: *mut ctypes::c_void);
 }
 extern "C" {
     /// Simple all-in-one SHA1 calculator.
-    pub fn sha1CalculateHash(
-        dst: *mut ::std::os::raw::c_void,
-        src: *const ::std::os::raw::c_void,
-        size: usize,
-    );
+    pub fn sha1CalculateHash(dst: *mut ctypes::c_void, src: *const ctypes::c_void, size: usize);
 }
 /// Context for HMAC-SHA1 operations.
 #[repr(C)]
@@ -33080,7 +32980,7 @@ extern "C" {
     /// Initialize a HMAC-SHA256 context.
     pub fn hmacSha256ContextCreate(
         out: *mut HmacSha256Context,
-        key: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
         key_size: usize,
     );
 }
@@ -33088,21 +32988,21 @@ extern "C" {
     /// Updates HMAC-SHA256 context with data to hash
     pub fn hmacSha256ContextUpdate(
         ctx: *mut HmacSha256Context,
-        src: *const ::std::os::raw::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
 extern "C" {
     /// Gets the context's output mac, finalizes the context.
-    pub fn hmacSha256ContextGetMac(ctx: *mut HmacSha256Context, dst: *mut ::std::os::raw::c_void);
+    pub fn hmacSha256ContextGetMac(ctx: *mut HmacSha256Context, dst: *mut ctypes::c_void);
 }
 extern "C" {
     /// Simple all-in-one HMAC-SHA256 calculator.
     pub fn hmacSha256CalculateMac(
-        dst: *mut ::std::os::raw::c_void,
-        key: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        key: *const ctypes::c_void,
         key_size: usize,
-        src: *const ::std::os::raw::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
@@ -33110,7 +33010,7 @@ extern "C" {
     /// Initialize a HMAC-SHA1 context.
     pub fn hmacSha1ContextCreate(
         out: *mut HmacSha1Context,
-        key: *const ::std::os::raw::c_void,
+        key: *const ctypes::c_void,
         key_size: usize,
     );
 }
@@ -33118,24 +33018,24 @@ extern "C" {
     /// Updates HMAC-SHA1 context with data to hash
     pub fn hmacSha1ContextUpdate(
         ctx: *mut HmacSha1Context,
-        src: *const ::std::os::raw::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
 extern "C" {
     /// Gets the context's output mac, finalizes the context.
-    pub fn hmacSha1ContextGetMac(ctx: *mut HmacSha1Context, dst: *mut ::std::os::raw::c_void);
+    pub fn hmacSha1ContextGetMac(ctx: *mut HmacSha1Context, dst: *mut ctypes::c_void);
 }
 extern "C" {
     /// Simple all-in-one HMAC-SHA1 calculator.
     pub fn hmacSha1CalculateMac(
-        dst: *mut ::std::os::raw::c_void,
-        key: *const ::std::os::raw::c_void,
+        dst: *mut ctypes::c_void,
+        key: *const ctypes::c_void,
         key_size: usize,
-        src: *const ::std::os::raw::c_void,
+        src: *const ctypes::c_void,
         size: usize,
     );
 }
 pub type __uint128_t = [u64; 2];
 pub type __int128_t = [u64; 2];
-pub type __builtin_va_list = *mut ::std::os::raw::c_char;
+pub type __builtin_va_list = *mut ctypes::c_char;

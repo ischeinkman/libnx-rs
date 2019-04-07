@@ -1,10 +1,10 @@
-use native;
+use sys;
 
 pub fn init()
 {
     unsafe
     {
-        native::consoleInit(std::ptr::null_mut());
+        sys::consoleInit(std::ptr::null_mut());
     }
 }
 
@@ -12,7 +12,7 @@ pub fn flush()
 {
     unsafe
     {
-        native::consoleUpdate(std::ptr::null_mut());
+        sys::consoleUpdate(std::ptr::null_mut());
     }
 }
 
@@ -20,7 +20,7 @@ pub fn clear()
 {
     unsafe
     {
-        native::consoleClear();
+        sys::consoleClear();
     }
 }
 
@@ -28,6 +28,6 @@ pub fn exit()
 {
     unsafe
     {
-        native::consoleExit(std::ptr::null_mut());
+        sys::consoleExit(std::ptr::null_mut());
     }
 }

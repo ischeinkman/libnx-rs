@@ -1,9 +1,9 @@
-use native;
+use sys;
 use os;
 
 pub struct Keyboard
 {
-    kbd: native::SwkbdConfig,
+    kbd: sys::SwkbdConfig,
 }
 
 pub enum KeyboardPreset
@@ -20,8 +20,8 @@ impl Keyboard
     {
         unsafe
         {
-            let mut kbd: native::SwkbdConfig = std::mem::zeroed();
-            let rc = native::swkbdCreate(&mut kbd, 0);
+            let mut kbd: sys::SwkbdConfig = std::mem::zeroed();
+            let rc = sys::swkbdCreate(&mut kbd, 0);
             result_final!(rc, Keyboard { kbd: kbd })
         }
     }
@@ -32,10 +32,10 @@ impl Keyboard
         {
             match preset
             {
-                KeyboardPreset::Default => native::swkbdConfigMakePresetDefault(&mut self.kbd),
-                KeyboardPreset::Password => native::swkbdConfigMakePresetPassword(&mut self.kbd),
-                KeyboardPreset::UserName => native::swkbdConfigMakePresetUserName(&mut self.kbd),
-                KeyboardPreset::DownloadCode => native::swkbdConfigMakePresetDownloadCode(&mut self.kbd),
+                KeyboardPreset::Default => sys::swkbdConfigMakePresetDefault(&mut self.kbd),
+                KeyboardPreset::Password => sys::swkbdConfigMakePresetPassword(&mut self.kbd),
+                KeyboardPreset::UserName => sys::swkbdConfigMakePresetUserName(&mut self.kbd),
+                KeyboardPreset::DownloadCode => sys::swkbdConfigMakePresetDownloadCode(&mut self.kbd),
             };
         }
     }
@@ -44,7 +44,7 @@ impl Keyboard
     {
         unsafe
         {
-            native::swkbdConfigSetOkButtonText(&mut self.kbd, text.as_ptr());
+            sys::swkbdConfigSetOkButtonText(&mut self.kbd, text.as_ptr());
         }
     }
 
@@ -54,7 +54,7 @@ impl Keyboard
         {
             let mut slstr: Vec<u8> = vec![0; 500];
             let slptr = slstr.as_mut_ptr();
-            let rc = native::swkbdShow(&mut self.kbd, slptr, 500);
+            let rc = sys::swkbdShow(&mut self.kbd, slptr, 500);
             result_final!(rc, String::from_utf8_lossy(std::slice::from_raw_parts(slptr, 500)).to_string())
         }
     }
@@ -66,7 +66,7 @@ impl Drop for Keyboard
     {
         unsafe
         {
-            native::swkbdClose(&mut self.kbd);
+            sys::swkbdClose(&mut self.kbd);
         }
     }
 }

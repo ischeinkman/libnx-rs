@@ -1,23 +1,23 @@
-use native;
+use sys;
 use os;
 
 pub struct LibraryApplet
 {
-    holder: native::AppletHolder,
+    holder: sys::AppletHolder,
 }
 
 impl LibraryApplet
 {
-    pub fn new(id: native::AppletId, mode: native::LibAppletMode, version: u32) -> os::Result<Self>
+    pub fn new(id: sys::AppletId, mode: sys::LibAppletMode, version: u32) -> os::Result<Self>
     {
         unsafe
         {
-            let mut aph: native::AppletHolder = std::mem::zeroed();
-            let mut rc = native::appletCreateLibraryApplet(&mut aph, id, mode);
+            let mut aph: sys::AppletHolder = std::mem::zeroed();
+            let mut rc = sys::appletCreateLibraryApplet(&mut aph, id, mode);
             result_assert!(rc, { println!("Exit"); });
-            let mut largs: native::LibAppletArgs = std::mem::zeroed();
-            native::libappletArgsCreate(&mut largs, version);
-            rc = native::libappletArgsPush(&mut largs, &mut aph);
+            let mut largs: sys::LibAppletArgs = std::mem::zeroed();
+            sys::libappletArgsCreate(&mut largs, version);
+            rc = sys::libappletArgsPush(&mut largs, &mut aph);
             result_final!(rc, LibraryApplet { holder: aph })
         }
     }
@@ -26,7 +26,7 @@ impl LibraryApplet
     {
         unsafe
         {
-            let rc = native::libappletPushInData(&mut self.holder, data as *const std::ffi::c_void, size);
+            let rc = sys::libappletPushInData(&mut self.holder, data as *const std::ffi::c_void, size);
             result_final!(rc)
         }
     }
@@ -35,7 +35,7 @@ impl LibraryApplet
     {
         unsafe
         {
-            let rc = native::appletHolderStart(&mut self.holder);
+            let rc = sys::appletHolderStart(&mut self.holder);
             result_final!(rc)
         }
     }
@@ -44,13 +44,13 @@ impl LibraryApplet
     {
         unsafe
         {
-            let rc = native::appletHolderStart(&mut self.holder);
+            let rc = sys::appletHolderStart(&mut self.holder);
             result_assert!(rc);
-            while native::appletHolderWaitInteractiveOut(&mut self.holder)
+            while sys::appletHolderWaitInteractiveOut(&mut self.holder)
             {
 
             }
-            native::appletHolderJoin(&mut self.holder);
+            sys::appletHolderJoin(&mut self.holder);
             result_final!(rc)
         }
     }
@@ -60,7 +60,7 @@ impl LibraryApplet
         unsafe
         {
             let mut tsize: usize = 0;
-            let rc = native::libappletPopOutData(&mut self.holder, out as *mut std::ffi::c_void, size, &mut tsize);
+            let rc = sys::libappletPopOutData(&mut self.holder, out as *mut std::ffi::c_void, size, &mut tsize);
             result_final!(rc, tsize)
         }
     }
@@ -72,7 +72,7 @@ impl Drop for LibraryApplet
     {
         unsafe
         {
-            native::appletHolderClose(&mut self.holder);
+            sys::appletHolderClose(&mut self.holder);
         }
     }
 }

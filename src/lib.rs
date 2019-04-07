@@ -8,7 +8,7 @@ extern crate core;
 
 pub mod macros;
 
-pub mod native;
+pub mod sys;
 
 pub mod sm;
 
