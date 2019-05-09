@@ -20,6 +20,12 @@ pub enum Key
     R = 128,
     ZL = 256,
     ZR = 512,
+    PLUS = 1024,
+    MINUS = 2048,
+    DPAD_Right = 16384,
+    DPAD_Up = 8192,
+    DPAD_Down = 32768,
+    DPAD_Left = 4096,
 }
 
 pub enum JoyConHoldMode
