@@ -46,7 +46,7 @@ cfg_if! {
                 None
             }
 
-            fn enum_variant_name(&self, _enum_name: Option<&str>, _original_variant_name: &str, _variant_value: EnumVariantValue,) -> Option<String> 
+            fn enum_variant_name(&self, _enum_name: Option<&str>, _original_variant_name: &str, _variant_value: EnumVariantValue,) -> Option<String>
             {
                 None
             }

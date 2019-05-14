@@ -1,5 +1,4 @@
-pub mod ctypes
-{
+pub mod ctypes {
     pub type c_void = std::ffi::c_void;
     pub type c_char = u8;
     pub type c_int = i32;
