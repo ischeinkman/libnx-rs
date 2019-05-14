@@ -9,6 +9,7 @@ crate_type = ["rlib"]
 
 [build-dependencies]
 bindgen = { version = "0.37.4", optional = true }
+cfg-if = "0.1"
 
 [features]
-default = ["bindgen"]
+default = []

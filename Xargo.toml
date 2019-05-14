@@ -1,0 +1,20 @@
+[dependencies.core]
+stage = 0
+
+[dependencies.alloc]
+stage = 1
+
+[dependencies.libc]
+stage = 2
+default-features = false 
+features = ["align", "rustc-dep-of-std"]
+
+[dependencies.std]
+git = "https://github.com/rusty-horizon/horizon-nx-std-squashed"
+branch = "switch-squashed"
+default-features = false
+features = [
+    "panic-unwind",
+    #"backtrace",
+]
+stage = 3
