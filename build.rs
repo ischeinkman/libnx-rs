@@ -52,7 +52,7 @@ cfg_if! {
             }
         }
 
-        pub fn regen_libnx_native(input: &str, output: &str) -> Result<bindgen::Bindings, std::io::Error>
+        pub fn regen_bindings(input: &str, output: &str, whitelist: Option<Vec<String>>) -> Result<bindgen::Bindings, std::io::Error>
         {
             // we don't care if deletion succeeds, as long as the file is gone
             let _ = std::fs::remove_file(output);
@@ -74,7 +74,14 @@ cfg_if! {
             } else {
                 "-I/opt/devkitpro/devkitA64/lib/gcc/aarch64-none-elf/8.3.0/include/"
             };
-            bindgen::Builder::default().trust_clang_mangling(false).use_core().rust_target(bindgen::RustTarget::Nightly).ctypes_prefix("ctypes").generate_inline_functions(true).parse_callbacks(Box::new(CustomCallbacks{})).header(input).clang_arg(ilibnx).clang_arg(igcc1).clang_arg(igcc2).blacklist_type("u8").blacklist_type("u16").blacklist_type("u32").blacklist_type("u64").generate().map_err(|_| std::io::Error::new(std::io::ErrorKind::Other, "Could not create file!")).and_then(|bnd| bnd.write_to_file(output).map(|_| bnd))
+            let mut builder = bindgen::Builder::default().clang_arg("-mcrc").trust_clang_mangling(false).use_core().rust_target(bindgen::RustTarget::Nightly).ctypes_prefix("ctypes").generate_inline_functions(true).parse_callbacks(Box::new(CustomCallbacks{})).header(input).clang_arg(ilibnx).clang_arg(igcc1).clang_arg(igcc2).blacklist_type("u8").blacklist_type("u16").blacklist_type("u32").blacklist_type("u64");
+            if let Some(whitelist) = whitelist {
+                for func in whitelist {
+                    builder = builder.whitelist_function(func);
+                }
+            }
+
+            builder.generate().map_err(|_| std::io::Error::new(std::io::ErrorKind::Other, "Could not create file!")).and_then(|bnd| bnd.write_to_file(output).map(|_| bnd))
         }
 
         pub fn bindgen()
@@ -86,7 +93,7 @@ cfg_if! {
             let header_wrapper = "bindgen/libnx.h";
 
             // Use bindgen crate to process libnx headers
-            regen_libnx_native(header_wrapper, gen_path).expect("Error generating libnx bindings!");
+            regen_bindings(header_wrapper, gen_path, None).expect("Error generating libnx bindings!");
         }
     } else {
         pub fn bindgen() {
@@ -97,6 +104,44 @@ cfg_if! {
     }
 }
 
+cfg_if! {
+    if #[cfg(feature = "twili")] {
+        pub fn compile_twili() {
+            let mut build = cc::Build::new();
+            build.warnings(false);
+            build.include("/opt/devkitpro/devkitA64/lib/gcc/aarch64-none-elf/8.3.0/include/");
+            build.include("/opt/devkitpro/devkitA64/aarch64-none-elf/include");
+            build.include("/opt/devkitpro/libnx/include");
+            build.include("twili-libnx/include");
+            build.file("twili-libnx/src/twili.c");
+            build.target("aarch64-none-elf");
+            build.compile("libtwili.a");
+        }
+    } else {
+        pub fn compile_twili() {}
+    }
+}
+
+cfg_if! {
+    if #[cfg(all(feature = "twili", feature = "bindgen"))] {
+        pub fn twili_bindgen() {
+            regen_bindings("bindgen/twili.h", "bindgen/twili.rs", 
+                Some(vec!["twiliWriteNamedPipe".to_string(), "twiliCreateNamedOutputPipe".to_string(), "twiliCreateNamedOutputPipe".to_string(), "twiliInitialize".to_string(), "twiliExit".to_string()])
+            ).expect("Error generating twili bindings!");
+        }
+    } else if #[cfg(feature = "twili")] {
+        pub fn twili_bindgen() {
+            if !std::path::Path::new("bindgen/twili.rs").exists() {
+                panic!("Bindgen disabled but twili output missing!");
+            }
+        }
+    } else {
+        pub fn twili_bindgen() {}
+    }
+}
+
 pub fn main() {
     bindgen();
+    compile_twili();
+    twili_bindgen();
 }

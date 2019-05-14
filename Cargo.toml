@@ -9,7 +9,9 @@ crate_type = ["rlib"]
 
 [build-dependencies]
 bindgen = { version = "0.37.4", optional = true }
+cc = { version = "1.0.37", optional = true }
 cfg-if = "0.1"
 
 [features]
 default = []
+twili = ["cc"]

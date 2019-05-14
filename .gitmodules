@@ -1,0 +1,3 @@
+[submodule "twili-libnx"]
+	path = twili-libnx
+	url = https://github.com/misson20000/twili-libnx.git

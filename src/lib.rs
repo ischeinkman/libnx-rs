@@ -20,3 +20,6 @@ pub mod hid;
 pub mod applet;
 
 pub mod os;
+
+#[cfg(feature = "twili")]
+pub mod twili;
