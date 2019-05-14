@@ -16,7 +16,7 @@ impl LibraryApplet {
             let mut largs: sys::LibAppletArgs = std::mem::zeroed();
             sys::libappletArgsCreate(&mut largs, version);
             rc = sys::libappletArgsPush(&mut largs, &mut aph);
-            result_final!(rc, LibraryApplet { holder: aph })
+            result_final!(rc, Self { holder: aph })
         }
     }
 
@@ -47,14 +47,14 @@ impl LibraryApplet {
 
     pub fn pop_data(&mut self, out: *mut u8, size: usize) -> os::Result<usize> {
         unsafe {
-            let mut tsize: usize = 0;
+            let mut out_size: usize = 0;
             let rc = sys::libappletPopOutData(
                 &mut self.holder,
                 out as *mut std::ffi::c_void,
                 size,
-                &mut tsize,
+                &mut out_size,
             );
-            result_final!(rc, tsize)
+            result_final!(rc, out_size)
         }
     }
 }

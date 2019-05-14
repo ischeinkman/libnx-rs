@@ -17,11 +17,11 @@ impl Keyboard {
         unsafe {
             let mut kbd: sys::SwkbdConfig = std::mem::zeroed();
             let rc = sys::swkbdCreate(&mut kbd, 0);
-            result_final!(rc, Keyboard { kbd: kbd })
+            result_final!(rc, Self { kbd: kbd })
         }
     }
 
-    pub fn set_preset(&mut self, preset: KeyboardPreset) {
+    pub fn set_preset(&mut self, preset: &KeyboardPreset) {
         unsafe {
             match preset {
                 KeyboardPreset::Default => sys::swkbdConfigMakePresetDefault(&mut self.kbd),
@@ -34,7 +34,7 @@ impl Keyboard {
         }
     }
 
-    pub fn set_ok_button_text(&mut self, text: String) {
+    pub fn set_ok_button_text(&mut self, text: &str) {
         unsafe {
             sys::swkbdConfigSetOkButtonText(&mut self.kbd, text.as_ptr());
         }
@@ -42,12 +42,12 @@ impl Keyboard {
 
     pub fn show(&mut self) -> os::Result<String> {
         unsafe {
-            let mut slstr: Vec<u8> = vec![0; 500];
-            let slptr = slstr.as_mut_ptr();
-            let rc = sys::swkbdShow(&mut self.kbd, slptr, 500);
+            let mut out_buf: [u8; 500] = [0; 500];
+            let out_ptr = out_buf.as_mut_ptr();
+            let rc = sys::swkbdShow(&mut self.kbd, out_ptr, 500);
             result_final!(
                 rc,
-                String::from_utf8_lossy(std::slice::from_raw_parts(slptr, 500)).to_string()
+                String::from_utf8_lossy(std::slice::from_raw_parts(out_ptr, 500)).to_string()
             )
         }
     }

@@ -12,6 +12,7 @@ impl std::fmt::Display for Version {
     }
 }
 
+#[allow(clippy::cast_possible_truncation)]
 fn hosv_to_version(v: u32) -> Version {
     let tmpmajor: u8 = ((v >> 16) & 0xff) as u8;
     let tmpminor: u8 = ((v >> 8) & 0xff) as u8;
@@ -23,9 +24,15 @@ fn hosv_to_version(v: u32) -> Version {
     }
 }
 
-pub fn get_version() -> Version {
+pub fn get() -> Version {
     unsafe {
         let hosv: u32 = sys::hosversionGet();
         hosv_to_version(hosv)
     }
+}
+
+#[deprecated(note = "Please use version::get() instead.")]
+#[allow(clippy::module_name_repetitions)]
+pub fn get_version() -> Version {
+    get()
 }

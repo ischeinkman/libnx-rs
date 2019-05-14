@@ -1,5 +1,6 @@
 use sys;
 
+#[derive(Clone, Copy)]
 pub enum Controller {
     Invalid,
     Handheld,
@@ -18,12 +19,12 @@ pub enum Key {
     R = 128,
     ZL = 256,
     ZR = 512,
-    PLUS = 1024,
-    MINUS = 2048,
-    DPAD_Right = 16384,
-    DPAD_Up = 8192,
-    DPAD_Down = 32768,
-    DPAD_Left = 4096,
+    Plus = 1024,
+    Minus = 2048,
+    DPadRight = 16384,
+    DPadUp = 8192,
+    DPadDown = 32768,
+    DPadLeft = 4096,
 }
 
 pub enum JoyConHoldMode {
@@ -31,7 +32,7 @@ pub enum JoyConHoldMode {
     Horizontal,
 }
 
-fn ctrlid_to_controller(id: sys::HidControllerID) -> Controller {
+pub fn ctrlid_to_controller(id: sys::HidControllerID) -> Controller {
     match id {
         sys::HidControllerID_CONTROLLER_PLAYER_1 => Controller::Player(1),
         sys::HidControllerID_CONTROLLER_PLAYER_2 => Controller::Player(2),
@@ -46,7 +47,7 @@ fn ctrlid_to_controller(id: sys::HidControllerID) -> Controller {
     }
 }
 
-fn controller_to_ctrlid(id: Controller) -> sys::HidControllerID {
+pub fn controller_to_ctrlid(id: Controller) -> sys::HidControllerID {
     match id {
         Controller::Player(1) => sys::HidControllerID_CONTROLLER_PLAYER_1,
         Controller::Player(2) => sys::HidControllerID_CONTROLLER_PLAYER_2,
@@ -59,11 +60,6 @@ fn controller_to_ctrlid(id: Controller) -> sys::HidControllerID {
         Controller::Handheld => sys::HidControllerID_CONTROLLER_HANDHELD,
         _ => sys::HidControllerID_CONTROLLER_UNKNOWN,
     }
-}
-
-fn key_to_enum(id: sys::HidControllerKeys) -> Key {
-    // TODO: Port all keys
-    Key::None
 }
 
 pub fn is_controller_connected(ctrl: Controller) -> bool {
