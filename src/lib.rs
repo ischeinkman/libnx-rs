@@ -3,6 +3,7 @@
 #![cfg_attr(not(feature = "sysroot"), feature(asm))]
 #![macro_use]
 
+#[cfg(not(feature = "sysroot"))]
 extern crate core;
 
 #[cfg(not(feature = "sysroot"))]
