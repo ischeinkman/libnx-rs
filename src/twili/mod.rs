@@ -7,4 +7,4 @@ use std::sync::atomic::{AtomicBool, Ordering};
 #[allow(clippy::pedantic)]
 pub mod sys;
 
-service!(Handle, sys::twiliInitialize(), true, sys::twiliExit(), {});
+handle!(0 in sys::twiliInitialize(), sys::twiliExit(), {});
