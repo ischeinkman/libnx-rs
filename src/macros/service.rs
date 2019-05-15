@@ -2,7 +2,7 @@
 
 #[macro_export]
 macro_rules! service {
-    ($handle:ident, $init:path, $exit:path, {$($impl:tt)*}) => {
+    ($handle:ident, $init:expr, $is_err:expr, $exit:expr, {$($impl:tt)*}) => {
         pub struct $handle(());
 
         static INITIALIZED: ::std::sync::atomic::AtomicBool =
@@ -10,18 +10,22 @@ macro_rules! service {
 
         impl Drop for $handle {
             fn drop(&mut self) {
-                unsafe { $exit(); };
+                unsafe { $exit; };
             }
         }
 
         impl $handle {
             pub fn new() -> Option<Result<Self, u32>> {
                 if !INITIALIZED.swap(true, ::std::sync::atomic::Ordering::SeqCst) {
-                    let res = unsafe { $init() };
+                    let res = unsafe { $init };
 
-                    match res {
-                        0 => Some(Ok($handle(()))),
-                        err => Some(Err(err)),
+                    if $is_err {
+                        match res as u32 {
+                            0 => Some(Ok($handle(()))),
+                            err => Some(Err(err as u32)),
+                        }
+                    } else {
+                        Some(Ok($handle(())))
                     }
                 } else {
                     None
