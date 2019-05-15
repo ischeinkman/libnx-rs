@@ -3,6 +3,7 @@
 #[macro_export]
 macro_rules! service {
     ($handle:ident, $init:expr, $is_err:expr, $exit:expr, {$($impl:tt)*}) => {
+        #[derive(Debug)]
         pub struct $handle(());
 
         static INITIALIZED: ::std::sync::atomic::AtomicBool =
