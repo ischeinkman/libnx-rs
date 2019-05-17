@@ -6,8 +6,9 @@
 #[cfg(not(feature = "sysroot"))]
 extern crate core;
 
-#[cfg(not(feature = "sysroot"))]
-pub mod macros;
+extern crate cfg_if;
+
+use cfg_if::cfg_if;
 
 #[allow(non_camel_case_types)]
 #[allow(non_upper_case_globals)]
@@ -16,20 +17,24 @@ pub mod macros;
 #[allow(clippy::pedantic)]
 pub mod sys;
 
-#[cfg(not(feature = "sysroot"))]
-pub mod sm;
+cfg_if! {
+    if #[cfg(not(feature = "sysroot"))] {
+        pub mod macros;
 
-#[cfg(not(feature = "sysroot"))]
-pub mod console;
+        pub mod sm;
 
-#[cfg(not(feature = "sysroot"))]
-pub mod hid;
+        pub mod console;
 
-#[cfg(not(feature = "sysroot"))]
-pub mod applet;
+        pub mod hid;
 
-#[cfg(not(feature = "sysroot"))]
-pub mod os;
+        pub mod applet;
+
+        pub mod os;
+
+        mod util;
+        pub use util::*;
+    }
+}
 
 #[cfg(feature = "twili")]
 pub mod twili;
