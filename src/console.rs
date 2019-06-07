@@ -1,6 +1,6 @@
 use sys;
 
-handle!(sys::consoleInit(std::ptr::null_mut()), sys::consoleExit(std::ptr::null_mut()), {
+handle!(_ in sys::consoleInit(std::ptr::null_mut()), sys::consoleExit(std::ptr::null_mut()), {
     pub fn clear(&self) {
         unsafe {
             sys::consoleClear();

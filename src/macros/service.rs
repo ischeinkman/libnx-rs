@@ -2,6 +2,34 @@
 
 #[macro_export]
 macro_rules! handle {
+    (_ in $init:expr, $exit:expr, {$($impl:tt)*}) => {
+        #[derive(Debug)]
+        pub struct Handle(());
+
+        static INITIALIZED: ::std::sync::atomic::AtomicBool =
+            ::std::sync::atomic::AtomicBool::new(false);
+
+        impl Drop for Handle {
+            fn drop(&mut self) {
+                unsafe { $exit; };
+            }
+        }
+
+        impl Handle {
+            pub fn new() -> Option<Self> {
+                if !INITIALIZED.swap(true, ::std::sync::atomic::Ordering::SeqCst) {
+                    unsafe { $init; };
+
+                    Some(Handle(()))
+                } else {
+                    None
+                }
+            }
+
+            $($impl)*
+        }
+    };
+
     ($ok:pat in $init:expr, $exit:expr, {$($impl:tt)*}) => {
         #[derive(Debug)]
         pub struct Handle(());
@@ -32,32 +60,4 @@ macro_rules! handle {
             $($impl)*
         }
     };
-
-    ($init:expr, $exit:expr, {$($impl:tt)*}) => {
-        #[derive(Debug)]
-        pub struct Handle(());
-
-        static INITIALIZED: ::std::sync::atomic::AtomicBool =
-            ::std::sync::atomic::AtomicBool::new(false);
-
-        impl Drop for Handle {
-            fn drop(&mut self) {
-                unsafe { $exit; };
-            }
-        }
-
-        impl Handle {
-            pub fn new() -> Option<Self> {
-                if !INITIALIZED.swap(true, ::std::sync::atomic::Ordering::SeqCst) {
-                    unsafe { $init; };
-
-                    Some(Handle(()))
-                } else {
-                    None
-                }
-            }
-
-            $($impl)*
-        }
-    }
 }
