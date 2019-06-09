@@ -1,6 +1,6 @@
-use std::thread;
 use std::panic;
 use std::process::exit;
+use std::thread;
 
 /// Makes panics print to stdout and exit with code 0, avoiding causing a reboot.                                                       
 pub fn no_crash_panic() {
