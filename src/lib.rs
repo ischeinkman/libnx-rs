@@ -31,6 +31,8 @@ cfg_if! {
 
         pub mod os;
 
+        pub mod usbcomms;
+
         mod util;
         pub use util::*;
     }
